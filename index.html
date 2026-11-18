@@ -434,6 +434,7 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stro
         <div class="tile span2 list rose">
           <button class="row" data-action="demoBuy"><svg class="i" data-ic="cup"></svg><div class="txt"><b>Simulasi pembelian</b><span>+1 cap &amp; +20 point (mod demo)</span></div><svg class="i" data-ic="chev" style="width:18px"></svg></button>
           <button class="row" data-action="reset"><svg class="i" data-ic="refresh"></svg><div class="txt"><b>Set semula data demo</b><span>Kembali ke data asal</span></div><svg class="i" data-ic="chev" style="width:18px"></svg></button>
+          <a class="row" href="admin.html" target="_blank" rel="noopener"><svg class="i" data-ic="chart"></svg><div class="txt"><b>Admin dashboard</b><span>Kaunter staf &amp; laporan (demo · PIN 1234)</span></div><svg class="i" data-ic="chev" style="width:18px"></svg></a>
         </div>
       </div>
       <p class="demo-note">Data disimpan dalam peranti (localStorage). Sambung ke backend anda untuk produksi.</p>
@@ -512,6 +513,7 @@ const IC = {
   sparkle:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/>',
   bean:'<path d="M10 2v2M14 2v2M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/>',
   x:'<path d="M18 6 6 18M6 6l12 12"/>',
+  chart:'<path d="M3 3v18h18"/><path d="M7 15v3M11 11v7M15 7v11M19 12v6"/>',
   share:'<path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/>',
 };
 const icon = (n, s) => `<svg class="i" viewBox="0 0 24 24"${s?` style="${s}"`:""}>${IC[n]||""}</svg>`;
@@ -583,6 +585,13 @@ function qrSVG(text, color="#2A0B10"){
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 let S;
+/* Data dikongsi dengan admin.html (pelayar sama, mod demo) */
+const SHARED = { rewards:"farha-rewards-v1", settings:"farha-settings-v1", vouchers:"farha-vouchers-v1" };
+const DEFAULT_REWARDS = CONFIG.rewards;
+function applyShared(){
+  try{ const r=JSON.parse(localStorage.getItem(SHARED.rewards)); CONFIG.rewards = (Array.isArray(r)&&r.length) ? r.filter(x=>x.active!==false) : DEFAULT_REWARDS; }catch(e){}
+  try{ const st=JSON.parse(localStorage.getItem(SHARED.settings)); if(st){ if(st.stampTarget) CONFIG.stampTarget=+st.stampTarget; if(st.pointsPerPurchase) CONFIG.pointsPerPurchase=+st.pointsPerPurchase; } }catch(e){}
+}
 function load(){
   try{ S = JSON.parse(localStorage.getItem(CONFIG.storageKey)); }catch(e){ S=null; }
   if(!S) S = structuredClone(CONFIG.demoUser);
@@ -695,7 +704,7 @@ function openSheet(html){
 }
 function closeSheet(){
   $("#scrim").classList.remove("show"); $("#sheet").classList.remove("show");
-  clearInterval(timerId);
+  clearInterval(timerId); currentVoucher=null;
 }
 let toastT;
 function toast(msg){
@@ -732,8 +741,11 @@ function showQR(){
     </div>`);
 }
 function genCode(){ const a="ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; return Array.from({length:6},()=>a[Math.floor(Math.random()*a.length)]).join(""); }
+let currentVoucher=null;
 function voucherSheet(title, sub){
   const code=genCode(); let left=600;
+  currentVoucher=code;
+  try{ const list=JSON.parse(localStorage.getItem(SHARED.vouchers)||"[]"); list.unshift({code,reward:title,id:S.memberId,name:S.name,ts:Date.now(),exp:Date.now()+600e3,used:null}); localStorage.setItem(SHARED.vouchers,JSON.stringify(list.slice(0,100))); }catch(e){}
   openSheet(`
     <div class="center">
       <div class="icon-sq" style="margin:4px auto 14px;background:var(--brand)">${icon("gift")}</div>
@@ -816,6 +828,19 @@ document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeSheet(); });
 function net(){ const on=navigator.onLine; $("#h-net").textContent=on?"Disegerak":"Luar talian"; $("#h-net-dot").style.background=on?"var(--ok)":"#E0A100"; }
 addEventListener("online",net); addEventListener("offline",net);
 
+/* Segerak langsung bila admin.html (tab lain) ubah data */
+addEventListener("storage", e=>{
+  if(e.key===CONFIG.storageKey || e.key===SHARED.rewards || e.key===SHARED.settings){
+    const before=S?S.stamps+"/"+S.points:"";
+    applyShared(); load(); render();
+    if(e.key===CONFIG.storageKey && before!==S.stamps+"/"+S.points) toast("Kad anda dikemas kini di kaunter");
+  }
+  if(e.key===SHARED.vouchers && currentVoucher){
+    try{ const v=JSON.parse(e.newValue||"[]").find(x=>x.code===currentVoucher); const el=$("#vtimer");
+      if(v&&v.used&&el){ clearInterval(timerId); el.textContent="✓ Telah ditebus di kaunter"; el.style.color="var(--ok)"; el.style.fontWeight="700"; } }catch(_){}
+  }
+});
+
 /* =========================================================
    PWA — install prompt + service worker
    ========================================================= */
@@ -851,7 +876,7 @@ function endSplash(){
 /* INIT */
 $$("img.wm").forEach(i=>{ if(!i.src) i.src=WORDMARK; });
 hydrateIcons();
-load(); save(); render(); net();
+applyShared(); load(); save(); render(); net();
 go((location.hash||"#home").slice(1).replace(/[^a-z]/g,"") || "home");
 if(!$(".screen.active")) go("home");
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;

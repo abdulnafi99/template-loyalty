@@ -1,7 +1,7 @@
 /* Service worker — cache app shell supaya boleh dibuka luar talian.
    Naikkan VERSION setiap kali anda kemas kini index.html. */
-const VERSION = "farha-v1.0.0";
-const SHELL = ["./", "./index.html", "./manifest.webmanifest",
+const VERSION = "farha-v1.1.0";
+const SHELL = ["./", "./index.html", "./admin.html", "./manifest.webmanifest",
   "./icons/icon-192.png", "./icons/icon-512.png", "./icons/apple-touch-icon.png"];
 
 self.addEventListener("install", e => {
@@ -17,8 +17,8 @@ self.addEventListener("fetch", e => {
   if (req.method !== "GET") return;
   // Halaman: network dahulu, fallback cache. Aset lain: cache dahulu.
   if (req.mode === "navigate") {
-    e.respondWith(fetch(req).then(r => { caches.open(VERSION).then(c => c.put("./index.html", r.clone())); return r; })
-      .catch(() => caches.match("./index.html")));
+    e.respondWith(fetch(req).then(r => { const copy = r.clone(); caches.open(VERSION).then(c => c.put(req, copy)); return r; })
+      .catch(() => caches.match(req, { ignoreSearch: true }).then(hit => hit || caches.match("./index.html"))));
     return;
   }
   e.respondWith(caches.match(req).then(hit => hit || fetch(req).then(r => {
