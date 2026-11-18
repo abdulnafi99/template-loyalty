@@ -13,9 +13,21 @@ Ditulis sepenuhnya dalam **HTML, CSS dan JavaScript vanilla**, dalam satu fail `
 - **PWA**: boleh dipasang ke skrin utama (Android & iOS) dan dibuka luar talian melalui service worker.
 - **Mod demo**: butang "Simulasi pembelian" dan "Set semula data". Data disimpan dalam `localStorage`.
 
+## Admin dashboard (`admin.html`, demo)
+Buka `/admin` atau `admin.html` dan masukkan PIN demo **1234**.
+- **Ringkasan**: KPI (ahli, pembelian hari ini, point dikeluarkan, tebusan), carta pembelian 14 hari, ganjaran popular, aktiviti terkini dan ahli teratas.
+- **Kaunter**: imbas QR pelanggan dengan kamera (BarcodeDetector, atau jsQR sebagai fallback) atau taip ID ahli. Kemudian rekod pembelian (+cap, +point), tebus kad cap penuh, tebus ganjaran, dan sahkan kod baucar.
+- **Ahli**: cari, tapis ikut tahap, susun. Lihat butiran dan sejarah, laraskan point, eksport CSV.
+- **Ganjaran**: tambah, edit, padam, aktif/sembunyi, dan pilih ganjaran utama. Perubahan terus muncul dalam app pelanggan.
+- **Tetapan**: bilangan cap untuk minuman percuma dan point setiap minuman.
+
+**Segerak demo:** admin dan app pelanggan berkongsi `localStorage` dalam pelayar yang sama. Buka `index.html` dan `admin.html` dalam dua tab sebelah-menyebelah. Cap yang ditambah di kaunter terus muncul dalam app pelanggan, dan baucar yang disahkan staf terus bertukar jadi "✓ Telah ditebus di kaunter". Ahli lain dalam dashboard adalah data contoh. Untuk segerak antara peranti, sambung ke Firebase.
+
 ## Struktur
 ```
-index.html             ← SEMUA UI, CSS & JS (logo wordmark dibenam base64)
+index.html             ← app pelanggan: SEMUA UI, CSS & JS (logo dibenam base64)
+admin.html             ← dashboard admin & kaunter staf (satu fail, demo)
+vercel.json            ← laluan /admin
 manifest.webmanifest   ← maklumat PWA (nama, warna, ikon)
 sw.js                  ← service worker (cache luar talian)
 icons/                 ← ikon app + logo Farha (PNG)
