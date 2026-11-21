@@ -226,6 +226,67 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stro
 .toast{position:fixed;left:50%;top:18px;z-index:60;transform:translate(-50%,-140%);opacity:0;visibility:hidden;transition:transform .45s cubic-bezier(.2,.9,.2,1),opacity .3s,visibility 0s .45s;background:var(--brand-deep);color:#fff;padding:12px 18px;border-radius:16px;font-size:13.5px;font-weight:600;box-shadow:0 10px 30px -10px rgba(60,0,8,.6);display:flex;gap:10px;align-items:center;max-width:90vw}
 .toast.show{transform:translate(-50%,0);opacity:1;visibility:visible;transition:transform .45s cubic-bezier(.2,.9,.2,1),opacity .2s}
 
+/* ---------- Menu editor ---------- */
+.sheet.wide{width:min(640px,100%)}
+.prod-card{display:flex;flex-direction:column;gap:10px;min-height:180px}
+.prod-card .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.prod-card h4{margin:auto 0 0;font-size:15px}
+.prod-card p{margin:0;font-size:12px;color:var(--ink-2)}
+.prod-card .foot{display:flex;justify-content:space-between;align-items:center}
+.prod-card.off{opacity:.55}
+.price{font-family:var(--mono);font-weight:700;font-size:13px}
+.ged{border:1px solid var(--line);border-radius:18px;background:#fff;margin-bottom:14px}
+.ged-h{display:flex;gap:10px;align-items:center;padding:12px 12px 10px 14px;border-bottom:1px solid var(--line)}
+.ged-h input{flex:1;min-width:0;font-weight:700;font-size:14.5px;border:1px solid transparent;background:transparent;border-radius:10px;padding:8px}
+.ged-h input:hover,.ged-h input:focus{border-color:var(--line);background:var(--bg);outline:none}
+.ged-cfg{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;padding:12px 14px}
+.seg{display:inline-flex;padding:4px;border-radius:12px;background:var(--bg);border:1px solid var(--line)}
+.seg button{padding:7px 12px;border-radius:9px;font-size:12.5px;font-weight:700;color:var(--ink-2)}
+.seg button.on{background:var(--brand);color:#fff}
+.cfg-item{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--ink-2)}
+.otbl{width:100%;border-collapse:collapse}
+.otbl th{text-align:left;font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);font-weight:700;padding:8px 10px 4px}
+.otbl td{padding:6px 10px;border-top:1px solid var(--line);vertical-align:middle}
+.otbl th.c,.otbl td.c{text-align:center}
+.otbl td:first-child{min-width:130px;width:42%}
+.otbl input.nm{width:100%;min-width:0;border:1px solid transparent;background:transparent;border-radius:9px;padding:7px;font-weight:600}
+.otbl input.nm:hover,.otbl input.nm:focus{border-color:var(--line);background:var(--bg);outline:none}
+.otbl input.pr{width:64px;border:1px solid var(--line);background:var(--bg);border-radius:9px;padding:7px 6px;font-family:var(--mono);text-align:right}
+.otbl tr.off td:not(:last-child):not(:nth-last-child(2)){opacity:.45}
+.sstep{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:10px;background:var(--bg);overflow:hidden}
+.sstep button{width:30px;height:30px;display:grid;place-items:center;color:var(--brand);font-weight:700;font-size:16px}
+.sstep button:disabled{color:var(--ink-3);cursor:not-allowed}
+.sstep output{min-width:28px;text-align:center;font-family:var(--mono);font-weight:700;font-size:13px}
+.ibtn{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;color:var(--ink-3)}
+.ibtn:hover{background:rgba(191,3,17,.07);color:var(--brand)}
+.icon-pick{display:flex;flex-wrap:wrap;gap:8px}
+.icon-pick button{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:#fff;border:1px solid var(--line);color:var(--ink)}
+.icon-pick button.on{background:var(--brand);color:#fff;border-color:transparent}
+.ed-foot .grow{flex:1}
+.ed-foot{position:sticky;bottom:calc(-30px - var(--safe-b));margin:16px -24px calc(-30px - var(--safe-b));padding:14px 24px calc(20px + var(--safe-b));background:linear-gradient(to top,rgba(255,250,250,1) 70%,rgba(255,250,250,0));display:flex;gap:10px}
+/* ---------- Pesanan ---------- */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.chip-f{padding:8px 14px;border-radius:999px;font-size:13px;font-weight:700;background:var(--glass);border:1px solid var(--glass-line);color:var(--ink-2)}
+.chip-f.on{background:var(--brand);color:#fff;border-color:transparent}
+.ord-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.ord{display:flex;flex-direction:column;gap:10px}
+.ord .oh{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.ord .no{font-family:var(--mono);font-size:22px;font-weight:700}
+.ord .who2{font-size:12.5px;color:var(--ink-2)}
+.ord .it{display:flex;gap:8px;font-size:13px;padding:6px 0;border-top:1px solid var(--line)}
+.ord .it .d{flex:1;min-width:0}
+.ord .it .d b{display:block;font-weight:600}
+.ord .it .d span{font-size:11.5px;color:var(--ink-2);line-height:1.4}
+.ord .tot{display:flex;justify-content:space-between;font-weight:800;padding-top:8px;border-top:1px solid var(--line)}
+.st{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:99px;white-space:nowrap}
+.st::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.st.Baru{background:rgba(191,3,17,.1);color:var(--brand)}
+.st.Disediakan{background:#FFF2DD;color:#9A5A00}
+.st.Siap{background:rgba(20,164,77,.12);color:var(--ok)}
+.st.Selesai{background:rgba(110,74,80,.1);color:var(--ink-2)}
+.nbadge{margin-left:auto;min-width:22px;height:22px;padding:0 6px;border-radius:99px;background:var(--brand);color:#fff;font-size:11.5px;font-weight:800;display:grid;place-items:center}
+.nav-btn.active .nbadge{background:#fff;color:var(--brand)}
+
 /* ---------- Responsif ---------- */
 @media (max-width:1100px){ .g4{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:900px){
@@ -239,11 +300,12 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stro
   .mob-nav{display:flex;position:fixed;left:50%;bottom:calc(14px + var(--safe-b));transform:translateX(-50%);z-index:30;gap:2px;padding:6px;border-radius:999px;background:rgba(255,255,255,.82);border:1px solid var(--glass-line);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:0 14px 34px -14px rgba(120,10,20,.35)}
   .mob-nav button{height:46px;min-width:46px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 12px;color:var(--ink-2);font-size:12.5px;font-weight:700}
   .mob-nav button span{display:none}
+  .mob-nav .nbadge{display:none}
   .mob-nav button.active{background:var(--brand);color:#fff;padding:0 16px}
   .mob-nav button.active span{display:inline}
   .table .hide-m{display:none}
 }
-@media (max-width:480px){ .g4{gap:10px} .kpi{font-size:24px} .tile{padding:16px} }
+@media (max-width:480px){ .g4{gap:10px} .kpi{font-size:24px} .tile{padding:16px} .mob-nav button{min-width:42px;padding:0 10px} .mob-nav button.active{padding:0 12px} .mob-nav button.active span{display:none} .otbl td:first-child{min-width:110px} }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
@@ -270,6 +332,8 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stro
     <button class="nav-btn active" data-go="overview"><svg class="i" data-ic="chart"></svg>Ringkasan</button>
     <button class="nav-btn" data-go="counter"><svg class="i" data-ic="scan"></svg>Kaunter</button>
     <button class="nav-btn" data-go="members"><svg class="i" data-ic="users"></svg>Ahli</button>
+    <button class="nav-btn" data-go="orders"><svg class="i" data-ic="receipt"></svg>Pesanan<span class="nbadge" id="ordBadge" hidden>0</span></button>
+    <button class="nav-btn" data-go="menu"><svg class="i" data-ic="bag"></svg>Menu &amp; add-on</button>
     <button class="nav-btn" data-go="rewards"><svg class="i" data-ic="gift"></svg>Ganjaran</button>
     <button class="nav-btn" data-go="settings"><svg class="i" data-ic="settings"></svg>Tetapan</button>
     <div class="spacer"></div>
@@ -360,6 +424,24 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stro
       </div>
     </section>
 
+    <!-- ========== PESANAN ========== -->
+    <section class="screen" data-screen="orders">
+      <div class="topbar"><div><small id="ordSub">Pesanan dari app pelanggan</small><h1>Pesanan</h1></div></div>
+      <div class="chips" id="ordChips">
+        <button class="chip-f on" data-of="aktif">Aktif</button><button class="chip-f" data-of="Selesai">Selesai</button><button class="chip-f" data-of="semua">Semua</button>
+      </div>
+      <div class="ord-grid" id="ordGrid"></div>
+    </section>
+
+    <!-- ========== MENU ========== -->
+    <section class="screen" data-screen="menu">
+      <div class="topbar">
+        <div><small>Produk, harga &amp; had add-on</small><h1>Menu &amp; add-on</h1></div>
+        <div class="top-actions"><button class="btn red" data-action="newProduct"><svg class="i" data-ic="plus"></svg>Tambah produk</button></div>
+      </div>
+      <div class="rw-grid" id="menuGrid"></div>
+    </section>
+
     <!-- ========== GANJARAN ========== -->
     <section class="screen" data-screen="rewards">
       <div class="topbar">
@@ -375,8 +457,8 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stro
       <div class="grid g2">
         <div class="tile">
           <h3>Peraturan cap &amp; point</h3>
-          <label class="field"><span>Cap untuk 1 minuman percuma</span><input class="input mono" type="number" min="4" max="20" id="setStamp"></label>
-          <label class="field"><span>Point setiap minuman</span><input class="input mono" type="number" min="1" max="500" id="setPts"></label>
+          <label class="field"><span>Cap untuk 1 minuman percuma (1 item = 1 cap)</span><input class="input mono" type="number" min="4" max="20" id="setStamp"></label>
+          <label class="field"><span>Point setiap item</span><input class="input mono" type="number" min="1" max="500" id="setPts"></label>
           <button class="btn red" data-action="saveSettings">Simpan tetapan</button>
           <p class="note" style="margin-top:12px">Perubahan terus digunakan oleh app pelanggan dalam pelayar yang sama.</p>
         </div>
@@ -397,6 +479,8 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stro
   <button data-go="overview" class="active"><svg class="i" data-ic="chart"></svg><span>Ringkasan</span></button>
   <button data-go="counter"><svg class="i" data-ic="scan"></svg><span>Kaunter</span></button>
   <button data-go="members"><svg class="i" data-ic="users"></svg><span>Ahli</span></button>
+  <button data-go="orders"><svg class="i" data-ic="receipt"></svg><span>Pesanan</span></button>
+  <button data-go="menu"><svg class="i" data-ic="bag"></svg><span>Menu</span></button>
   <button data-go="rewards"><svg class="i" data-ic="gift"></svg><span>Ganjaran</span></button>
   <button data-go="settings"><svg class="i" data-ic="settings"></svg><span>Tetapan</span></button>
 </nav>
@@ -405,6 +489,7 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stro
 <aside class="sheet" id="sheet" role="dialog" aria-modal="true"><button class="x" data-action="close" aria-label="Tutup"><svg class="i" data-ic="x"></svg></button><div id="sheetBody"></div></aside>
 <div class="toast" id="toast"></div>
 
+<script src="menu.js"></script>
 <script>
 /* =========================================================
    KONFIGURASI
@@ -418,6 +503,8 @@ const ADMIN = {
     rewards: "farha-rewards-v1",
     settings: "farha-settings-v1",
     vouchers: "farha-vouchers-v1",
+    menu: "farha-menu-v1",
+    orders: "farha-orders-v1",
   },
   tiers: [{name:"Silver",min:0},{name:"Gold",min:1000},{name:"Platinum",min:2000}],
   defaultSettings: { stampTarget: 10, pointsPerPurchase: 20 },
@@ -470,7 +557,15 @@ const IC = {
   bean:'<path d="M10 2v2M14 2v2M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/>',
   ticket:'<path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2zM13 5v2M13 17v2M13 11v2"/>',
 };
+Object.assign(IC, {
+  bag:'<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/>',
+  bowl:'<path d="M3 11h18a9 9 0 0 1-18 0zM7 7l1-4M12 7V2M17 7l-1-4"/>',
+  bread:'<path d="M5 11a4 4 0 1 1 3-6.7A4 4 0 0 1 12 3a4 4 0 0 1 4 1.3A4 4 0 1 1 19 11v8a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/>',
+  leaf:'<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10zM2 21c0-3 1.9-5.4 5.2-6.1"/>',
+  receipt:'<path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1zM16 8h-6M16 12H8M13 16H8"/>',
+});
 const REWARD_ICONS = ["cup","cake","tag","sparkle","bean","gift","ticket"];
+const MENU_ICONS = ["cup","leaf","bowl","bread","cake","bean","sparkle"];
 const icon = (n,s) => `<svg class="i" viewBox="0 0 24 24"${s?` style="${s}"`:""}>${IC[n]||""}</svg>`;
 function hydrate(root=document){
   root.querySelectorAll("[data-ic]").forEach(el=>{
@@ -545,7 +640,21 @@ function load(){
   CUST=read(ADMIN.keys.customer,null); if(!CUST||!CUST.memberId){CUST=ADMIN.demoCustomer();write(ADMIN.keys.customer,CUST);}
   REWARDS=read(ADMIN.keys.rewards,null); if(!Array.isArray(REWARDS)||!REWARDS.length) REWARDS=structuredClone(ADMIN.defaultRewards);
   SETTINGS=Object.assign({},ADMIN.defaultSettings,read(ADMIN.keys.settings,{}));
+  MENU=read(ADMIN.keys.menu,null); if(!Array.isArray(MENU)||!MENU.length) MENU=structuredClone(window.FARHA_MENU||[]);
+  if(localStorage.getItem(ADMIN.keys.orders)===null) write(ADMIN.keys.orders, seedOrders());
+  ORDERS=read(ADMIN.keys.orders,[]);
 }
+let MENU=[], ORDERS=[];
+function seedOrders(){
+  const m=DB.members, now=Date.now();
+  return [
+    {no:"A102",ts:now-6*60e3,memberId:m[3].id,name:m[3].name,status:"Baru",total:19.90,items:[
+      {name:"Farha Signature",opts:"Large, Kurang ais, Boba ×2",price:14.90},{name:"Roti Bakar",opts:"Mentega kaya",price:5.00}]},
+    {no:"A101",ts:now-14*60e3,memberId:m[7].id,name:m[7].name,status:"Disediakan",total:14.70,items:[
+      {name:"Oden Set",opts:"Fish ball ×3, Fucuk ×1, Sosej ×1 · Kuah tom yam",price:14.70}]},
+  ];
+}
+const saveMenu=()=>write(ADMIN.keys.menu,MENU);
 const saveDB=()=>write(ADMIN.keys.db,DB);
 const saveCust=()=>write(ADMIN.keys.customer,CUST);
 const saveRewards=()=>write(ADMIN.keys.rewards,REWARDS);
@@ -588,7 +697,8 @@ function go(name){
   history.replaceState(null,"","#"+name);
 }
 function renderScreen(){
-  ({overview:renderOverview,counter:()=>{},members:renderMembers,rewards:renderRewards,settings:renderSettings})[current]?.();
+  ({overview:renderOverview,counter:()=>{},members:renderMembers,rewards:renderRewards,settings:renderSettings,menu:renderMenuAdmin,orders:renderOrders})[current]?.();
+  renderOrderBadge();
 }
 
 /* =========================================================
@@ -881,10 +991,162 @@ function resetDemo(){
 }
 
 /* =========================================================
+   MENU & ADD-ON
+   - Kumpulan "single": pilih satu (radio), boleh jadi wajib.
+   - Kumpulan "multi": pilih banyak; SETIAP pilihan ada had kuantiti per item
+     (contoh Fucuk maks 1). Kumpulan juga boleh ada had jumlah (0 = tiada had).
+   ========================================================= */
+const rmf=n=>"RM "+Number(n||0).toFixed(2);
+const uid=p=>p+Math.random().toString(36).slice(2,7);
+function renderMenuAdmin(){
+  $("#menuGrid").innerHTML=MENU.map(p=>{
+    const g=p.groups||[], nOpt=g.reduce((a,x)=>a+(x.options||[]).length,0), lim=g.filter(x=>x.type==="multi").length;
+    return `<div class="tile prod-card ${p.active===false?"off":""}">
+      <div class="top"><div class="icon-sq">${icon(p.icon||"cup")}</div><span class="badge">${esc(p.cat||"Lain-lain")}</span></div>
+      <h4>${esc(p.name)}</h4><p>${g.length} kumpulan add-on · ${nOpt} pilihan${lim?` · ${lim} dengan had kuantiti`:""}</p>
+      <div class="foot"><span class="price">${rmf(p.price)}</span>
+        <div class="row"><button class="switch ${p.active!==false?"on":""}" data-action="toggleProduct" data-p="${p.id}" aria-label="Aktif"></button>
+        <button class="btn ghost sm" data-action="editProduct" data-p="${p.id}">${icon("edit","width:16px;height:16px")}Edit</button></div></div>
+    </div>`;}).join("") || `<div class="tile empty">Belum ada produk. Tekan "Tambah produk".</div>`;
+}
+function toggleProduct(id){ const p=MENU.find(x=>x.id===id); p.active=p.active===false; saveMenu(); renderMenuAdmin(); toast(p.active?"Produk dipaparkan":"Produk disembunyikan"); }
+
+let draft=null, draftIsNew=false;
+function editProduct(id){
+  const p=MENU.find(x=>x.id===id);
+  draftIsNew=!p;
+  draft=p?structuredClone(p):{id:uid("p"),name:"",desc:"",price:5,cat:"Minuman",icon:"cup",active:true,groups:[]};
+  openSheet(`<div id="ed"></div>`,true); renderDraft();
+}
+function sstep(attrs,val,min,max,label){
+  return `<div class="sstep" aria-label="${label}"><button type="button" ${attrs} data-d="-1" ${val<=min?"disabled":""} aria-label="Kurang">−</button><output>${val===0&&min===0?"∞":val}</output><button type="button" ${attrs} data-d="1" ${val>=max?"disabled":""} aria-label="Tambah">+</button></div>`;
+}
+function renderDraft(){
+  const box=$("#ed"); if(!box||!draft) return;
+  const cats=[...new Set(MENU.map(p=>p.cat).filter(Boolean))];
+  box.innerHTML=`
+    <h2>${draftIsNew?"Produk baru":"Edit produk"}</h2><p class="sub">Perubahan muncul dalam app pelanggan selepas disimpan.</p>
+    <div class="grid g2" style="gap:0 12px">
+      <label class="field"><span>Nama</span><input class="input" data-pf="name" value="${esc(draft.name)}" maxlength="40" placeholder="cth. Oden Set"></label>
+      <label class="field"><span>Harga asas (RM)</span><input class="input mono" type="number" min="0" step="0.10" data-pf="price" value="${Number(draft.price).toFixed(2)}"></label>
+      <label class="field"><span>Kategori</span><input class="input" data-pf="cat" value="${esc(draft.cat||"")}" list="catList"><datalist id="catList">${cats.map(c=>`<option value="${esc(c)}">`).join("")}</datalist></label>
+      <label class="field"><span>Penerangan</span><input class="input" data-pf="desc" value="${esc(draft.desc||"")}" maxlength="60"></label>
+    </div>
+    <div class="field"><span>Ikon</span><div class="icon-pick">${MENU_ICONS.map(n=>`<button type="button" class="${n===draft.icon?"on":""}" data-ed="icon" data-v="${n}" aria-label="${n}">${icon(n)}</button>`).join("")}</div></div>
+
+    <h3 style="margin:22px 0 4px;font-size:15px">Kumpulan add-on</h3>
+    <p class="note" style="margin:0 0 12px">"Pilih banyak" membolehkan pelanggan pilih kuantiti. Tetapkan <b>Maks / item</b> untuk setiap pilihan. Pelanggan yang nak lebih perlu tambah item ke troli sekali lagi.</p>
+    ${draft.groups.map((g,gi)=>`
+      <div class="ged">
+        <div class="ged-h"><input data-gf="name" data-g="${gi}" value="${esc(g.name)}" placeholder="Nama kumpulan (cth. Topping)" aria-label="Nama kumpulan">
+          <button type="button" class="ibtn" data-ed="delGroup" data-g="${gi}" aria-label="Padam kumpulan">${icon("trash","width:17px;height:17px")}</button></div>
+        <div class="ged-cfg">
+          <div class="seg"><button type="button" class="${g.type==="single"?"on":""}" data-ed="type" data-g="${gi}" data-v="single">Pilih satu</button><button type="button" class="${g.type==="multi"?"on":""}" data-ed="type" data-g="${gi}" data-v="multi">Pilih banyak + kuantiti</button></div>
+          ${g.type==="single"
+            ? `<label class="cfg-item">Wajib <button type="button" class="switch ${g.required?"on":""}" data-ed="req" data-g="${gi}" aria-label="Wajib"></button></label>`
+            : `<span class="cfg-item">Had jumlah ${sstep(`data-ed="gmax" data-g="${gi}"`,g.max||0,0,30,"Had jumlah")}</span>`}
+        </div>
+        <div style="overflow-x:auto"><table class="otbl">
+          <thead><tr><th>Pilihan</th><th>+RM</th>${g.type==="multi"?'<th class="c">Maks / item</th>':""}<th class="c">Aktif</th><th></th></tr></thead>
+          <tbody>${(g.options||[]).map((o,oi)=>`
+            <tr class="${o.active===false?"off":""}">
+              <td><input class="nm" data-of="name" data-g="${gi}" data-o="${oi}" value="${esc(o.name)}" placeholder="Nama pilihan" aria-label="Nama pilihan"></td>
+              <td><input class="pr" type="number" min="0" step="0.10" data-of="price" data-g="${gi}" data-o="${oi}" value="${Number(o.price||0).toFixed(2)}" aria-label="Harga tambahan"></td>
+              ${g.type==="multi"?`<td class="c">${sstep(`data-ed="omax" data-g="${gi}" data-o="${oi}"`,o.max||1,1,20,"Maks setiap item")}</td>`:""}
+              <td class="c"><button type="button" class="switch ${o.active!==false?"on":""}" data-ed="oact" data-g="${gi}" data-o="${oi}" aria-label="Aktif"></button></td>
+              <td><button type="button" class="ibtn" data-ed="delOpt" data-g="${gi}" data-o="${oi}" aria-label="Padam pilihan">${icon("trash","width:16px;height:16px")}</button></td>
+            </tr>`).join("")}</tbody>
+        </table></div>
+        <div style="padding:8px 14px 14px"><button type="button" class="btn ghost sm" data-ed="addOpt" data-g="${gi}">${icon("plus","width:16px;height:16px")}Tambah pilihan</button></div>
+      </div>`).join("")}
+    <div class="row" style="flex-wrap:wrap">
+      <button type="button" class="btn ghost" data-ed="addGroup" data-v="multi">${icon("plus")}Kumpulan pilih banyak</button>
+      <button type="button" class="btn ghost" data-ed="addGroup" data-v="single">${icon("plus")}Kumpulan pilih satu</button>
+    </div>
+    <div class="ed-foot">
+      ${draftIsNew?"":`<button class="btn ghost" data-action="deleteProduct" aria-label="Padam produk">${icon("trash")}</button>`}
+      <button class="btn red grow" data-action="saveProduct">Simpan produk</button>
+    </div>`;
+}
+$("#sheetBody").addEventListener("input",e=>{
+  if(!draft) return; const t=e.target, d=t.dataset;
+  if(d.pf) draft[d.pf]= d.pf==="price" ? Math.max(0,parseFloat(t.value)||0) : t.value;
+  if(d.gf) draft.groups[+d.g][d.gf]=t.value;
+  if(d.of){ const o=draft.groups[+d.g].options[+d.o]; o[d.of]= d.of==="price" ? Math.max(0,parseFloat(t.value)||0) : t.value; }
+});
+$("#sheetBody").addEventListener("click",e=>{
+  const b=e.target.closest("[data-ed]"); if(!b||!draft||b.disabled) return;
+  const d=b.dataset, g=d.g!==undefined?draft.groups[+d.g]:null, o=g&&d.o!==undefined?g.options[+d.o]:null, step=+(d.d||0);
+  switch(d.ed){
+    case "icon": draft.icon=d.v; break;
+    case "type": g.type=d.v; if(d.v==="multi"){ g.max=g.max||0; g.options.forEach(x=>x.max=x.max||1); delete g.required; } else { g.required=true; } break;
+    case "req": g.required=!g.required; break;
+    case "gmax": g.max=Math.max(0,Math.min(30,(g.max||0)+step)); break;
+    case "omax": o.max=Math.max(1,Math.min(20,(o.max||1)+step)); break;
+    case "oact": o.active=o.active===false; break;
+    case "delOpt": g.options.splice(+d.o,1); break;
+    case "addOpt": g.options.push({id:uid("o"),name:"",price:0,max:1,active:true}); break;
+    case "delGroup": draft.groups.splice(+d.g,1); break;
+    case "addGroup": draft.groups.push(d.v==="multi"
+      ? {id:uid("g"),name:"",type:"multi",max:0,options:[{id:uid("o"),name:"",price:0,max:1,active:true}]}
+      : {id:uid("g"),name:"",type:"single",required:true,options:[{id:uid("o"),name:"",price:0,active:true}]}); break;
+  }
+  const y=$("#sheet").scrollTop; renderDraft(); $("#sheet").scrollTop=y;
+  if(d.ed==="addOpt"||d.ed==="addGroup"){ const ins=$$("#ed input.nm, #ed .ged-h input"); const target=d.ed==="addOpt"?[...$$(`#ed input.nm[data-g="${d.g}"]`)].pop():[...$$("#ed .ged-h input")].pop(); target?.focus(); void ins; }
+});
+function saveProduct(){
+  if(!draft.name.trim()){ toast("Isi nama produk"); return; }
+  for(const g of draft.groups){
+    g.options=g.options.filter(o=>o.name.trim());
+    if(!g.name.trim()||!g.options.length){ toast("Setiap kumpulan perlu nama dan sekurang-kurangnya satu pilihan"); return; }
+  }
+  draft.name=draft.name.trim(); draft.price=+Number(draft.price).toFixed(2);
+  const i=MENU.findIndex(x=>x.id===draft.id);
+  if(i>=0) MENU[i]=draft; else MENU.push(draft);
+  saveMenu(); draft=null; closeSheet(); renderMenuAdmin(); toast("Produk disimpan");
+}
+function deleteProduct(){
+  if(!draft) return;
+  const btn=$('[data-action="deleteProduct"]');
+  if(btn.dataset.sure!=="1"){ btn.dataset.sure="1"; btn.innerHTML="Padam?"; btn.classList.add("red"); btn.classList.remove("ghost"); return; }
+  MENU=MENU.filter(x=>x.id!==draft.id); saveMenu(); draft=null; closeSheet(); renderMenuAdmin(); toast("Produk dipadam");
+}
+
+/* =========================================================
+   PESANAN
+   ========================================================= */
+const ORDER_FLOW={"Baru":["Disediakan","Mula sediakan"],"Disediakan":["Siap diambil","Tandakan siap"],"Siap diambil":["Selesai","Sudah diambil"]};
+let ordFilter="aktif";
+function renderOrderBadge(){
+  const n=ORDERS.filter(o=>o.status!=="Selesai").length, b=$("#ordBadge");
+  if(b){ b.hidden=!n; b.textContent=n; }
+}
+function renderOrders(){
+  $$("#ordChips .chip-f").forEach(c=>c.classList.toggle("on",c.dataset.of===ordFilter));
+  const list=ORDERS.filter(o=>ordFilter==="semua"||(ordFilter==="aktif"?o.status!=="Selesai":o.status===ordFilter));
+  const act=ORDERS.filter(o=>o.status!=="Selesai").length;
+  $("#ordSub").textContent=`${act} pesanan aktif`;
+  $("#ordGrid").innerHTML=list.map(o=>{
+    const nx=ORDER_FLOW[o.status];
+    return `<div class="tile ord">
+      <div class="oh"><div><div class="no">#${esc(o.no)}</div><div class="who2">${esc(o.name)} · ${ago(o.ts)}</div></div><span class="st ${o.status.split(" ")[0]}">${esc(o.status)}</span></div>
+      <div>${o.items.map(c=>`<div class="it"><span class="mono" style="color:var(--brand);font-weight:700">1×</span><div class="d"><b>${esc(c.name)}</b><span>${esc(c.opts||"")}</span></div><span class="mono">${rmf(c.price)}</span></div>`).join("")}</div>
+      <div class="tot"><span>Jumlah</span><span class="mono">${rmf(o.total)}</span></div>
+      ${nx?`<button class="btn ${o.status==="Disediakan"?"red":""} block" data-action="advanceOrder" data-no="${esc(o.no)}">${icon("check")}${nx[1]}</button>`:""}
+    </div>`;}).join("") || `<div class="tile empty">Tiada pesanan di sini.</div>`;
+}
+function advanceOrder(no){
+  const list=read(ADMIN.keys.orders,[]), o=list.find(x=>x.no===no); if(!o||!ORDER_FLOW[o.status]) return;
+  o.status=ORDER_FLOW[o.status][0]; write(ADMIN.keys.orders,list); ORDERS=list;
+  renderOrders(); renderOrderBadge(); toast(`#${no}: ${o.status}`);
+}
+document.addEventListener("click",e=>{ const c=e.target.closest("#ordChips [data-of]"); if(c){ ordFilter=c.dataset.of; renderOrders(); } });
+
+/* =========================================================
    SHEET & TOAST
    ========================================================= */
-function openSheet(html){ $("#sheetBody").innerHTML=html; $("#scrim").classList.add("show"); $("#sheet").classList.add("show"); $("#sheet").scrollTop=0; }
-function closeSheet(){ $("#scrim").classList.remove("show"); $("#sheet").classList.remove("show"); }
+function openSheet(html,wide){ $("#sheetBody").innerHTML=html; $("#sheet").classList.toggle("wide",!!wide); $("#scrim").classList.add("show"); $("#sheet").classList.add("show"); $("#sheet").scrollTop=0; }
+function closeSheet(){ $("#scrim").classList.remove("show"); $("#sheet").classList.remove("show"); draft=null; }
 let tt; function toast(msg){ const t=$("#toast"); t.innerHTML=icon("check","width:18px;height:18px")+`<span>${esc(msg)}</span>`; t.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("show"),2600); }
 
 /* =========================================================
@@ -903,6 +1165,8 @@ document.addEventListener("click",e=>{
     adjust:()=>adjust(d.id), toCounter:()=>{closeSheet();go("counter");findMember(d.id);},
     exportCSV, newReward:()=>editReward(""), editReward:()=>editReward(d.r), saveReward:()=>saveReward(d.r),
     deleteReward:()=>deleteReward(d.r), toggleReward:()=>toggleReward(d.r),
+    newProduct:()=>editProduct(""), editProduct:()=>editProduct(d.p), toggleProduct:()=>toggleProduct(d.p),
+    saveProduct, deleteProduct, advanceOrder:()=>advanceOrder(d.no),
     saveSettings, resetDemo,
     logout:()=>{sessionStorage.removeItem("farha-admin-auth");location.reload();},
   })[d.action]?.();
@@ -916,6 +1180,7 @@ $("#tierFilter").addEventListener("change",renderMembers);
 /* Segerak langsung dengan app pelanggan (tab lain, pelayar sama) */
 addEventListener("storage",e=>{
   if(!Object.values(ADMIN.keys).includes(e.key)) return;
+  if(e.key===ADMIN.keys.orders){ try{ const now=JSON.parse(e.newValue||"[]"), known=new Set(ORDERS.map(o=>o.no)); now.filter(o=>!known.has(o.no)).forEach(o=>toast(`Pesanan baru #${o.no} daripada ${o.name.split(" ")[0]}`)); }catch(_){} }
   load(); renderScreen(); if(current==="counter"&&counterId) renderCounterMember();
 });
 
@@ -934,7 +1199,7 @@ $("#loginForm").addEventListener("submit",e=>{
 });
 function enter(){
   $("#login").remove(); $("#layout").hidden=false; $("#mobNav").hidden=false;
-  const h=(location.hash||"").slice(1); go(["overview","counter","members","rewards","settings"].includes(h)?h:"overview");
+  const h=(location.hash||"").slice(1); go(["overview","counter","members","rewards","settings","menu","orders"].includes(h)?h:"overview");
 }
 
 /* INIT */

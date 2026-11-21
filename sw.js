@@ -1,7 +1,7 @@
 /* Service worker — cache app shell supaya boleh dibuka luar talian.
    Naikkan VERSION setiap kali anda kemas kini index.html. */
-const VERSION = "farha-v1.1.0";
-const SHELL = ["./", "./index.html", "./admin.html", "./manifest.webmanifest",
+const VERSION = "farha-v1.2.0";
+const SHELL = ["./", "./index.html", "./admin.html", "./menu.js", "./manifest.webmanifest",
   "./icons/icon-192.png", "./icons/icon-512.png", "./icons/apple-touch-icon.png"];
 
 self.addEventListener("install", e => {
