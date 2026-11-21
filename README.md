@@ -13,6 +13,14 @@ Ditulis sepenuhnya dalam **HTML, CSS dan JavaScript vanilla**, dalam satu fail `
 - **PWA**: boleh dipasang ke skrin utama (Android & iOS) dan dibuka luar talian melalui service worker.
 - **Mod demo**: butang "Simulasi pembelian" dan "Set semula data". Data disimpan dalam `localStorage`.
 
+## Menu, add-on & troli
+- **App pelanggan → Menu**: kategori, produk, add-on dan troli. Setiap item dalam pesanan beri **1 cap** dan point ikut tetapan.
+- **Add-on "pilih banyak + kuantiti"**: setiap pilihan ada **had kuantiti per item** (contohnya Fucuk maks 1, Fish ball maks 3), dan kumpulan boleh ada had jumlah (contohnya 6 cucuk). Bila had dicapai, pelanggan diberitahu untuk tambah item yang sama ke troli sekali lagi.
+- **Add-on "pilih satu"**: radio, boleh jadi wajib (contohnya Saiz, Gula, Kuah).
+- **Admin → Menu & add-on**: tambah atau edit produk, kumpulan add-on, harga tambahan, had kuantiti, dan aktif/sembunyi.
+- **Admin → Pesanan**: pesanan masuk secara langsung, dengan status Baru → Disediakan → Siap diambil → Selesai. Pelanggan dapat notis bila pesanan siap.
+- **Menu asal setiap kedai ada dalam `menu.js`.** Itu satu-satunya tempat untuk ubah menu bila sediakan kedai baru.
+
 ## Admin dashboard (`admin.html`, demo)
 Buka `/admin` atau `admin.html` dan masukkan PIN demo **1234**.
 - **Ringkasan**: KPI (ahli, pembelian hari ini, point dikeluarkan, tebusan), carta pembelian 14 hari, ganjaran popular, aktiviti terkini dan ahli teratas.
@@ -27,6 +35,7 @@ Buka `/admin` atau `admin.html` dan masukkan PIN demo **1234**.
 ```
 index.html             ← app pelanggan: SEMUA UI, CSS & JS (logo dibenam base64)
 admin.html             ← dashboard admin & kaunter staf (satu fail, demo)
+menu.js                ← menu asal kedai (produk & add-on), dikongsi kedua-dua halaman
 vercel.json            ← laluan /admin
 manifest.webmanifest   ← maklumat PWA (nama, warna, ikon)
 sw.js                  ← service worker (cache luar talian)
@@ -43,7 +52,8 @@ Untuk deploy, muat naik folder ini ke mana-mana hosting statik (Vercel, Netlify,
 
 ## Jadikan untuk kedai lain (template)
 1. **Warna**: ubah pemboleh ubah `:root` di bahagian atas `<style>` (`--brand`, `--brand-2`, `--brand-deep`, `--blob-*`).
-2. **Data & ganjaran**: ubah objek `CONFIG` di bahagian atas `<script>`, termasuk nama brand, sasaran cap, senarai ganjaran, tahap ahli dan pengguna demo.
+2. **Menu**: ubah `menu.js` (produk, harga, add-on, had kuantiti).
+3. **Data & ganjaran**: ubah objek `CONFIG` di bahagian atas `<script>`, termasuk nama brand, sasaran cap, senarai ganjaran, tahap ahli dan pengguna demo.
 3. **Logo**: ganti `data:image/png;base64,...` pada `<img class="wm">` dalam splash dengan wordmark putih (PNG lutsinar) anda, dan ganti fail dalam `icons/`.
    - Animasi splash memaparkan ~16% bahagian kiri logo dahulu (huruf pertama). Laraskan `clip-path:inset(0 84% 0 0)` dan `translateX(42%)` dalam `.sp-slide` jika huruf pertama logo anda lebih lebar atau lebih sempit.
 4. **Manifest**: kemas kini `name`, `short_name` dan `theme_color` dalam `manifest.webmanifest`.
