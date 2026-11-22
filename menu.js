@@ -73,6 +73,6 @@ window.SHOP_THEMES = [
   { id:"aurora", name:"Aurora Night",      desc:"Gelap premium · ungu & cyan",     sw:["#0E1226","#6D5BFF","#22D3EE","#F472B6"], meta:"#0E1226", stamp:"check" },
   { id:"clay",   name:"Caramel Latte",     desc:"Clay timbul · krim & karamel",    sw:["#EFE3D3","#7A4B2E","#D39A66","#F2B9A0"], meta:"#EFE3D3", stamp:"cup" },
   { id:"indigo", name:"Indigo Ramen",      desc:"Krim · biru tua · corak ombak",   sw:["#F2ECDF","#2B4A7E","#C8382E","#FBF7EE"], meta:"#2B4A7E", stamp:"bowl" },
-  { id:"matcha", name:"Matcha Moya",       desc:"Hijau zaitun · krim · elegan",    sw:["#EFE8DA","#4B5A3A","#8A9A6E","#F7F2E8"], meta:"#4B5A3A", stamp:"leaf" },
+  { id:"matcha", name:"Matcha Zen",        desc:"Hijau zaitun · krim · elegan",    sw:["#EFE8DA","#4B5A3A","#8A9A6E","#F7F2E8"], meta:"#4B5A3A", stamp:"leaf" },
   { id:"ruby",   name:"Ruby Glass",        desc:"Kaca cerah · merah & putih",      sw:["#FFF5F5","#5A0710","#BF0311","#FFC2B4"], meta:"#BF0311", stamp:"check" },
 ];

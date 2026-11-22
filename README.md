@@ -5,7 +5,7 @@ Ditulis sepenuhnya dalam **HTML, CSS dan JavaScript vanilla**, dalam satu fail `
 
 ## Ciri-ciri
 - **Splash screen beranimasi**: huruf pertama logo muncul, zoom, kemudian logo penuh terbuka.
-- **8 reka bentuk (tema)**: Bento Glass Frost, Bento Grid, Bento Glass Noir, Aurora Night, Caramel Latte (clay), Indigo Ramen, Matcha Moya dan Ruby Glass. Setiap tema ada warna, fon, gaya cap, gaya kad menu dan navigasi sendiri.
+- **8 reka bentuk (tema)**: Bento Glass Frost, Bento Grid, Bento Glass Noir, Aurora Night, Caramel Latte (clay), Indigo Ramen, Matcha Zen dan Ruby Glass. Setiap tema ada warna, fon, gaya cap, gaya kad menu dan navigasi sendiri.
 - **4 skrin**: Home · Cap & Point · Ganjaran · Profil, dengan bottom nav berbentuk pil.
 - **Kod QR ahli yang boleh diimbas betul-betul**, dijana dalam JS tanpa library (format: `<NAMA KEDAI>:<memberId>`).
 - **Kad cap 10 petak**: bila penuh, petak hadiah boleh ditekan untuk tebus minuman percuma.
