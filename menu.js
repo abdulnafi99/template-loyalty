@@ -1,7 +1,7 @@
 /* =========================================================
-   MENU ASAL KEDAI — dikongsi oleh index.html (pelanggan) dan admin.html.
+   DATA ASAL KEDAI — menu, tetapan & tema. Dikongsi oleh index.html (pelanggan) dan admin.html.
    Ubah fail ini untuk kedai baru. Admin boleh ubah lagi dari dashboard
-   (perubahan admin disimpan dalam localStorage "farha-menu-v1").
+   (perubahan admin disimpan dalam localStorage "kafe-menu-v1").
 
    Jenis kumpulan add-on:
      type:"single" → pilih satu (radio). required:true = wajib.
@@ -10,8 +10,8 @@
                      Kumpulan ada `max` = had jumlah semua pilihan (0 = tiada had).
      Nak lebih dari had? Pelanggan tambah item yang sama ke troli sekali lagi.
    ========================================================= */
-window.FARHA_MENU = [
-  { id:"sig", name:"Farha Signature", desc:"Teh susu gula hangus, krim lembut", price:9.90, cat:"Minuman", icon:"cup", active:true, groups:[
+window.SHOP_MENU = [
+  { id:"sig", name:"Kopi Signature", desc:"Kopi susu gula hangus, krim lembut", price:9.90, cat:"Minuman", icon:"cup", active:true, groups:[
     { id:"size", name:"Saiz", type:"single", required:true, options:[{id:"r",name:"Regular",price:0,active:true},{id:"l",name:"Large",price:2,active:true}] },
     { id:"ice",  name:"Ais",  type:"single", required:true, options:[{id:"n",name:"Ais normal",price:0,active:true},{id:"k",name:"Kurang ais",price:0,active:true},{id:"t",name:"Tiada ais",price:0,active:true}] },
     { id:"top",  name:"Topping", type:"multi", max:3, options:[{id:"boba",name:"Boba",price:1.5,max:2,active:true},{id:"cheese",name:"Cheese foam",price:2,max:1,active:true},{id:"jelly",name:"Jelly kelapa",price:1,max:2,active:true}] },
@@ -42,9 +42,9 @@ window.FARHA_MENU = [
 
 /* =========================================================
    TETAPAN ASAL KEDAI — boleh diubah oleh admin di skrin Tetapan
-   (perubahan admin disimpan dalam localStorage "farha-settings-v1").
+   (perubahan admin disimpan dalam localStorage "kafe-settings-v1").
    ========================================================= */
-window.FARHA_SETTINGS = {
+window.SHOP_SETTINGS = {
   stampTarget: 10,        // cap untuk 1 minuman percuma (1 item = 1 cap)
   pointsWalkin: 20,       // point setiap item bila beli di kaunter (walk-in)
   pointsOnline: 30,       // point setiap item bila pesan dalam app (order online)
@@ -56,6 +56,23 @@ window.FARHA_SETTINGS = {
   preorderDays: 3,        // pre-order sehingga berapa hari ke depan
   payCounter: true,       // bayar di kaunter semasa ambil
   payDuitnow: true,       // bayar dengan DuitNow QR + muat naik bukti
-  duitnowName: "FARHA ENTERPRISE",
+  duitnowName: "KAFE DEMO ENTERPRISE",
   duitnowQR: "",          // gambar QR DuitNow kedai (admin muat naik); kosong = QR contoh
+  theme: "frost",         // reka bentuk app pelanggan (lihat SHOP_THEMES di bawah)
+  themePicker: true,      // tunjuk butang "Reka bentuk" dalam app (mod demo untuk client pilih)
 };
+
+/* =========================================================
+   REKA BENTUK (TEMA) — setiap tema ada warna, fon & susun atur sendiri.
+   CSS setiap tema ada dalam index.html: :root[data-theme="..."]
+   ========================================================= */
+window.SHOP_THEMES = [
+  { id:"frost",  name:"Bento Glass Frost", desc:"Kaca cerah · biru langit",        sw:["#EEF2F6","#0F172A","#38BDF8","#FDBA74"], meta:"#EEF2F6", stamp:"check" },
+  { id:"grid",   name:"Bento Grid",        desc:"Kelabu hangat · hitam · oren",    sw:["#F1F1EE","#111111","#FF6A1A","#FFFFFF"], meta:"#F1F1EE", stamp:"check" },
+  { id:"noir",   name:"Bento Glass Noir",  desc:"Kaca gelap · oren · ungu",        sw:["#0B0B10","#FF7A2F","#8B5CF6","#EC4899"], meta:"#0B0B10", stamp:"check" },
+  { id:"aurora", name:"Aurora Night",      desc:"Gelap premium · ungu & cyan",     sw:["#0E1226","#6D5BFF","#22D3EE","#F472B6"], meta:"#0E1226", stamp:"check" },
+  { id:"clay",   name:"Caramel Latte",     desc:"Clay timbul · krim & karamel",    sw:["#EFE3D3","#7A4B2E","#D39A66","#F2B9A0"], meta:"#EFE3D3", stamp:"cup" },
+  { id:"indigo", name:"Indigo Ramen",      desc:"Krim · biru tua · corak ombak",   sw:["#F2ECDF","#2B4A7E","#C8382E","#FBF7EE"], meta:"#2B4A7E", stamp:"bowl" },
+  { id:"matcha", name:"Matcha Moya",       desc:"Hijau zaitun · krim · elegan",    sw:["#EFE8DA","#4B5A3A","#8A9A6E","#F7F2E8"], meta:"#4B5A3A", stamp:"leaf" },
+  { id:"ruby",   name:"Ruby Glass",        desc:"Kaca cerah · merah & putih",      sw:["#FFF5F5","#5A0710","#BF0311","#FFC2B4"], meta:"#BF0311", stamp:"check" },
+];
