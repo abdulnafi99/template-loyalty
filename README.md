@@ -19,6 +19,10 @@ Ditulis sepenuhnya dalam **HTML, CSS dan JavaScript vanilla**, dalam satu fail `
 - **Add-on "pilih satu"**: radio, boleh jadi wajib (contohnya Saiz, Gula, Kuah).
 - **Admin → Menu & add-on**: tambah atau edit produk, kumpulan add-on, harga tambahan, had kuantiti, dan aktif/sembunyi.
 - **Admin → Pesanan**: pesanan masuk secara langsung, dengan status Baru → Disediakan → Siap diambil → Selesai. Pelanggan dapat notis bila pesanan siap.
+- **Halaman item** ada butang **Kembali**. Harga item dan harga add-on dipaparkan berasingan, dalam halaman item, troli, pesanan dan admin.
+- **Waktu pickup & pre-order**: pelanggan pilih "Secepat mungkin" atau slot waktu hari ini/hari lain (pre-order). Admin set waktu buka/tutup, masa penyediaan, selang slot dan bilangan hari pre-order.
+- **Bayaran**: bayar di kaunter, atau DuitNow QR dengan muat naik bukti bayaran (gambar dimampatkan dalam peranti). Admin semak bukti dan tekan Sahkan atau Tolak, dan pelanggan dapat notis.
+- **Point berasingan**: point walk-in (kaunter) dan point order online (app) diset sendiri di Tetapan.
 - **Menu asal setiap kedai ada dalam `menu.js`.** Itu satu-satunya tempat untuk ubah menu bila sediakan kedai baru.
 
 ## Admin dashboard (`admin.html`, demo)
@@ -35,7 +39,7 @@ Buka `/admin` atau `admin.html` dan masukkan PIN demo **1234**.
 ```
 index.html             ← app pelanggan: SEMUA UI, CSS & JS (logo dibenam base64)
 admin.html             ← dashboard admin & kaunter staf (satu fail, demo)
-menu.js                ← menu asal kedai (produk & add-on), dikongsi kedua-dua halaman
+menu.js                ← menu & tetapan asal kedai (produk, add-on, point, waktu, bayaran)
 vercel.json            ← laluan /admin
 manifest.webmanifest   ← maklumat PWA (nama, warna, ikon)
 sw.js                  ← service worker (cache luar talian)

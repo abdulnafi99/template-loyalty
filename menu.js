@@ -39,3 +39,23 @@ window.FARHA_MENU = [
     { id:"inti", name:"Inti", type:"single", required:true, options:[{id:"k",name:"Kaya",price:0,active:true},{id:"m",name:"Mentega kaya",price:.5,active:true},{id:"c",name:"Coklat",price:1,active:true}] },
   ]},
 ];
+
+/* =========================================================
+   TETAPAN ASAL KEDAI — boleh diubah oleh admin di skrin Tetapan
+   (perubahan admin disimpan dalam localStorage "farha-settings-v1").
+   ========================================================= */
+window.FARHA_SETTINGS = {
+  stampTarget: 10,        // cap untuk 1 minuman percuma (1 item = 1 cap)
+  pointsWalkin: 20,       // point setiap item bila beli di kaunter (walk-in)
+  pointsOnline: 30,       // point setiap item bila pesan dalam app (order online)
+  open: "08:00",          // waktu buka (pickup)
+  close: "22:00",         // waktu tutup (pickup terakhir)
+  prep: 15,               // masa penyediaan (minit) sebelum pesanan boleh diambil
+  slot: 15,               // selang slot waktu pickup (minit)
+  preorder: true,         // benarkan pre-order untuk hari lain
+  preorderDays: 3,        // pre-order sehingga berapa hari ke depan
+  payCounter: true,       // bayar di kaunter semasa ambil
+  payDuitnow: true,       // bayar dengan DuitNow QR + muat naik bukti
+  duitnowName: "FARHA ENTERPRISE",
+  duitnowQR: "",          // gambar QR DuitNow kedai (admin muat naik); kosong = QR contoh
+};
