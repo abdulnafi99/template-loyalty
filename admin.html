@@ -287,6 +287,36 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stro
 .nbadge{margin-left:auto;min-width:22px;height:22px;padding:0 6px;border-radius:99px;background:var(--brand);color:#fff;font-size:11.5px;font-weight:800;display:grid;place-items:center}
 .nav-btn.active .nbadge{background:#fff;color:var(--brand)}
 
+/* ---------- Tetapan & bayaran ---------- */
+.set-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.set-row:first-of-type{border-top:0}
+.set-row .t b{display:block;font-size:13.5px}
+.set-row .t span{font-size:11.5px;color:var(--ink-2)}
+.set-row input.input,.set-row select.input{width:150px}
+.pt-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.pt-box{border-radius:16px;padding:14px;border:1px solid var(--line);background:#fff}
+.pt-box .label{display:flex;align-items:center;gap:6px}
+.pt-box input{margin-top:8px;font-size:22px;font-weight:700}
+.pt-box small{display:block;font-size:11px;color:var(--ink-3);margin-top:6px}
+.qr-up{display:flex;gap:14px;align-items:center;margin-top:10px}
+.qr-up .prev{width:110px;height:110px;border-radius:14px;border:1.5px dashed rgba(191,3,17,.3);display:grid;place-items:center;overflow:hidden;background:#fff;color:var(--ink-3);font-size:11px;text-align:center;flex:none}
+.qr-up .prev img{width:100%;height:100%;object-fit:contain}
+.pick-row{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--ink-2)}
+.pick-row b{color:var(--ink)}
+.pre-badge{font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:99px;background:var(--brand-deep);color:#fff;letter-spacing:.03em}
+.pay-row{display:flex;align-items:center;gap:10px;padding:10px;border-radius:14px;background:rgba(191,3,17,.04)}
+.pay-row .t{flex:1;font-size:12.5px}
+.pay-row .t b{display:block;font-size:13px}
+.proof-th{width:46px;height:46px;border-radius:10px;overflow:hidden;flex:none;border:1px solid var(--line);background:#fff;cursor:zoom-in}
+.proof-th img{width:100%;height:100%;object-fit:cover}
+.ps{font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.ps.pending{background:#FFF2DD;color:#9A5A00}
+.ps.verified{background:rgba(20,164,77,.12);color:var(--ok)}
+.ps.rejected{background:rgba(191,3,17,.1);color:var(--brand)}
+.ps.unpaid{background:rgba(110,74,80,.1);color:var(--ink-2)}
+.ord .add-l{display:flex;justify-content:space-between;gap:8px;font-size:11.5px;color:var(--ink-2)}
+.proof-big{width:100%;border-radius:16px;border:1px solid var(--line);background:#fff;display:block;margin:6px 0 16px}
+
 /* ---------- Responsif ---------- */
 @media (max-width:1100px){ .g4{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:900px){
@@ -428,7 +458,7 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stro
     <section class="screen" data-screen="orders">
       <div class="topbar"><div><small id="ordSub">Pesanan dari app pelanggan</small><h1>Pesanan</h1></div></div>
       <div class="chips" id="ordChips">
-        <button class="chip-f on" data-of="aktif">Aktif</button><button class="chip-f" data-of="Selesai">Selesai</button><button class="chip-f" data-of="semua">Semua</button>
+        <button class="chip-f on" data-of="aktif">Aktif</button><button class="chip-f" data-of="pre">Pre-order</button><button class="chip-f" data-of="bayar">Semak bayaran</button><button class="chip-f" data-of="Selesai">Selesai</button><button class="chip-f" data-of="semua">Semua</button>
       </div>
       <div class="ord-grid" id="ordGrid"></div>
     </section>
@@ -453,15 +483,49 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stro
 
     <!-- ========== TETAPAN ========== -->
     <section class="screen" data-screen="settings">
-      <div class="topbar"><div><small>Peraturan program</small><h1>Tetapan</h1></div></div>
+      <div class="topbar">
+        <div><small>Peraturan program &amp; pesanan</small><h1>Tetapan</h1></div>
+        <div class="top-actions"><button class="btn red" data-action="saveSettings"><svg class="i" data-ic="check"></svg>Simpan</button></div>
+      </div>
       <div class="grid g2">
         <div class="tile">
-          <h3>Peraturan cap &amp; point</h3>
+          <h3>Point &amp; cap</h3>
+          <div class="pt-pair">
+            <label class="pt-box"><span class="label"><svg class="i" data-ic="scan" style="width:16px;height:16px"></svg>Walk-in (kaunter)</span><input class="input mono" type="number" min="0" max="1000" id="setPtsWalk"><small>point setiap item</small></label>
+            <label class="pt-box"><span class="label"><svg class="i" data-ic="bag" style="width:16px;height:16px"></svg>Order online (app)</span><input class="input mono" type="number" min="0" max="1000" id="setPtsOnline"><small>point setiap item</small></label>
+          </div>
           <label class="field"><span>Cap untuk 1 minuman percuma (1 item = 1 cap)</span><input class="input mono" type="number" min="4" max="20" id="setStamp"></label>
-          <label class="field"><span>Point setiap item</span><input class="input mono" type="number" min="1" max="500" id="setPts"></label>
-          <button class="btn red" data-action="saveSettings">Simpan tetapan</button>
-          <p class="note" style="margin-top:12px">Perubahan terus digunakan oleh app pelanggan dalam pelayar yang sama.</p>
+          <p class="note" style="margin:0">Contoh: beri lebih point untuk order online supaya pelanggan guna app.</p>
         </div>
+
+        <div class="tile">
+          <h3>Waktu pickup &amp; pre-order</h3>
+          <div class="set-row"><div class="t"><b>Waktu buka</b><span>Slot pickup pertama</span></div><input class="input mono" type="time" id="setOpen"></div>
+          <div class="set-row"><div class="t"><b>Waktu tutup</b><span>Slot pickup terakhir</span></div><input class="input mono" type="time" id="setClose"></div>
+          <div class="set-row"><div class="t"><b>Masa penyediaan</b><span>Minit sebelum boleh diambil</span></div><input class="input mono" type="number" min="0" max="180" id="setPrep"></div>
+          <div class="set-row"><div class="t"><b>Selang slot</b><span>Minit antara pilihan waktu</span></div>
+            <select class="input" id="setSlot"><option value="10">10 min</option><option value="15">15 min</option><option value="20">20 min</option><option value="30">30 min</option><option value="60">60 min</option></select></div>
+          <div class="set-row"><div class="t"><b>Benarkan pre-order</b><span>Pelanggan boleh pesan untuk hari lain</span></div><button type="button" class="switch" data-set="preorder" aria-label="Pre-order"></button></div>
+          <div class="set-row"><div class="t"><b>Pre-order sehingga</b><span>Hari ke depan</span></div><input class="input mono" type="number" min="1" max="14" id="setPreDays"></div>
+        </div>
+
+        <div class="tile">
+          <h3>Bayaran</h3>
+          <div class="set-row"><div class="t"><b>Bayar di kaunter</b><span>Tunai / kad semasa ambil</span></div><button type="button" class="switch" data-set="payCounter" aria-label="Bayar di kaunter"></button></div>
+          <div class="set-row"><div class="t"><b>DuitNow QR</b><span>Pelanggan muat naik bukti bayaran</span></div><button type="button" class="switch" data-set="payDuitnow" aria-label="DuitNow QR"></button></div>
+          <label class="field" style="margin-top:10px"><span>Nama penerima DuitNow</span><input class="input" id="setDnName" maxlength="40"></label>
+          <div class="field"><span>Gambar QR DuitNow kedai</span>
+            <div class="qr-up">
+              <div class="prev" id="qrPrev">Belum ada QR</div>
+              <div style="display:flex;flex-direction:column;gap:8px">
+                <label class="btn ghost sm" style="cursor:pointer"><svg class="i" data-ic="download" style="transform:rotate(180deg)"></svg>Muat naik QR<input type="file" accept="image/*" id="setQR" hidden></label>
+                <button type="button" class="btn ghost sm" data-action="clearQR">Buang QR</button>
+                <span class="note">Tanpa QR, app guna QR contoh.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="tile">
           <h3>Data demo</h3>
           <p class="note" style="margin-top:0">Semua data dashboard ini adalah data contoh yang disimpan dalam pelayar ini (localStorage). Bila client setuju, data ini akan disambung ke Firebase supaya semua staf dan pelanggan berkongsi data sebenar.</p>
@@ -562,6 +626,7 @@ Object.assign(IC, {
   bowl:'<path d="M3 11h18a9 9 0 0 1-18 0zM7 7l1-4M12 7V2M17 7l-1-4"/>',
   bread:'<path d="M5 11a4 4 0 1 1 3-6.7A4 4 0 0 1 12 3a4 4 0 0 1 4 1.3A4 4 0 1 1 19 11v8a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/>',
   leaf:'<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10zM2 21c0-3 1.9-5.4 5.2-6.1"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
   receipt:'<path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1zM16 8h-6M16 12H8M13 16H8"/>',
 });
 const REWARD_ICONS = ["cup","cake","tag","sparkle","bean","gift","ticket"];
@@ -639,19 +704,41 @@ function load(){
   DB=read(ADMIN.keys.db,null); if(!DB||!DB.members){DB=seedDB();write(ADMIN.keys.db,DB);}
   CUST=read(ADMIN.keys.customer,null); if(!CUST||!CUST.memberId){CUST=ADMIN.demoCustomer();write(ADMIN.keys.customer,CUST);}
   REWARDS=read(ADMIN.keys.rewards,null); if(!Array.isArray(REWARDS)||!REWARDS.length) REWARDS=structuredClone(ADMIN.defaultRewards);
-  SETTINGS=Object.assign({},ADMIN.defaultSettings,read(ADMIN.keys.settings,{}));
+  const st=read(ADMIN.keys.settings,{}); if(st.pointsPerPurchase&&!st.pointsWalkin) st.pointsWalkin=st.pointsPerPurchase;
+  SETTINGS=Object.assign({},ADMIN.defaultSettings,{pointsWalkin:20,pointsOnline:20},window.FARHA_SETTINGS||{},st);
   MENU=read(ADMIN.keys.menu,null); if(!Array.isArray(MENU)||!MENU.length) MENU=structuredClone(window.FARHA_MENU||[]);
-  if(localStorage.getItem(ADMIN.keys.orders)===null) write(ADMIN.keys.orders, seedOrders());
+  if(localStorage.getItem(ADMIN.keys.orders)===null || (read(ADMIN.keys.orders,[]).length&&!read(ADMIN.keys.orders,[]).some(o=>o.pickup))) write(ADMIN.keys.orders, seedOrders());
   ORDERS=read(ADMIN.keys.orders,[]);
 }
 let MENU=[], ORDERS=[];
+function demoReceipt(amount,name){
+  const c=document.createElement("canvas"); c.width=360; c.height=560; const x=c.getContext("2d");
+  x.fillStyle="#fff"; x.fillRect(0,0,360,560); x.fillStyle="#ED1C70"; x.fillRect(0,0,360,90);
+  x.fillStyle="#fff"; x.font="bold 26px sans-serif"; x.fillText("DuitNow",24,56);
+  x.fillStyle="#14A44D"; x.beginPath(); x.arc(180,150,30,0,7); x.fill(); x.strokeStyle="#fff"; x.lineWidth=6; x.beginPath(); x.moveTo(166,150); x.lineTo(177,161); x.lineTo(196,140); x.stroke();
+  x.fillStyle="#222"; x.textAlign="center"; x.font="bold 18px sans-serif"; x.fillText("Pembayaran Berjaya",180,215);
+  x.font="bold 34px monospace"; x.fillText("RM "+amount.toFixed(2),180,265);
+  x.textAlign="left"; x.font="14px sans-serif"; x.fillStyle="#666";
+  [["Penerima","FARHA ENTERPRISE"],["Daripada",name],["Rujukan","DN"+Math.floor(1e9+Math.random()*9e9)],["Tarikh",new Date().toLocaleString("ms-MY")]].forEach(([k,v],i)=>{x.fillStyle="#888";x.fillText(k,24,320+i*44);x.fillStyle="#222";x.fillText(v,24,340+i*44);});
+  x.fillStyle="rgba(191,3,17,.85)"; x.font="bold 13px sans-serif"; x.fillText("CONTOH · DEMO",24,540);
+  return c.toDataURL("image/jpeg",.7);
+}
 function seedOrders(){
-  const m=DB.members, now=Date.now();
+  const m=DB.members, now=Date.now(), tom=new Date(); tom.setDate(tom.getDate()+1); tom.setHours(10,30,0,0);
+  const hh=t=>{const d=new Date(t);return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");};
   return [
-    {no:"A102",ts:now-6*60e3,memberId:m[3].id,name:m[3].name,status:"Baru",total:19.90,items:[
-      {name:"Farha Signature",opts:"Large, Kurang ais, Boba ×2",price:14.90},{name:"Roti Bakar",opts:"Mentega kaya",price:5.00}]},
-    {no:"A101",ts:now-14*60e3,memberId:m[7].id,name:m[7].name,status:"Disediakan",total:14.70,items:[
-      {name:"Oden Set",opts:"Fish ball ×3, Fucuk ×1, Sosej ×1 · Kuah tom yam",price:14.70}]},
+    {no:"A103",ts:now-25*60e3,memberId:m[11].id,name:m[11].name,status:"Baru",total:20.90,
+      pickup:{asap:false,ts:tom.getTime(),pre:true,label:`Pre-order · Esok, ${hh(tom)}`},pay:{method:"counter",status:"unpaid"},items:[
+      {name:"Latte Ais",base:8.90,adds:[{name:"Regular",qty:1,price:0},{name:"Gula normal",qty:1,price:0},{name:"Extra shot",qty:1,price:2}],price:10.90},
+      {name:"Teh Tarik Ais",base:5.50,adds:[{name:"Kurang manis",qty:1,price:0}],price:5.50},
+      {name:"Roti Bakar",base:4.50,adds:[{name:"Kaya",qty:1,price:0}],price:4.50}]},
+    {no:"A102",ts:now-6*60e3,memberId:m[3].id,name:m[3].name,status:"Baru",total:19.90,
+      pickup:{asap:true,ts:now+9*60e3,pre:false,label:`Secepat mungkin · ~${hh(now+9*60e3)}`},pay:{method:"duitnow",status:"pending",proof:demoReceipt(19.90,m[3].name)},items:[
+      {name:"Farha Signature",base:9.90,adds:[{name:"Large",qty:1,price:2},{name:"Kurang ais",qty:1,price:0},{name:"Boba",qty:2,price:1.5}],price:14.90},
+      {name:"Roti Bakar",base:4.50,adds:[{name:"Mentega kaya",qty:1,price:.5}],price:5.00}]},
+    {no:"A101",ts:now-14*60e3,memberId:m[7].id,name:m[7].name,status:"Disediakan",total:14.70,
+      pickup:{asap:false,ts:now+16*60e3,pre:false,label:`Hari ini, ${hh(now+16*60e3)}`},pay:{method:"counter",status:"unpaid"},items:[
+      {name:"Oden Set",base:8.00,adds:[{name:"Fish ball",qty:3,price:1},{name:"Fucuk",qty:1,price:1.5},{name:"Sosej",qty:1,price:1.2},{name:"Kuah tom yam",qty:1,price:1}],price:14.70}]},
   ];
 }
 const saveMenu=()=>write(ADMIN.keys.menu,MENU);
@@ -667,7 +754,7 @@ function custAsMember(){
 const allMembers=()=>[custAsMember(),...DB.members];
 const getMember=id=>allMembers().find(m=>m.id===id);
 function allTx(){
-  const c=CUST.history.map(h=>({ts:h.ts,id:CUST.memberId,k:h.p>0?"buy":(h.p<0||/kad cap|percuma/i.test(h.t))?"redeem":"adjust",t:h.t,p:h.p,n:h.n||(h.p>0?Math.max(1,Math.round(h.p/SETTINGS.pointsPerPurchase)):0)}));
+  const c=CUST.history.map(h=>({ts:h.ts,id:CUST.memberId,k:h.p>0?"buy":(h.p<0||/kad cap|percuma/i.test(h.t))?"redeem":"adjust",t:h.t,p:h.p,n:h.n||(h.p>0?Math.max(1,Math.round(h.p/SETTINGS.pointsWalkin)):0)}));
   return [...DB.tx,...c].sort((a,b)=>b.ts-a.ts);
 }
 /* Ubah ahli — tulis ke tempat yang betul */
@@ -786,7 +873,7 @@ function findMember(raw){
 }
 function renderCounterMember(){
   const box=$("#counterMember"); const m=counterId&&getMember(counterId); if(!m) return;
-  const T=SETTINGS.stampTarget,P=SETTINGS.pointsPerPurchase,full=m.stamps>=T;
+  const T=SETTINGS.stampTarget,P=SETTINGS.pointsWalkin,full=m.stamps>=T;
   box.innerHTML=`
     <div class="tile red" style="margin-bottom:14px">
       <div class="member-card"><div class="av lg" style="background:#fff;color:var(--brand)">${esc(m.name[0])}</div>
@@ -795,7 +882,7 @@ function renderCounterMember(){
       <div class="stamps-row" style="grid-template-columns:repeat(${T},1fr)">${Array.from({length:T},(_,i)=>`<i class="${i<m.stamps?"on":""}"></i>`).join("")}</div>
     </div>
     <div class="tile" style="margin-bottom:14px">
-      <h3>Rekod pembelian</h3>
+      <h3>Rekod pembelian <small>walk-in · ${P} point / item</small></h3>
       <div class="row" style="margin-bottom:14px">
         <div class="stepper"><button data-action="qty" data-d="-1" aria-label="Kurang">${icon("minus")}</button><b id="qty">${qty}</b><button data-action="qty" data-d="1" aria-label="Tambah">${icon("plus")}</button></div>
         <div class="grow note" style="font-size:13px;color:var(--ink-2)">minuman → <b class="mono">+${qty}</b> cap, <b class="mono">+${fmt(qty*P)}</b> point</div>
@@ -813,7 +900,7 @@ function renderCounterMember(){
 }
 function recordBuy(){
   const m=getMember(counterId); if(!m) return;
-  const T=SETTINGS.stampTarget,P=SETTINGS.pointsPerPurchase,n=qty;
+  const T=SETTINGS.stampTarget,P=SETTINGS.pointsWalkin,n=qty;
   const t=ADMIN.drinks[Math.floor(Math.random()*ADMIN.drinks.length)]+(n>1?` ×${n}`:"");
   updateMember(counterId,x=>{x.points+=P*n;x.lifetime+=P*n;x.stamps=Math.min(T,x.stamps+n);},{ts:Date.now(),k:"buy",t,p:P*n,n});
   toast(`+${n} cap · +${fmt(P*n)} point untuk ${m.name.split(" ")[0]}`); qty=1; renderCounterMember();
@@ -979,12 +1066,35 @@ function toggleReward(id){ const r=REWARDS.find(x=>x.id===id); r.active=r.active
 /* =========================================================
    TETAPAN
    ========================================================= */
-function renderSettings(){ $("#setStamp").value=SETTINGS.stampTarget; $("#setPts").value=SETTINGS.pointsPerPurchase; }
-function saveSettings(){
-  const s=parseInt($("#setStamp").value,10), p=parseInt($("#setPts").value,10);
-  if(!(s>=4&&s<=20)||!(p>=1)){toast("Nilai tidak sah");return;}
-  SETTINGS={stampTarget:s,pointsPerPurchase:p}; write(ADMIN.keys.settings,SETTINGS); toast("Tetapan disimpan");
+let SETDRAFT=null;
+function renderSettings(){
+  SETDRAFT=structuredClone(SETTINGS);
+  $("#setStamp").value=SETTINGS.stampTarget; $("#setPtsWalk").value=SETTINGS.pointsWalkin; $("#setPtsOnline").value=SETTINGS.pointsOnline;
+  $("#setOpen").value=SETTINGS.open||"08:00"; $("#setClose").value=SETTINGS.close||"22:00"; $("#setPrep").value=SETTINGS.prep??15;
+  $("#setSlot").value=String(SETTINGS.slot||15); $("#setPreDays").value=SETTINGS.preorderDays||3; $("#setDnName").value=SETTINGS.duitnowName||"";
+  renderSetSwitches(); renderQRPrev();
 }
+function renderSetSwitches(){ $$("[data-set]").forEach(b=>b.classList.toggle("on",SETDRAFT[b.dataset.set]!==false)); $("#setPreDays").disabled=SETDRAFT.preorder===false; }
+function renderQRPrev(){ $("#qrPrev").innerHTML=SETDRAFT.duitnowQR?`<img src="${SETDRAFT.duitnowQR}" alt="QR DuitNow">`:"Belum ada QR"; }
+function saveSettings(){
+  const num=id=>parseInt($(id).value,10);
+  const s={...SETDRAFT, stampTarget:num("#setStamp"), pointsWalkin:num("#setPtsWalk"), pointsOnline:num("#setPtsOnline"),
+    open:$("#setOpen").value, close:$("#setClose").value, prep:num("#setPrep"), slot:num("#setSlot"), preorderDays:num("#setPreDays"), duitnowName:$("#setDnName").value.trim()};
+  if(!(s.stampTarget>=4&&s.stampTarget<=20)) return toast("Cap mesti antara 4 dan 20");
+  if(!(s.pointsWalkin>=0)||!(s.pointsOnline>=0)) return toast("Point tidak sah");
+  if(!s.open||!s.close||s.open>=s.close) return toast("Waktu tutup mesti selepas waktu buka");
+  if(s.payCounter===false&&s.payDuitnow===false) return toast("Hidupkan sekurang-kurangnya satu cara bayaran");
+  delete s.pointsPerPurchase;
+  SETTINGS=s; try{ localStorage.setItem(ADMIN.keys.settings,JSON.stringify(s)); toast("Tetapan disimpan"); }catch(e){ toast("Gambar QR terlalu besar. Cuba gambar lain."); }
+}
+function compressImage(file,maxW=900,q=.8){
+  return new Promise((ok,no)=>{ const fr=new FileReader(); fr.onerror=no; fr.onload=()=>{ const img=new Image(); img.onerror=no; img.onload=()=>{
+    const sc=Math.min(1,maxW/Math.max(img.width,img.height)), c=document.createElement("canvas"); c.width=Math.round(img.width*sc); c.height=Math.round(img.height*sc);
+    const x=c.getContext("2d"); x.fillStyle="#fff"; x.fillRect(0,0,c.width,c.height); x.drawImage(img,0,0,c.width,c.height); ok(c.toDataURL("image/jpeg",q)); }; img.src=fr.result; }; fr.readAsDataURL(file); });
+}
+document.addEventListener("click",e=>{ const b=e.target.closest("[data-set]"); if(!b||!SETDRAFT) return; SETDRAFT[b.dataset.set]=SETDRAFT[b.dataset.set]===false; renderSetSwitches(); });
+document.addEventListener("change",async e=>{ if(e.target.id!=="setQR") return; const f=e.target.files&&e.target.files[0]; if(!f) return;
+  try{ SETDRAFT.duitnowQR=await compressImage(f,700,.9); renderQRPrev(); toast("QR dimuat naik. Tekan Simpan."); }catch(_){ toast("Gambar tidak dapat dibaca"); } });
 function resetDemo(){
   if(!confirm("Set semula semua data demo (ahli, transaksi, ganjaran, tetapan & app pelanggan)?")) return;
   Object.values(ADMIN.keys).forEach(k=>localStorage.removeItem(k)); load(); counterId=null; renderScreen(); toast("Data demo dipulihkan");
@@ -1121,19 +1231,46 @@ function renderOrderBadge(){
   const n=ORDERS.filter(o=>o.status!=="Selesai").length, b=$("#ordBadge");
   if(b){ b.hidden=!n; b.textContent=n; }
 }
+const PAY_TXT={unpaid:"Belum bayar",pending:"Perlu semak",verified:"Disahkan",rejected:"Ditolak"};
+function orderItemHTML(c){
+  const adds=c.adds||null;
+  return `<div class="it"><span class="mono" style="color:var(--brand);font-weight:700">1×</span><div class="d"><b>${esc(c.name)}</b>
+    ${adds?`<div class="add-l"><span>Harga item</span><span class="mono">${rmf(c.base)}</span></div>${adds.map(x=>`<div class="add-l"><span>+ ${esc(x.name)}${x.qty>1?" ×"+x.qty:""}</span><span class="mono">${x.price?rmf(x.price*x.qty):"—"}</span></div>`).join("")}`:`<span>${esc(c.opts||"")}</span>`}
+  </div><span class="mono">${rmf(c.price)}</span></div>`;
+}
 function renderOrders(){
   $$("#ordChips .chip-f").forEach(c=>c.classList.toggle("on",c.dataset.of===ordFilter));
-  const list=ORDERS.filter(o=>ordFilter==="semua"||(ordFilter==="aktif"?o.status!=="Selesai":o.status===ordFilter));
-  const act=ORDERS.filter(o=>o.status!=="Selesai").length;
-  $("#ordSub").textContent=`${act} pesanan aktif`;
+  let list=ORDERS.filter(o=>ordFilter==="semua"||(ordFilter==="aktif"?o.status!=="Selesai":ordFilter==="pre"?(o.pickup&&o.pickup.pre&&o.status!=="Selesai"):ordFilter==="bayar"?(o.pay&&o.pay.status==="pending"):o.status===ordFilter));
+  if(ordFilter!=="Selesai"&&ordFilter!=="semua") list=[...list].sort((x,y)=>((x.pickup&&x.pickup.ts)||x.ts)-((y.pickup&&y.pickup.ts)||y.ts));
+  const act=ORDERS.filter(o=>o.status!=="Selesai").length, pend=ORDERS.filter(o=>o.pay&&o.pay.status==="pending").length;
+  $("#ordSub").textContent=`${act} pesanan aktif${pend?` · ${pend} bayaran perlu disemak`:""}`;
   $("#ordGrid").innerHTML=list.map(o=>{
-    const nx=ORDER_FLOW[o.status];
+    const nx=ORDER_FLOW[o.status], pay=o.pay||{method:"counter",status:"unpaid"}, pk=o.pickup;
     return `<div class="tile ord">
       <div class="oh"><div><div class="no">#${esc(o.no)}</div><div class="who2">${esc(o.name)} · ${ago(o.ts)}</div></div><span class="st ${o.status.split(" ")[0]}">${esc(o.status)}</span></div>
-      <div>${o.items.map(c=>`<div class="it"><span class="mono" style="color:var(--brand);font-weight:700">1×</span><div class="d"><b>${esc(c.name)}</b><span>${esc(c.opts||"")}</span></div><span class="mono">${rmf(c.price)}</span></div>`).join("")}</div>
+      ${pk?`<div class="pick-row">${icon("clock","width:16px;height:16px")}<b>${esc(pk.label)}</b>${pk.pre?'<span class="pre-badge">PRE-ORDER</span>':""}</div>`:""}
+      <div class="pay-row">
+        ${pay.method==="duitnow"&&pay.proof?`<button class="proof-th" data-action="viewProof" data-no="${esc(o.no)}" aria-label="Lihat bukti bayaran"><img src="${pay.proof}" alt="Bukti bayaran"></button>`:""}
+        <div class="t"><b>${pay.method==="duitnow"?"DuitNow QR":"Bayar di kaunter"}</b>${pay.method==="duitnow"?(pay.proof?"Bukti dilampirkan":"Tiada gambar bukti"):"Kutip semasa ambil"}</div>
+        <span class="ps ${pay.status}">${PAY_TXT[pay.status]||pay.status}</span>
+      </div>
+      ${pay.status==="pending"?`<div class="row"><button class="btn ghost sm grow" data-action="rejectPay" data-no="${esc(o.no)}">Tolak</button><button class="btn sm grow" style="background:var(--ok)" data-action="verifyPay" data-no="${esc(o.no)}">${icon("check","width:16px;height:16px")}Sahkan bayaran</button></div>`:""}
+      <div>${o.items.map(orderItemHTML).join("")}</div>
       <div class="tot"><span>Jumlah</span><span class="mono">${rmf(o.total)}</span></div>
       ${nx?`<button class="btn ${o.status==="Disediakan"?"red":""} block" data-action="advanceOrder" data-no="${esc(o.no)}">${icon("check")}${nx[1]}</button>`:""}
     </div>`;}).join("") || `<div class="tile empty">Tiada pesanan di sini.</div>`;
+}
+function setPay(no,status){
+  const list=read(ADMIN.keys.orders,[]), o=list.find(x=>x.no===no); if(!o||!o.pay) return;
+  o.pay.status=status; write(ADMIN.keys.orders,list); ORDERS=list; closeSheet(); renderOrders();
+  toast(status==="verified"?`Bayaran #${no} disahkan`:`Bayaran #${no} ditolak`);
+}
+function viewProof(no){
+  const o=ORDERS.find(x=>x.no===no); if(!o||!o.pay||!o.pay.proof) return;
+  openSheet(`<h2>Bukti bayaran #${esc(no)}</h2><p class="sub">${esc(o.name)} · DuitNow · <b class="mono">${rmf(o.total)}</b></p>
+    <img class="proof-big" src="${o.pay.proof}" alt="Bukti bayaran #${esc(no)}">
+    <p class="note" style="margin:-6px 0 14px">Semak jumlah, nama penerima dan masa transaksi sebelum mengesahkan.</p>
+    ${o.pay.status==="pending"?`<div class="row"><button class="btn ghost grow" data-action="rejectPay" data-no="${esc(no)}">Tolak</button><button class="btn grow" style="background:var(--ok)" data-action="verifyPay" data-no="${esc(no)}">${icon("check")}Sahkan bayaran</button></div>`:`<span class="ps ${o.pay.status}">${PAY_TXT[o.pay.status]}</span>`}`);
 }
 function advanceOrder(no){
   const list=read(ADMIN.keys.orders,[]), o=list.find(x=>x.no===no); if(!o||!ORDER_FLOW[o.status]) return;
@@ -1167,6 +1304,8 @@ document.addEventListener("click",e=>{
     deleteReward:()=>deleteReward(d.r), toggleReward:()=>toggleReward(d.r),
     newProduct:()=>editProduct(""), editProduct:()=>editProduct(d.p), toggleProduct:()=>toggleProduct(d.p),
     saveProduct, deleteProduct, advanceOrder:()=>advanceOrder(d.no),
+    verifyPay:()=>setPay(d.no,"verified"), rejectPay:()=>setPay(d.no,"rejected"), viewProof:()=>viewProof(d.no),
+    clearQR:()=>{ if(SETDRAFT){ SETDRAFT.duitnowQR=""; renderQRPrev(); toast("QR dibuang. Tekan Simpan."); } },
     saveSettings, resetDemo,
     logout:()=>{sessionStorage.removeItem("farha-admin-auth");location.reload();},
   })[d.action]?.();

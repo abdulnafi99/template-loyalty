@@ -296,7 +296,58 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stro
 .radio input{accent-color:var(--brand);width:18px;height:18px;margin:0}
 .radio span{flex:1;font-weight:600;font-size:14px}
 .radio em{font-style:normal;font-size:12px;color:var(--ink-2);font-family:var(--mono)}
-.ps-foot{position:sticky;bottom:calc(-26px - var(--safe-b));margin:18px -22px calc(-26px - var(--safe-b));padding:14px 22px calc(18px + var(--safe-b));background:linear-gradient(to top,rgba(255,250,250,1) 70%,rgba(255,250,250,0))}
+.ps-foot{position:sticky;bottom:calc(-26px - var(--safe-b));margin:20px -22px calc(-26px - var(--safe-b));padding:12px 22px calc(16px + var(--safe-b));background:#FFFAFA;border-top:1px solid rgba(191,3,17,.1);box-shadow:0 -10px 24px -14px rgba(80,0,10,.25);z-index:2}
+.bd{display:flex;justify-content:space-between;gap:12px;font-size:12.5px;color:var(--ink-2);margin-bottom:10px}
+.bd b{font-family:var(--mono);color:var(--ink)}
+.sheet-top{position:sticky;top:-12px;z-index:3;display:flex;align-items:center;gap:10px;margin:-12px -22px 12px;padding:10px 14px;background:#FFFAFA;border-bottom:1px solid rgba(191,3,17,.08)}
+.sheet-top .back{display:inline-flex;align-items:center;gap:4px;height:38px;padding:0 12px 0 6px;border-radius:12px;font-weight:700;font-size:14px;color:var(--brand);background:rgba(191,3,17,.07)}
+.sheet-top .back svg{width:20px;height:20px}
+.sheet-top b{flex:1;font-size:15px;text-align:center;margin-right:84px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.add-l{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--ink-2);line-height:1.5}
+.add-l .mono{white-space:nowrap}
+.cart-line .d .base{display:flex;justify-content:space-between;gap:10px;font-size:12px;color:var(--ink-2)}
+.sec{margin-top:18px}
+.sec-h{display:flex;justify-content:space-between;align-items:baseline;margin:0 2px 8px}
+.sec-h b{font-size:14.5px}
+.sec-h small{font-size:11.5px;color:var(--ink-2);font-weight:600}
+.seg2{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:5px;border-radius:14px;background:#fff;border:1px solid rgba(191,3,17,.1)}
+.seg2 button{padding:10px 8px;border-radius:10px;font-weight:700;font-size:13px;color:var(--ink-2);line-height:1.25}
+.seg2 button small{display:block;font-weight:500;font-size:11px;opacity:.85}
+.seg2 button.on{background:var(--brand);color:#fff}
+.seg2 button:disabled{opacity:.4}
+.daychips{display:flex;gap:8px;overflow-x:auto;margin:10px 0 8px;padding-bottom:2px;scrollbar-width:none}
+.daychips::-webkit-scrollbar{display:none}
+.daychips button{flex:none;padding:8px 14px;border-radius:12px;font-size:12.5px;font-weight:700;background:#fff;border:1px solid rgba(191,3,17,.12);color:var(--ink-2);text-align:center;line-height:1.3}
+.daychips button small{display:block;font-weight:500;font-size:10.5px}
+.daychips button.on{background:var(--brand-deep);color:#fff;border-color:transparent}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;max-height:156px;overflow-y:auto;padding:2px}
+.slots button{padding:9px 0;border-radius:10px;font-family:var(--mono);font-size:12.5px;font-weight:700;background:#fff;border:1px solid rgba(191,3,17,.12)}
+.slots button.on{background:var(--brand);color:#fff;border-color:transparent}
+.pickup-sum{margin-top:8px;font-size:12.5px;font-weight:600;color:var(--brand)}
+.closed{font-size:12.5px;color:#9A5A00;background:#FFF2DD;border-radius:12px;padding:10px 12px;margin-top:8px}
+.pay{display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer}
+.pay+.pay{border-top:1px solid rgba(191,3,17,.07)}
+.pay input{accent-color:var(--brand);width:18px;height:18px;margin:0}
+.pay .t{flex:1}
+.pay .t b{display:block;font-size:14px}
+.pay .t span{font-size:11.5px;color:var(--ink-2)}
+.dn{margin-top:10px;padding:16px;border-radius:18px;background:#fff;border:1px solid rgba(191,3,17,.1);text-align:center}
+.dn .qrimg{width:190px;max-width:100%;aspect-ratio:1;margin:6px auto 10px;border-radius:14px;overflow:hidden;background:#fff;border:1px solid rgba(0,0,0,.06);padding:8px}
+.dn .qrimg img,.dn .qrimg svg{width:100%;height:100%;object-fit:contain;display:block}
+.dn .amt{font-family:var(--mono);font-weight:700;font-size:22px;color:var(--brand)}
+.dn .demo-tag{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:99px;background:#FFF2DD;color:#9A5A00;margin-bottom:4px}
+.proof{display:flex;gap:12px;align-items:center;margin-top:12px;padding:10px;border-radius:14px;border:1.5px dashed rgba(191,3,17,.3);background:rgba(191,3,17,.03);text-align:left;cursor:pointer}
+.proof.ok{border-style:solid;border-color:rgba(20,164,77,.5);background:rgba(20,164,77,.05)}
+.proof .th{width:54px;height:54px;border-radius:10px;flex:none;display:grid;place-items:center;background:#fff;color:var(--brand);overflow:hidden;border:1px solid rgba(0,0,0,.05)}
+.proof .th img{width:100%;height:100%;object-fit:cover}
+.proof .t{flex:1;font-size:12.5px;color:var(--ink-2)}
+.proof .t b{display:block;font-size:13.5px;color:var(--ink)}
+.pay-chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:5px 11px;border-radius:99px;background:#FFF2DD;color:#9A5A00;margin-left:6px}
+.pay-chip.ok{background:rgba(20,164,77,.12);color:var(--ok)}
+.pay-chip.bad{background:rgba(191,3,17,.1);color:var(--brand)}
+.info-row{display:flex;justify-content:space-between;gap:12px;font-size:13px;padding:8px 0;border-top:1px solid rgba(191,3,17,.08);text-align:left}
+.info-row span:first-child{color:var(--ink-2)}
+.info-row b{text-align:right}
 .cart-line{display:flex;gap:10px;align-items:flex-start;padding:12px 0}
 .cart-line+.cart-line{border-top:1px solid rgba(191,3,17,.08)}
 .cart-line .q{font-family:var(--mono);font-weight:700;color:var(--brand)}
@@ -605,6 +656,9 @@ const IC = {
   sparkle:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/>',
   bean:'<path d="M10 2v2M14 2v2M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/>',
   x:'<path d="M18 6 6 18M6 6l12 12"/>',
+  back:'<path d="m15 18-6-6 6-6"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  upload:'<path d="M12 15V3M7 8l5-5 5 5M5 21h14"/>',
   bag:'<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/>',
   bowl:'<path d="M3 11h18a9 9 0 0 1-18 0zM7 7l1-4M12 7V2M17 7l-1-4"/>',
   bread:'<path d="M5 11a4 4 0 1 1 3-6.7A4 4 0 0 1 12 3a4 4 0 0 1 4 1.3A4 4 0 1 1 19 11v8a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/>',
@@ -686,11 +740,17 @@ let S;
 /* Data dikongsi dengan admin.html (pelayar sama, mod demo) */
 const SHARED = { rewards:"farha-rewards-v1", settings:"farha-settings-v1", vouchers:"farha-vouchers-v1", menu:"farha-menu-v1", orders:"farha-orders-v1", cart:"farha-cart-v1" };
 const DEFAULT_MENU = CONFIG.menu;
+let SHOP = {};
 const DEFAULT_REWARDS = CONFIG.rewards;
 function applyShared(){
   try{ const m=JSON.parse(localStorage.getItem(SHARED.menu)); CONFIG.menu = (Array.isArray(m)&&m.length) ? m : DEFAULT_MENU; }catch(e){}
   try{ const r=JSON.parse(localStorage.getItem(SHARED.rewards)); CONFIG.rewards = (Array.isArray(r)&&r.length) ? r.filter(x=>x.active!==false) : DEFAULT_REWARDS; }catch(e){}
-  try{ const st=JSON.parse(localStorage.getItem(SHARED.settings)); if(st){ if(st.stampTarget) CONFIG.stampTarget=+st.stampTarget; if(st.pointsPerPurchase) CONFIG.pointsPerPurchase=+st.pointsPerPurchase; } }catch(e){}
+  let st={}; try{ st=JSON.parse(localStorage.getItem(SHARED.settings))||{}; }catch(e){}
+  if(st.pointsPerPurchase && !st.pointsWalkin) st.pointsWalkin=st.pointsPerPurchase;   // tetapan lama
+  SHOP = Object.assign({ stampTarget:CONFIG.stampTarget, pointsWalkin:CONFIG.pointsPerPurchase, pointsOnline:CONFIG.pointsPerPurchase }, window.FARHA_SETTINGS||{}, st);
+  CONFIG.stampTarget = +SHOP.stampTarget || 10;
+  CONFIG.pointsPerPurchase = +SHOP.pointsWalkin || 20;   // walk-in (simulasi pembelian di kaunter)
+  CONFIG.pointsOnline = +SHOP.pointsOnline || CONFIG.pointsPerPurchase;   // pesanan dalam app
 }
 function load(){
   try{ S = JSON.parse(localStorage.getItem(CONFIG.storageKey)); }catch(e){ S=null; }
@@ -966,10 +1026,18 @@ function renderProduct(){
         </div>`;}).join("")}</div>
       ${full?`<p class="grp-full">Had ${g.max} pilihan dicapai untuk item ini.</p>`:""}</div>`;
   }).join("");
+  const total=pickPrice(p), addon=total-p.price;
   box.innerHTML=`
-    <div class="ps-hero"><div class="pic">${icon(p.icon||"cup")}</div><div><h2>${esc(p.name)}</h2><p>${esc(p.desc||"")}</p></div></div>
+    ${sheetTop(p.name)}
+    <div class="ps-hero"><div class="pic">${icon(p.icon||"cup")}</div><div><h2>${esc(p.name)}</h2><p>${esc(p.desc||"")}</p><div class="mono" style="font-weight:700;margin-top:4px">${rm2(p.price)}</div></div></div>
     ${groups}
-    <div class="ps-foot"><button class="btn red block" data-action="addLine">Tambah ke troli · ${rm2(pickPrice(p))}</button></div>`;
+    <div class="ps-foot">
+      <div class="bd"><span>Harga item <b>${rm2(p.price)}</b></span><span>Add-on <b>${addon>0?"+"+rm2(addon):"RM 0.00"}</b></span></div>
+      <button class="btn red block" data-action="addLine">Tambah ke troli · ${rm2(total)}</button>
+    </div>`;
+}
+function sheetTop(title){
+  return `<div class="sheet-top"><button class="back" data-action="close" aria-label="Kembali">${icon("back")}Kembali</button><b>${esc(title)}</b></div>`;
 }
 function pickQty(gid,oid,d){
   const p=CONFIG.menu.find(x=>x.id===pick.pid), g=p.groups.find(x=>x.id===gid), o=g.options.find(x=>x.id===oid);
@@ -984,12 +1052,12 @@ function pickQty(gid,oid,d){
 function addLine(){
   const p=CONFIG.menu.find(x=>x.id===pick.pid); if(!p) return;
   for(const g of p.groups||[]) if(g.type==="single"&&g.required&&!pick.sel[g.id]){ toast(`Sila pilih ${g.name}`); return; }
-  const parts=[];
+  const parts=[], adds=[];
   (p.groups||[]).forEach(g=>{
-    if(g.type==="single"){ const o=actOpts(g).find(o=>o.id===pick.sel[g.id]); if(o) parts.push(o.name); }
-    else actOpts(g).forEach(o=>{ const q=pick.sel[g.id][o.id]||0; if(q) parts.push(`${o.name} ×${q}`); });
+    if(g.type==="single"){ const o=actOpts(g).find(o=>o.id===pick.sel[g.id]); if(o){ parts.push(o.name); adds.push({name:o.name,qty:1,price:o.price}); } }
+    else actOpts(g).forEach(o=>{ const q=pick.sel[g.id][o.id]||0; if(q){ parts.push(`${o.name} ×${q}`); adds.push({name:o.name,qty:q,price:o.price}); } });
   });
-  cart.push({pid:p.id,name:p.name,icon:p.icon,opts:parts.join(", "),price:+pickPrice(p).toFixed(2)});
+  cart.push({pid:p.id,name:p.name,icon:p.icon,base:p.price,adds,opts:parts.join(", "),price:+pickPrice(p).toFixed(2)});
   saveCart(); closeSheet(); renderCartBar(); toast(`${p.name} ditambah ke troli`);
 }
 function cartTotal(){ return cart.reduce((a,c)=>a+c.price,0); }
@@ -998,62 +1066,191 @@ function renderCartBar(){
   $("#cartbar").classList.toggle("show", n>0 && !$("#sheet").classList.contains("show"));
   $$(".screen").forEach(s=>s.classList.toggle("has-cart", n>0));
   $("#cb-n").textContent=n; $("#cb-total").textContent=rm2(cartTotal());
-  $("#cb-earn").textContent=`+${Math.min(n,CONFIG.stampTarget)} cap · +${fmt(n*CONFIG.pointsPerPurchase)} point`;
+  $("#cb-earn").textContent=`+${Math.min(n,CONFIG.stampTarget)} cap · +${fmt(n*CONFIG.pointsOnline)} point`;
   $("#m-cartpill").textContent=`${n} item`;
   void onMenu;
 }
+/* Baris item dengan pecahan harga: harga item + setiap add-on berasingan */
+function lineHTML(c, i){
+  const adds=c.adds||[];
+  const base=c.base!=null?c.base:c.price;
+  return `<div class="cart-line"><span class="q">1×</span>
+    <div class="d"><b>${esc(c.name)}</b>
+      ${c.adds?`<div class="base"><span>Harga item</span><span class="mono">${rm2(base)}</span></div>
+      ${adds.map(x=>`<div class="add-l"><span>+ ${esc(x.name)}${x.qty>1?` ×${x.qty}`:""}</span><span class="mono">${x.price?rm2(x.price*x.qty):"—"}</span></div>`).join("")}`
+      :`<span>${esc(c.opts||"")}</span>`}
+    </div>
+    <span class="pr">${rm2(c.price)}</span>
+    ${i!=null?`<button class="rm" data-rmline="${i}" aria-label="Buang ${esc(c.name)}">${icon("trash","width:17px;height:17px")}</button>`:""}
+  </div>`;
+}
+
+/* ---------- Waktu pickup & pre-order ---------- */
+const DAYS3=["Ahd","Isn","Sel","Rab","Kha","Jum","Sab"];
+const hm = t => { const [h,m]=String(t||"0:0").split(":").map(Number); return h*60+(m||0); };
+const hhmm = ts => { const d=new Date(ts); return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0"); };
+function dayStart(off){ const d=new Date(); d.setHours(0,0,0,0); d.setDate(d.getDate()+off); return d.getTime(); }
+function dayLabel(off){ if(off===0) return "Hari ini"; if(off===1) return "Esok"; const d=new Date(dayStart(off)); return `${DAYS3[d.getDay()]} ${d.getDate()} ${MON[d.getMonth()]}`; }
+function slotsFor(off){
+  const base=dayStart(off), open=hm(SHOP.open), close=hm(SHOP.close), step=Math.max(5,+SHOP.slot||15);
+  let start=open;
+  if(off===0){ const now=new Date(), nowMin=now.getHours()*60+now.getMinutes()+(+SHOP.prep||0); start=Math.max(open, Math.ceil(nowMin/step)*step); }
+  const out=[]; for(let m=start;m<=close;m+=step) out.push(base+m*60e3); return out;
+}
+function asapOpen(){ const now=new Date(), m=now.getHours()*60+now.getMinutes(); return m>=hm(SHOP.open) && m+(+SHOP.prep||0)<=hm(SHOP.close); }
+function pickupDays(){ const n=SHOP.preorder?Math.max(0,+SHOP.preorderDays||0):0; const out=[]; for(let i=0;i<=n;i++) if(slotsFor(i).length) out.push(i); return out; }
+function pickupLabel(pk){
+  if(pk.asap) return `Secepat mungkin · ~${hhmm(pk.ts)}`;
+  const off=Math.round((new Date(pk.ts).setHours(0,0,0,0)-dayStart(0))/864e5);
+  return off===0 ? `Hari ini, ${hhmm(pk.ts)}` : `Pre-order · ${dayLabel(off)}, ${hhmm(pk.ts)}`;
+}
+
+/* ---------- Checkout ---------- */
+let CO = { mode:null, day:0, ts:null, pay:null, proof:null };
+function resetCO(){
+  CO.mode = asapOpen() ? "asap" : "slot";
+  const days=pickupDays(); CO.day = days.includes(CO.day)?CO.day:(days[0]??0); CO.ts=null;
+  CO.pay = SHOP.payCounter!==false ? "counter" : "duitnow"; CO.proof=null;
+}
 function openCart(){
-  if(!cart.length){ openSheet(`<h2>Troli kosong</h2><p>Pilih item dari menu untuk mula pesan.</p><button class="btn block" data-action="close" data-go="menu">Lihat menu</button>`); return; }
-  const n=cart.length, P=CONFIG.pointsPerPurchase;
+  if(!cart.length){ openSheet(`${sheetTop("Troli")}<h2>Troli kosong</h2><p>Pilih item dari menu untuk mula pesan.</p><button class="btn block" data-action="close" data-go="menu">Lihat menu</button>`); return; }
+  if(!CO.mode) resetCO();
+  renderCheckout();
+}
+function renderCheckout(){
+  const n=cart.length, P=CONFIG.pointsOnline, total=cartTotal(), y=$("#sheet").scrollTop;
+  const days=pickupDays(), asap=asapOpen();
+  if(!asap && CO.mode==="asap") CO.mode="slot";
+  const slots=CO.mode==="slot"?slotsFor(CO.day):[];
+  const pickTs = CO.mode==="asap" ? Date.now()+(+SHOP.prep||0)*60e3 : CO.ts;
+  const dnQR = SHOP.duitnowQR ? `<img src="${SHOP.duitnowQR}" alt="QR DuitNow ${esc(SHOP.duitnowName||"")}">` : qrSVG(`DUITNOW-DEMO:${CONFIG.brand.toUpperCase()}:${total.toFixed(2)}`);
   openSheet(`
-    <h2>Troli anda</h2><p>Ambil di kaunter Farha. Bayar semasa ambil.</p>
-    <div>${cart.map((c,i)=>`<div class="cart-line"><span class="q">1×</span><div class="d"><b>${esc(c.name)}</b><span>${esc(c.opts||"Tiada pilihan tambahan")}</span></div><span class="pr">${rm2(c.price)}</span><button class="rm" data-rmline="${i}" aria-label="Buang ${esc(c.name)}">${icon("trash","width:17px;height:17px")}</button></div>`).join("")}</div>
-    <div class="sum total"><span>Jumlah</span><span class="mono">${rm2(cartTotal())}</span></div>
-    <div class="earn">${icon("gift","width:18px;height:18px")}Pesanan ini beri +${Math.min(n,CONFIG.stampTarget-S.stamps)||0} cap &amp; +${fmt(n*P)} point</div>
+    ${sheetTop("Troli anda")}
+    <div>${cart.map((c,i)=>lineHTML(c,i)).join("")}</div>
+    <div class="sum total"><span>Jumlah</span><span class="mono">${rm2(total)}</span></div>
+
+    <div class="sec">
+      <div class="sec-h"><b>Waktu ambil</b><small>Pickup di kaunter ${esc(CONFIG.brand)}</small></div>
+      <div class="seg2">
+        <button type="button" class="${CO.mode==="asap"?"on":""}" data-co="mode" data-v="asap" ${asap?"":"disabled"}>Secepat mungkin<small>${asap?`~${SHOP.prep||0} min · ${hhmm(Date.now()+(+SHOP.prep||0)*60e3)}`:"Kedai tutup"}</small></button>
+        <button type="button" class="${CO.mode==="slot"?"on":""}" data-co="mode" data-v="slot">Pilih waktu<small>${SHOP.preorder?"Hari ini atau pre-order":"Hari ini"}</small></button>
+      </div>
+      ${!asap?`<div class="closed">Kedai buka ${esc(SHOP.open)}–${esc(SHOP.close)}. Pilih waktu ambil${SHOP.preorder?" atau pre-order untuk hari lain":""}.</div>`:""}
+      ${CO.mode==="slot"?`
+        <div class="daychips">${days.map(d=>`<button type="button" class="${d===CO.day?"on":""}" data-co="day" data-v="${d}">${dayLabel(d)}${d>0?"<small>Pre-order</small>":"<small>&nbsp;</small>"}</button>`).join("")||'<span class="closed">Tiada slot tersedia.</span>'}</div>
+        <div class="slots">${slots.map(t=>`<button type="button" class="${t===CO.ts?"on":""}" data-co="ts" data-v="${t}">${hhmm(t)}</button>`).join("")}</div>`:""}
+      ${pickTs?`<div class="pickup-sum">${icon("clock","width:15px;height:15px;vertical-align:-3px")} ${esc(pickupLabel({asap:CO.mode==="asap",ts:pickTs}))}</div>`:""}
+    </div>
+
+    <div class="sec">
+      <div class="sec-h"><b>Bayaran</b></div>
+      <div class="opts">
+        ${SHOP.payCounter!==false?`<label class="pay"><input type="radio" name="pay" value="counter" data-co="pay" ${CO.pay==="counter"?"checked":""}><div class="t"><b>Bayar di kaunter</b><span>Tunai / kad semasa ambil</span></div></label>`:""}
+        ${SHOP.payDuitnow!==false?`<label class="pay"><input type="radio" name="pay" value="duitnow" data-co="pay" ${CO.pay==="duitnow"?"checked":""}><div class="t"><b>DuitNow QR</b><span>Imbas, bayar, kemudian muat naik bukti</span></div></label>`:""}
+      </div>
+      ${CO.pay==="duitnow"?`
+        <div class="dn">
+          ${SHOP.duitnowQR?"":'<span class="demo-tag">QR contoh · admin belum muat naik QR kedai</span>'}
+          <div class="qrimg">${dnQR}</div>
+          <div style="font-size:12.5px;color:var(--ink-2)">${esc(SHOP.duitnowName||CONFIG.brand)}</div>
+          <div class="amt">${rm2(total)}</div>
+          <label class="proof ${CO.proof?"ok":""}">
+            <input type="file" accept="image/*" id="proofIn" hidden>
+            <div class="th">${CO.proof?`<img src="${CO.proof}" alt="Bukti bayaran">`:icon("upload")}</div>
+            <div class="t"><b>${CO.proof?"Bukti bayaran dilampirkan":"Muat naik bukti bayaran"}</b>${CO.proof?"Tekan untuk tukar gambar":"Tangkap layar resit DuitNow anda"}</div>
+          </label>
+        </div>`:""}
+    </div>
+
+    <div class="earn">${icon("gift","width:18px;height:18px")}Pesanan ini beri +${Math.min(n,Math.max(0,CONFIG.stampTarget-S.stamps))} cap &amp; +${fmt(n*P)} point</div>
     <div class="btn-row"><button class="btn ghost" data-action="close" data-go="menu">Tambah lagi</button><button class="btn red" data-action="placeOrder">Hantar pesanan</button></div>`);
+  $("#sheet").scrollTop=y;
+}
+function onCheckoutClick(b){
+  const k=b.dataset.co, v=b.dataset.v;
+  if(k==="mode"){ CO.mode=v; if(v==="slot"&&!CO.ts){ const sl=slotsFor(CO.day); CO.ts=sl[0]||null; } }
+  if(k==="day"){ CO.day=+v; CO.ts=slotsFor(CO.day)[0]||null; }
+  if(k==="ts"){ CO.ts=+v; }
+  renderCheckout();
+}
+/* Mampatkan gambar sebelum simpan (cth. 900px JPEG) */
+function compressImage(file,maxW=900,q=.72){
+  return new Promise((ok,no)=>{
+    const fr=new FileReader(); fr.onerror=no;
+    fr.onload=()=>{ const img=new Image(); img.onerror=no; img.onload=()=>{
+      const sc=Math.min(1,maxW/Math.max(img.width,img.height)), c=document.createElement("canvas");
+      c.width=Math.round(img.width*sc); c.height=Math.round(img.height*sc);
+      const ctx=c.getContext("2d"); ctx.fillStyle="#fff"; ctx.fillRect(0,0,c.width,c.height); ctx.drawImage(img,0,0,c.width,c.height);
+      ok(c.toDataURL("image/jpeg",q)); }; img.src=fr.result; };
+    fr.readAsDataURL(file);
+  });
 }
 function placeOrder(){
   if(!cart.length) return;
-  const n=cart.length, P=CONFIG.pointsPerPurchase, total=+cartTotal().toFixed(2);
+  let pickup;
+  if(CO.mode==="asap"){ if(!asapOpen()){ toast("Kedai tutup sekarang. Sila pilih waktu ambil."); CO.mode="slot"; renderCheckout(); return; } pickup={asap:true,ts:Date.now()+(+SHOP.prep||0)*60e3}; }
+  else { if(!CO.ts){ toast("Sila pilih waktu ambil"); return; } pickup={asap:false,ts:CO.ts}; }
+  pickup.pre = new Date(pickup.ts).setHours(0,0,0,0)!==dayStart(0);
+  pickup.label = pickupLabel(pickup);
+  if(CO.pay==="duitnow" && !CO.proof){ toast("Sila muat naik bukti bayaran DuitNow"); $(".proof")?.classList.add("shake"); return; }
+  const n=cart.length, P=CONFIG.pointsOnline, total=+cartTotal().toFixed(2);
   let orders=[]; try{ orders=JSON.parse(localStorage.getItem(SHARED.orders)||"[]"); }catch(e){}
   const no="A"+String(100+orders.length+1).slice(-3);
-  const order={no,ts:Date.now(),memberId:S.memberId,name:S.name,items:cart.map(c=>({name:c.name,opts:c.opts,price:c.price})),total,status:"Baru"};
-  orders.unshift(order); try{ localStorage.setItem(SHARED.orders,JSON.stringify(orders.slice(0,200))); }catch(e){}
-  knownStatus[no]="Baru";
+  const pay = CO.pay==="duitnow" ? {method:"duitnow",status:"pending",proof:CO.proof} : {method:"counter",status:"unpaid"};
+  const order={no,ts:Date.now(),memberId:S.memberId,name:S.name,items:cart.map(c=>({name:c.name,opts:c.opts,base:c.base,adds:c.adds,price:c.price})),total,status:"Baru",pickup,pay,points:n*P};
+  orders.unshift(order);
+  orders.forEach((o,i)=>{ if(i>=25&&o.pay&&o.pay.proof) o.pay.proof=null; });   // simpan bukti untuk 25 pesanan terkini sahaja (had storan pelayar)
+  try{ localStorage.setItem(SHARED.orders,JSON.stringify(orders.slice(0,200))); }
+  catch(e){ toast("Gambar bukti terlalu besar. Cuba tangkap layar yang lebih kecil."); return; }
+  knownStatus[no]="Baru"; knownPay[no]=pay.status;
   S.points+=n*P; S.lifetime+=n*P; S.stamps=Math.min(CONFIG.stampTarget,S.stamps+n);
   S.history.unshift({ts:Date.now(),t:`Pesanan #${no} (${n} item)`,p:n*P,n});
-  save(); cart=[]; saveCart(); render(); renderCartBar(); confetti();
+  save(); cart=[]; saveCart(); CO.mode=null; render(); renderCartBar(); confetti();
   showOrder(no);
 }
 const ORDER_STEPS=["Baru","Disediakan","Siap diambil"];
+const PAY_LABEL={unpaid:["Bayar di kaunter",""],pending:["Bukti sedang disemak",""],verified:["Bayaran disahkan","ok"],rejected:["Bayaran ditolak","bad"]};
 function showOrder(no){
   let o; try{ o=JSON.parse(localStorage.getItem(SHARED.orders)||"[]").find(x=>x.no===no); }catch(e){}
   if(!o) return;
   const idx=Math.max(0,ORDER_STEPS.indexOf(o.status)), done=o.status==="Selesai";
-  openSheet(`<div class="center" id="orderView" data-no="${o.no}">
+  const pl=PAY_LABEL[(o.pay&&o.pay.status)||"unpaid"];
+  openSheet(`${sheetTop("Pesanan #"+o.no)}<div class="center" id="orderView" data-no="${o.no}">
     <div class="icon-sq" style="margin:4px auto 12px;background:var(--brand)">${icon("bag")}</div>
     <h2>Pesanan #${esc(o.no)}</h2>
     <p>${o.items.length} item · <b class="mono">${rm2(o.total)}</b></p>
-    <span class="status-chip ${o.status==="Siap diambil"||done?"ready":""}">${esc(o.status)}</span>
+    <span class="status-chip ${o.status==="Siap diambil"||done?"ready":""}">${esc(o.status)}</span><span class="pay-chip ${pl[1]}">${pl[0]}</span>
     <div class="steps">${ORDER_STEPS.map((s,i)=>`<i class="${i<=idx||done?"on":""}"></i>`).join("")}</div>
     <div class="steps-l">${ORDER_STEPS.map(s=>`<span>${s}</span>`).join("")}</div>
-    <div style="text-align:left;margin:16px 0">${o.items.map(c=>`<div class="cart-line"><span class="q">1×</span><div class="d"><b>${esc(c.name)}</b><span>${esc(c.opts||"")}</span></div><span class="pr">${rm2(c.price)}</span></div>`).join("")}</div>
+    <div style="margin-top:14px">
+      ${o.pickup?`<div class="info-row"><span>Waktu ambil</span><b>${esc(o.pickup.label)}</b></div>`:""}
+      <div class="info-row"><span>Bayaran</span><b>${o.pay&&o.pay.method==="duitnow"?"DuitNow QR":"Di kaunter"}</b></div>
+      ${o.pay&&o.pay.status==="rejected"?`<div class="closed" style="text-align:left">Bukti bayaran tidak dapat disahkan. Sila bayar di kaunter semasa ambil, atau hubungi kedai.</div>`:""}
+    </div>
+    <div style="text-align:left;margin:12px 0 16px">${o.items.map(c=>lineHTML(c)).join("")}</div>
     <button class="btn block" data-action="close">Tutup</button>
   </div>`);
 }
+const knownPay={};
+try{ JSON.parse(localStorage.getItem(SHARED.orders)||"[]").forEach(o=>knownPay[o.no]=o.pay&&o.pay.status); }catch(e){}
 const knownStatus={};
 try{ JSON.parse(localStorage.getItem(SHARED.orders)||"[]").forEach(o=>knownStatus[o.no]=o.status); }catch(e){}
 function latestOrder(){ try{ return JSON.parse(localStorage.getItem(SHARED.orders)||"[]").find(o=>o.memberId===S.memberId&&o.status!=="Selesai"); }catch(e){ return null; } }
 function renderOrderTile(){
   const o=latestOrder(), sub=$("#h-order-sub"); if(!sub) return;
-  sub.textContent = o ? `Pesanan #${o.no}: ${o.status}` : "Setiap item = 1 cap automatik";
+  sub.textContent = o ? `Pesanan #${o.no}: ${o.status}${o.pickup?" · "+(o.pickup.asap?"~"+hhmm(o.pickup.ts):o.pickup.label.replace("Pre-order · ","")):""}` : `Pesan dalam app: +${CONFIG.pointsOnline} point & 1 cap setiap item`;
   $("#orderTile").dataset.order = o ? o.no : "";
 }
 $("#sheetBody").addEventListener("click", e=>{
+  const co=e.target.closest("button[data-co]"); if(co&&!co.disabled){ e.stopPropagation(); onCheckoutClick(co); return; }
   const b=e.target.closest("button[data-q]"); if(!b||b.disabled) return;
   e.stopPropagation(); pickQty(b.dataset.g,b.dataset.o,+b.dataset.q);
 });
-$("#sheetBody").addEventListener("change", e=>{
+$("#sheetBody").addEventListener("change", async e=>{
+  if(e.target.dataset.co==="pay"){ CO.pay=e.target.value; renderCheckout(); return; }
+  if(e.target.id==="proofIn"){ const f=e.target.files&&e.target.files[0]; if(!f) return;
+    try{ CO.proof=await compressImage(f); renderCheckout(); toast("Bukti bayaran dilampirkan"); }catch(_){ toast("Gambar tidak dapat dibaca. Cuba gambar lain."); }
+    return; }
   const r=e.target.closest('input[type=radio][data-g]'); if(!r||!pick) return;
   pick.sel[r.dataset.g]=r.value; renderProduct();
 });
@@ -1092,8 +1289,15 @@ addEventListener("storage", e=>{
     if(e.key===CONFIG.storageKey && before!==S.stamps+"/"+S.points) toast("Kad anda dikemas kini di kaunter");
   }
   if(e.key===SHARED.menu){ applyShared(); if($("#s-menu").classList.contains("active")) renderMenu(); }
+  if(e.key===SHARED.settings){ renderCartBar(); renderOrderTile(); }
   if(e.key===SHARED.orders){
     try{ JSON.parse(e.newValue||"[]").forEach(o=>{
+      const ps=o.pay&&o.pay.status;
+      if(o.memberId===S.memberId && knownPay[o.no] && ps && knownPay[o.no]!==ps){
+        toast(ps==="verified"?`Bayaran pesanan #${o.no} disahkan`:ps==="rejected"?`Bayaran #${o.no} ditolak. Sila bayar di kaunter`:`Pesanan #${o.no}: ${ps}`);
+        if($("#orderView")?.dataset.no===o.no) showOrder(o.no);
+      }
+      knownPay[o.no]=ps;
       if(o.memberId===S.memberId && knownStatus[o.no] && knownStatus[o.no]!==o.status){
         toast(o.status==="Siap diambil" ? `Pesanan #${o.no} siap! Sila ambil di kaunter` : `Pesanan #${o.no}: ${o.status}`);
         if(navigator.vibrate) navigator.vibrate([30,60,30]);
