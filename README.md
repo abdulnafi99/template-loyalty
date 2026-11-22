@@ -1,17 +1,24 @@
-# Farha Rewards — Template Loyalty PWA
+# Kafe Demo — Template Loyalty PWA
 
-Kad loyalti digital (cap + point + ganjaran) dalam gaya **Bento Glass Frost**, tema **merah & putih Farha**.
+Template kad loyalti digital + pesanan (cap, point, menu, pickup, ganjaran) untuk kafe. Logo contoh **"kafé"** (Kafe Demo) dan **8 reka bentuk** yang boleh ditukar.
 Ditulis sepenuhnya dalam **HTML, CSS dan JavaScript vanilla**, dalam satu fail `index.html`. Tiada framework dan tiada langkah build.
 
 ## Ciri-ciri
-- **Splash screen beranimasi**: huruf "f" muncul, zoom, kemudian logo penuh **farha** terbuka dengan percikan dari cawan.
+- **Splash screen beranimasi**: huruf pertama logo muncul, zoom, kemudian logo penuh terbuka.
+- **8 reka bentuk (tema)**: Bento Glass Frost, Bento Grid, Bento Glass Noir, Aurora Night, Caramel Latte (clay), Indigo Ramen, Matcha Moya dan Ruby Glass. Setiap tema ada warna, fon, gaya cap, gaya kad menu dan navigasi sendiri.
 - **4 skrin**: Home · Cap & Point · Ganjaran · Profil, dengan bottom nav berbentuk pil.
-- **Kod QR ahli yang boleh diimbas betul-betul**, dijana dalam JS tanpa library (format: `FARHA:<memberId>`).
+- **Kod QR ahli yang boleh diimbas betul-betul**, dijana dalam JS tanpa library (format: `<NAMA KEDAI>:<memberId>`).
 - **Kad cap 10 petak**: bila penuh, petak hadiah boleh ditekan untuk tebus minuman percuma.
 - **Tebus ganjaran**: point ditolak, keluar kod baucar 6 aksara dengan pemasa 10 minit, dan animasi konfeti.
 - **Tahap ahli** (Silver / Gold / Platinum) ikut jumlah point terkumpul.
 - **PWA**: boleh dipasang ke skrin utama (Android & iOS) dan dibuka luar talian melalui service worker.
 - **Mod demo**: butang "Simulasi pembelian" dan "Set semula data". Data disimpan dalam `localStorage`.
+
+## Reka bentuk (tema)
+- Pelanggan/client boleh cuba semua reka bentuk melalui butang **palet** di Home, atau **Profil → Reka bentuk app**. Pilihan itu disimpan dalam peranti sahaja.
+- Admin pilih reka bentuk rasmi kedai di **Tetapan → Reka bentuk app pelanggan**, dan boleh matikan butang palet bila app sudah dilancarkan.
+- Pautan pratonton terus: `index.html?tema=aurora` (frost, grid, noir, aurora, clay, indigo, matcha, ruby). Sesuai untuk hantar kepada client.
+- Senarai tema ada dalam `menu.js` (`SHOP_THEMES`). CSS setiap tema ada dalam `index.html` di bahagian **TEMA** (`:root[data-theme="..."]`).
 
 ## Menu, add-on & troli
 - **App pelanggan → Menu**: kategori, produk, add-on dan troli. Setiap item dalam pesanan beri **1 cap** dan point ikut tetapan.
@@ -43,7 +50,7 @@ menu.js                ← menu & tetapan asal kedai (produk, add-on, point, wak
 vercel.json            ← laluan /admin
 manifest.webmanifest   ← maklumat PWA (nama, warna, ikon)
 sw.js                  ← service worker (cache luar talian)
-icons/                 ← ikon app + logo Farha (PNG)
+icons/                 ← ikon app + logo Kafe Demo (PNG)
 ```
 
 ## Jalankan
@@ -55,13 +62,14 @@ python3 -m http.server 8080
 Untuk deploy, muat naik folder ini ke mana-mana hosting statik (Vercel, Netlify, GitHub Pages, Cloudflare Pages).
 
 ## Jadikan untuk kedai lain (template)
-1. **Warna**: ubah pemboleh ubah `:root` di bahagian atas `<style>` (`--brand`, `--brand-2`, `--brand-deep`, `--blob-*`).
+1. **Warna**: pilih tema, atau ubah token tema dalam bahagian **TEMA** di `<style>` (`--brand`, `--brand-2`, `--brand-deep`, `--brand-rgb`, `--blob-*`, …).
 2. **Menu**: ubah `menu.js` (produk, harga, add-on, had kuantiti).
 3. **Data & ganjaran**: ubah objek `CONFIG` di bahagian atas `<script>`, termasuk nama brand, sasaran cap, senarai ganjaran, tahap ahli dan pengguna demo.
-3. **Logo**: ganti `data:image/png;base64,...` pada `<img class="wm">` dalam splash dengan wordmark putih (PNG lutsinar) anda, dan ganti fail dalam `icons/`.
-   - Animasi splash memaparkan ~16% bahagian kiri logo dahulu (huruf pertama). Laraskan `clip-path:inset(0 84% 0 0)` dan `translateX(42%)` dalam `.sp-slide` jika huruf pertama logo anda lebih lebar atau lebih sempit.
-4. **Manifest**: kemas kini `name`, `short_name` dan `theme_color` dalam `manifest.webmanifest`.
-5. Naikkan `VERSION` dalam `sw.js` setiap kali anda deploy versi baru.
+4. **Logo**: ganti `data:image/png;base64,...` pada `<img class="wm">` dalam `index.html` dan `admin.html` dengan wordmark putih (PNG lutsinar) kedai, dan ganti fail dalam `icons/` (`wordmark.png` ialah salinan asal logo contoh).
+   - Animasi splash memaparkan ~24% bahagian kiri logo dahulu (huruf pertama "k"). Laraskan `clip-path:inset(0 76% 0 0)` dan `translateX(38%)` dalam `.sp-slide` ikut lebar huruf pertama logo baru.
+5. **Reka bentuk**: tetapkan `theme` dalam `SHOP_SETTINGS` (`menu.js`) atau pilih di admin.
+6. **Manifest**: kemas kini `name`, `short_name` dan `theme_color` dalam `manifest.webmanifest`.
+7. Naikkan `VERSION` dalam `sw.js` setiap kali anda deploy versi baru.
 
 ## Sambung ke backend
 Template ini menyimpan data secara tempatan sahaja. Untuk produksi, gantikan fungsi `load()`, `save()`, `doRedeem()` dan `demoBuy()` dengan panggilan API ke backend anda (contohnya Firebase atau Supabase), dan buang bahagian "mod demo" di skrin Profil.
