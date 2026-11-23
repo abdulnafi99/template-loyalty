@@ -1,6 +1,7 @@
 # Nota Versi
 
 ## v1.2.1 — Menu gaya Promo Carousel
+- Rel kategori lebih kecil dan sempit (ikon 20px, kotak 34px), jadi grid item dapat lebih ruang.
 - Skrin Menu dalam reka bentuk Promo Carousel direka semula:
   - togol **Pickup | Pre-order** dan butang carian di atas
   - baris kedai dengan status buka/tutup dan lencana troli
