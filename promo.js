@@ -76,6 +76,15 @@ window.PromoBanner = (function(){
     const st = (STYLES[p.style] || STYLES.sunset)(p);
     return `<div class="pb"><div class="pb-art"><div class="pb-zoom" style="background:${st.bg}"></div>${st.art}</div><div class="pb-text">${st.text}</div>${cta}${note}</div>`;
   }
+  /* strip(promo) → banner melintang (atas senarai Menu) */
+  function strip(p, o = {}){
+    p = Object.assign({}, p, { _l: ((o.brand || "K")[0] || "k").toLowerCase() });
+    if (p.kind === "image" && p.img) return `<div class="pbs"><img class="pbs-img" src="${p.img}" alt="${esc(p.title)}"></div>`;
+    const st = (STYLES[p.style] || STYLES.sunset)(p);
+    return `<div class="pbs"><div class="pbs-bg" style="background:${st.bg}"></div>
+      <div class="pbs-t">${p.tag?`<i>${esc(p.tag)}</i>`:""}<b>${esc(p.h1)} <span>${esc(p.h2)}</span></b><small>${esc(p.cta || "Lihat lanjut")} →</small></div>
+      <div class="pbs-art">${cup(p.cups && p.cups[0], 64, 118, p._l)}</div>${p.badge?`<div class="pbs-badge">${esc(p.badge)}</div>`:""}</div>`;
+  }
   /* CSS banner (sekali sahaja) */
   const CSS = `.pb{position:relative;aspect-ratio:4/5;width:100%;overflow:hidden;border-radius:inherit;color:#fff;font-family:"Plus Jakarta Sans",system-ui,sans-serif;}
 .pb-art{position:absolute;inset:0;transform:translateX(calc(var(--p,0) * -26px))}
@@ -91,6 +100,16 @@ window.PromoBanner = (function(){
 .pb-stk{position:absolute;border:5px solid #fff;display:grid;place-items:center;font-family:Fredoka,sans-serif;font-weight:700;box-shadow:0 10px 18px -8px rgba(0,0,0,.35)}
 .pb-cta{position:absolute;left:50%;bottom:4%;transform:translateX(-50%);z-index:3;padding:9px 18px;border-radius:99px;background:#fff;color:#15192A;font-size:12px;font-weight:800;white-space:nowrap;box-shadow:0 6px 14px -6px rgba(0,0,0,.35)}
 .pb-note{position:absolute;right:4%;bottom:1.6%;font-size:8px;opacity:.75;z-index:3}
+.pbs{position:relative;height:118px;overflow:hidden;color:#fff;font-family:"Plus Jakarta Sans",system-ui,sans-serif}
+.pbs-bg{position:absolute;inset:0}
+.pbs-img{width:100%;height:100%;object-fit:cover}
+.pbs-t{position:absolute;left:16px;top:50%;transform:translateY(-50%);max-width:62%;z-index:2}
+.pbs-t i{display:block;font-style:normal;font-size:10px;font-weight:800;letter-spacing:.12em;opacity:.9;margin-bottom:3px}
+.pbs-t b{display:block;font-family:"Archivo Black","Plus Jakarta Sans",sans-serif;font-size:22px;line-height:.95;text-shadow:0 3px 0 rgba(0,0,0,.1)}
+.pbs-t b span{color:#FDE68A}
+.pbs-t small{display:inline-block;margin-top:8px;font-size:10.5px;font-weight:800;background:#fff;color:#15192A;padding:4px 10px;border-radius:99px}
+.pbs-art{position:absolute;right:14px;top:4px;z-index:1}
+.pbs-badge{position:absolute;right:70px;top:10px;width:44px;height:44px;border-radius:50%;background:#F5B83D;color:#3B2410;display:grid;place-items:center;font-family:"Archivo Black",sans-serif;font-size:12px;transform:rotate(12deg);z-index:2}
 @media (prefers-reduced-motion:reduce){.pb-art{transform:none!important}}`;
   function ensureCSS(){ if (!document.getElementById("pb-css")){ const s = document.createElement("style"); s.id = "pb-css"; s.textContent = CSS; document.head.appendChild(s); } }
   /* Status ikut tarikh */
@@ -100,5 +119,5 @@ window.PromoBanner = (function(){
     if (p.end && today > p.end) return "ended";
     return "live";
   }
-  return { html, ensureCSS, status, styles: Object.keys(STYLES) };
+  return { html, strip, ensureCSS, status, styles: Object.keys(STYLES) };
 })();
