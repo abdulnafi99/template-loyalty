@@ -8,23 +8,24 @@
      type:"multi"  → pilih banyak dengan kuantiti.
                      Setiap pilihan ada `max` = had kuantiti untuk SATU item.
                      Kumpulan ada `max` = had jumlah semua pilihan (0 = tiada had).
+   art:[atas, bawah, hiasan] (pilihan) = warna lukisan minuman untuk tema "Sage Curve".
      Nak lebih dari had? Pelanggan tambah item yang sama ke troli sekali lagi.
    ========================================================= */
 window.SHOP_MENU = [
-  { id:"sig", name:"Kopi Signature", desc:"Kopi susu gula hangus, krim lembut", price:9.90, cat:"Minuman", icon:"cup", active:true, groups:[
+  { id:"sig", name:"Kopi Signature", desc:"Kopi susu gula hangus, krim lembut", price:9.90, cat:"Minuman", icon:"cup", art:["#E6BE8A","#5C3B22","#8A5428"], active:true, groups:[
     { id:"size", name:"Saiz", type:"single", required:true, options:[{id:"r",name:"Regular",price:0,active:true},{id:"l",name:"Large",price:2,active:true}] },
     { id:"ice",  name:"Ais",  type:"single", required:true, options:[{id:"n",name:"Ais normal",price:0,active:true},{id:"k",name:"Kurang ais",price:0,active:true},{id:"t",name:"Tiada ais",price:0,active:true}] },
     { id:"top",  name:"Topping", type:"multi", max:3, options:[{id:"boba",name:"Boba",price:1.5,max:2,active:true},{id:"cheese",name:"Cheese foam",price:2,max:1,active:true},{id:"jelly",name:"Jelly kelapa",price:1,max:2,active:true}] },
   ]},
-  { id:"latte", name:"Latte Ais", desc:"Espresso dengan susu segar", price:8.90, cat:"Minuman", icon:"cup", active:true, groups:[
+  { id:"latte", name:"Latte Ais", desc:"Espresso dengan susu segar", price:8.90, cat:"Minuman", icon:"cup", art:["#EBD3B4","#A8754A","#7A4B2E"], active:true, groups:[
     { id:"size", name:"Saiz", type:"single", required:true, options:[{id:"r",name:"Regular",price:0,active:true},{id:"l",name:"Large",price:2,active:true}] },
     { id:"sugar",name:"Gula", type:"single", required:true, options:[{id:"n",name:"Gula normal",price:0,active:true},{id:"k",name:"Kurang manis",price:0,active:true},{id:"t",name:"Tanpa gula",price:0,active:true}] },
     { id:"xtra", name:"Tambahan", type:"multi", max:0, options:[{id:"shot",name:"Extra shot",price:2,max:2,active:true},{id:"van",name:"Sirap vanila",price:1,max:1,active:true},{id:"oat",name:"Tukar susu oat",price:2.5,max:1,active:true}] },
   ]},
-  { id:"teh", name:"Teh Tarik Ais", desc:"Teh tarik pekat, buih tebal", price:5.50, cat:"Minuman", icon:"cup", active:true, groups:[
+  { id:"teh", name:"Teh Tarik Ais", desc:"Teh tarik pekat, buih tebal", price:5.50, cat:"Minuman", icon:"cup", art:["#E2B987","#9A5B2A","#7A4220"], active:true, groups:[
     { id:"sugar",name:"Gula", type:"single", required:true, options:[{id:"n",name:"Gula normal",price:0,active:true},{id:"k",name:"Kurang manis",price:0,active:true}] },
   ]},
-  { id:"matcha", name:"Matcha Latte", desc:"Matcha Uji dengan susu segar", price:10.90, cat:"Minuman", icon:"leaf", active:true, groups:[
+  { id:"matcha", name:"Matcha Latte", desc:"Matcha Uji dengan susu segar", price:10.90, cat:"Minuman", icon:"leaf", art:["#BFD39B","#5E7F3E","#4E6B33"], active:true, groups:[
     { id:"size", name:"Saiz", type:"single", required:true, options:[{id:"r",name:"Regular",price:0,active:true},{id:"l",name:"Large",price:2,active:true}] },
     { id:"top",  name:"Topping", type:"multi", max:2, options:[{id:"boba",name:"Boba",price:1.5,max:2,active:true},{id:"cream",name:"Krim putar",price:1.5,max:1,active:true}] },
   ]},
@@ -67,6 +68,7 @@ window.SHOP_SETTINGS = {
    CSS setiap tema ada dalam index.html: :root[data-theme="..."]
    ========================================================= */
 window.SHOP_THEMES = [
+  { id:"sage",   name:"Sage Curve",        desc:"Panel melengkung · hijau sage",   sw:["#FFFFFF","#5A8158","#3B5B3E","#A2B08A"], meta:"#FFFFFF", stamp:"cup", art:"drink", special:true },
   { id:"frost",  name:"Bento Glass Frost", desc:"Kaca cerah · biru langit",        sw:["#EEF2F6","#0F172A","#38BDF8","#FDBA74"], meta:"#EEF2F6", stamp:"check" },
   { id:"grid",   name:"Bento Grid",        desc:"Kelabu hangat · hitam · oren",    sw:["#F1F1EE","#111111","#FF6A1A","#FFFFFF"], meta:"#F1F1EE", stamp:"check" },
   { id:"noir",   name:"Bento Glass Noir",  desc:"Kaca gelap · oren · ungu",        sw:["#0B0B10","#FF7A2F","#8B5CF6","#EC4899"], meta:"#0B0B10", stamp:"check" },

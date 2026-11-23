@@ -70,9 +70,9 @@ Buka `http://localhost:8080` (app pelanggan) dan `http://localhost:8080/admin.ht
 
 ## 5. Pilih reka bentuk
 
-Template ada **8 reka bentuk**: Bento Glass Frost, Bento Grid, Bento Glass Noir, Aurora Night, Caramel Latte, Indigo Ramen, Matcha Zen dan Ruby Glass.
+Template ada **9 reka bentuk**: ★ **Sage Curve** (template spesial, dengan tab kategori menegak dan lukisan minuman), Bento Glass Frost, Bento Grid, Bento Glass Noir, Aurora Night, Caramel Latte, Indigo Ramen, Matcha Zen dan Ruby Glass.
 
-- **Untuk demo kepada client:** buka app dan tekan butang **palet** di Home, atau **Profil → Reka bentuk app**. Boleh juga hantar pautan terus, contohnya `https://app-anda.vercel.app/?tema=clay`. Nilai `tema` yang sah: `frost`, `grid`, `noir`, `aurora`, `clay`, `indigo`, `matcha`, `ruby`.
+- **Untuk demo kepada client:** buka app dan tekan butang **palet** di Home, atau **Profil → Reka bentuk app**. Boleh juga hantar pautan terus, contohnya `https://app-anda.vercel.app/?tema=clay`. Nilai `tema` yang sah: `sage`, `frost`, `grid`, `noir`, `aurora`, `clay`, `indigo`, `matcha`, `ruby`.
 - **Tetapkan reka bentuk rasmi kedai:** **Admin → Tetapan → Reka bentuk app pelanggan**, atau `menu.js` → `SHOP_SETTINGS.theme`.
 - **Sembunyikan butang palet** selepas client membuat pilihan: matikan suis di Admin → Tetapan, atau set `themePicker: false` dalam `menu.js`.
 - **Ubah warna tema:** dalam `index.html`, cari bahagian `TEMA` dan ubah token seperti `--brand`, `--brand-2`, `--brand-deep` dan `--brand-rgb` (nilai r,g,b bagi `--brand`) pada blok `:root[data-theme="..."]`.
@@ -85,6 +85,7 @@ Semua dalam **`menu.js`**:
   - `type:"single"`: pilih satu (radio). `required:true` = wajib.
   - `type:"multi"`: pilih banyak dengan kuantiti. Setiap pilihan ada `max` (had per item, contohnya Fucuk maks 1). Kumpulan ada `max` (had jumlah, 0 = tiada had).
   - Ikon yang tersedia: `cup`, `leaf`, `bowl`, `bread`, `cake`, `bean`, `sparkle`.
+  - `art:["#atas","#bawah","#hiasan"]` (pilihan): warna lukisan minuman dalam tema Sage Curve. Tanpa `art`, warna dipilih automatik untuk kategori "Minuman".
 - `SHOP_SETTINGS`:
   - `stampTarget`: bilangan cap untuk 1 minuman percuma.
   - `pointsWalkin`, `pointsOnline`: point setiap item (kaunter / app).

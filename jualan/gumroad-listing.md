@@ -5,10 +5,10 @@
 ---
 
 ## Nama produk
-**Template Loyalti & Pesanan Kafe — PWA, 8 Reka Bentuk (Demo, Lesen 1 Kedai)**
+**Template Loyalti & Pesanan Kafe — PWA, 9 Reka Bentuk termasuk Template Spesial (Demo, Lesen 1 Kedai)**
 
 ## Ringkasan (Summary)
-Template app kad loyalti dan pesanan untuk kafe & F&B. Ada kad cap digital, point, ganjaran, menu dengan add-on, pickup & pre-order, bayaran DuitNow dan dashboard admin. Satu template dengan 8 reka bentuk yang boleh ditukar dengan satu tekan.
+Template app kad loyalti dan pesanan untuk kafe & F&B. Ada kad cap digital, point, ganjaran, menu dengan add-on, pickup & pre-order, bayaran DuitNow dan dashboard admin. Satu template dengan 9 reka bentuk, termasuk template spesial Sage Curve, yang boleh ditukar dengan satu tekan.
 
 ## Penerangan
 
@@ -39,7 +39,9 @@ Nak tunjuk kepada client kafe macam mana rupa app loyalti mereka sendiri, tanpa 
   - pre-order
   - QR DuitNow
 
-### ✦ 8 reka bentuk dalam satu template
+### ✦ 9 reka bentuk dalam satu template
+**★ Sage Curve (template spesial)**: panel hijau melengkung, tab kategori menegak, dan lukisan minuman pada kad menu.
+
 Bento Glass Frost · Bento Grid · Bento Glass Noir · Aurora Night · Caramel Latte · Indigo Ramen · Matcha Zen · Ruby Glass
 
 Setiap reka bentuk ada warna, fon, gaya cap, gaya kad menu dan navigasi sendiri. Client boleh cuba semua reka bentuk terus dalam app, atau anda hantar pautan pratonton.
@@ -102,12 +104,13 @@ Dalam versi demo, dalam pelayar peranti. Tiada data dihantar ke mana-mana pelaya
 | `03-galeri-reka-bentuk.jpg` | Gambar galeri / cover tambahan |
 | `04-galeri-pesanan.jpg` | Gambar galeri / cover tambahan |
 | `05-galeri-admin.jpg` | Gambar galeri / cover tambahan |
+| `06-galeri-sage-curve.jpg` | Gambar galeri: template spesial |
 
 ## Langkah di Gumroad
 1. Gumroad → **Products → New product** → pilih **Digital product**. Masukkan nama dan harga.
-2. **Cover**: muat naik `01-cover.jpg`, kemudian tambah 03–05 sebagai gambar tambahan. **Thumbnail**: `02-thumbnail.jpg`.
+2. **Cover**: muat naik `01-cover.jpg`, kemudian tambah 03–06 sebagai gambar tambahan. **Thumbnail**: `02-thumbnail.jpg`.
 3. **Description**: tampal bahagian *Penerangan* dan *FAQ* di atas.
-4. **Content**: muat naik fail `template-loyalti-kafe-v1.0.0.zip`.
+4. **Content**: muat naik fail `template-loyalti-kafe-v1.1.0.zip`.
 5. Isi bahagian *Summary* dan tag, kemudian **Publish**.
 
 ## Nota tentang demo langsung

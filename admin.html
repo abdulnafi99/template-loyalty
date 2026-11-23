@@ -328,6 +328,7 @@ svg.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stro
 .th-card span{font-size:11px;color:var(--ink-2)}
 .th-card .ok{position:absolute;right:8px;top:8px;width:22px;height:22px;border-radius:50%;background:var(--brand);color:#fff;display:none;place-items:center}
 .th-card.on .ok{display:grid}
+.th-card .sp{position:absolute;left:8px;top:8px;z-index:2;font-size:9.5px;font-weight:800;letter-spacing:.08em;padding:3px 8px;border-radius:99px;background:linear-gradient(135deg,#F5B83D,#E8903A);color:#3B2410}
 
 /* ---------- Responsif ---------- */
 @media (max-width:1100px){ .g4{grid-template-columns:repeat(2,1fr)} }
@@ -1097,7 +1098,7 @@ const THEMES = window.SHOP_THEMES || [];
 function renderThemeGrid(){
   const cur=SETDRAFT.theme||"frost";
   $("#thGrid").innerHTML=THEMES.map(t=>`<button type="button" class="th-card ${t.id===cur?"on":""}" data-th="${t.id}">
-    <span class="ok">${icon("check","width:14px;height:14px")}</span>
+    <span class="ok">${icon("check","width:14px;height:14px")}</span>${t.special?'<span class="sp">★ SPESIAL</span>':""}
     <div class="mock" style="background:${t.sw[0]}"><i style="background:${t.sw[1]}"></i><i style="background:${t.sw[2]}"></i><i style="background:${t.sw[3]};box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)"></i></div>
     <b>${esc(t.name)}</b><span>${esc(t.desc)}</span></button>`).join("");
   $("#thLink").textContent=`index.html?tema=${cur}`;
@@ -1105,7 +1106,7 @@ function renderThemeGrid(){
 document.addEventListener("click",e=>{ const b=e.target.closest("[data-th]"); if(!b||!SETDRAFT) return; SETDRAFT.theme=b.dataset.th; renderThemeGrid(); applyAdminTheme(SETDRAFT.theme); });
 /* Warna aksen admin ikut tema app (latar admin kekal cerah supaya mudah dibaca) */
 const ADMIN_ACCENT={frost:["#0EA5E9","#38BDF8","#0F172A"],grid:["#FF6A1A","#FF8A3D","#111111"],noir:["#FF7A2F","#FF9A5C","#1B1924"],aurora:["#6D5BFF","#22D3EE","#0E1226"],
-  clay:["#C98A55","#D39A66","#7A4B2E"],indigo:["#2B4A7E","#3D63A3","#1E355E"],matcha:["#4B5A3A","#6B7B57","#343F28"],ruby:["#BF0311","#E3192B","#5A0710"]};
+  clay:["#C98A55","#D39A66","#7A4B2E"],sage:["#5A8158","#A2B08A","#3B5B3E"],indigo:["#2B4A7E","#3D63A3","#1E355E"],matcha:["#4B5A3A","#6B7B57","#343F28"],ruby:["#BF0311","#E3192B","#5A0710"]};
 function applyAdminTheme(id){
   const c=ADMIN_ACCENT[id]||ADMIN_ACCENT.ruby, r=document.documentElement.style;
   const rgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)).join(",");

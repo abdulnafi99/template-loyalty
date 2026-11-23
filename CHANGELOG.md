@@ -1,5 +1,10 @@
 # Nota Versi
 
+## v1.1.0 — Template spesial: Sage Curve
+- Reka bentuk ke-9 bertanda **★ SPESIAL**: panel hijau sage melengkung dengan bulatan bertindih, tab kategori menegak di tepi kiri (skrin Menu), kad produk dengan lukisan minuman yang tersembul keluar, cap berbentuk cawan, dan nav terapung dengan garis penanda.
+- Lukisan minuman SVG (warna boleh ditetapkan dengan `art` dalam `menu.js`).
+- Pemilih reka bentuk dan tetapan admin memaparkan lencana SPESIAL.
+
 ## v1.0.0 — Versi demo pertama
 - App pelanggan PWA: splash beranimasi, Home, Menu, Cap & Point, Ganjaran, Profil.
 - Kad cap digital, point, tahap ahli (Silver/Gold/Platinum), ganjaran dengan kod baucar bertempoh.
