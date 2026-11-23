@@ -7,7 +7,7 @@ NAME="template-loyalti-kafe"
 OUT="jualan/${NAME}-${VER}.zip"
 TMP=$(mktemp -d)
 mkdir -p "$TMP/$NAME"
-cp index.html admin.html menu.js manifest.webmanifest sw.js vercel.json PANDUAN.md LESEN.md CHANGELOG.md "$TMP/$NAME/"
+cp index.html admin.html menu.js promo.js manifest.webmanifest sw.js vercel.json PANDUAN.md LESEN.md CHANGELOG.md "$TMP/$NAME/"
 cp -r icons "$TMP/$NAME/"
 rm -f "$OUT"
 (cd "$TMP" && zip -qr -X "$OLDPWD/$OUT" "$NAME")

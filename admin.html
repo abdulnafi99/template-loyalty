@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Archivo+Black&family=Fredoka:wght@700&display=swap" rel="stylesheet">
 <style>
 /* =========================================================
    ADMIN KAFE — warna aksen ikut tema app (lihat applyAdminTheme)
@@ -357,6 +357,29 @@ body.tabs-hidden .main{padding-top:calc(28px + var(--safe-t))}
 .th-card.on .ok{display:grid}
 .th-card .sp{position:absolute;left:8px;top:8px;z-index:2;font-size:9.5px;font-weight:800;letter-spacing:.08em;padding:3px 8px;border-radius:99px;background:linear-gradient(135deg,#F5B83D,#E8903A);color:#3B2410}
 
+/* ---------- Promosi ---------- */
+.p-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+.p-card{display:flex;gap:14px;align-items:stretch}
+.p-card.off{opacity:.6}
+.pthumb{width:120px;height:150px;border-radius:14px;overflow:hidden;flex:none;position:relative;box-shadow:0 10px 20px -14px rgba(0,0,0,.5)}
+.pthumb .inner{width:312px;transform:scale(.3846);transform-origin:0 0;pointer-events:none}
+.p-card .info{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.p-card .info b{font-size:14.5px}
+.p-card .meta{font-size:11.5px;color:var(--ink-2);display:flex;flex-wrap:wrap;gap:4px 10px}
+.p-card .stats{font-family:var(--mono);font-size:11.5px;color:var(--ink-2)}
+.p-card .ctl{display:flex;gap:6px;align-items:center;margin-top:auto}
+.pst{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:99px;width:max-content}
+.pst.live{background:rgba(20,164,77,.12);color:var(--ok)}.pst.scheduled{background:#FFF2DD;color:#9A5A00}.pst.ended,.pst.off{background:rgba(110,74,80,.1);color:var(--ink-2)}
+.ped{display:grid;grid-template-columns:minmax(0,1fr) 230px;gap:18px;align-items:start}
+.ped .prev{position:sticky;top:0;border-radius:18px;overflow:hidden;box-shadow:0 18px 30px -18px rgba(0,0,0,.5)}
+.ped .prev .inner{width:312px;transform:scale(.7372);transform-origin:0 0}
+.ped .prevbox{width:230px;height:287px;border-radius:18px;overflow:hidden}
+.stylepick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.stylepick button{border-radius:12px;overflow:hidden;border:2px solid transparent;height:74px;position:relative;padding:0}
+.stylepick button.on{border-color:var(--brand)}
+.stylepick .inner{width:312px;transform:scale(.19);transform-origin:0 0}
+@media (max-width:640px){.ped{grid-template-columns:1fr}.ped .prev{position:static;justify-self:center}}
+
 /* ---------- Responsif ---------- */
 @media (max-width:1100px){ .g4{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:900px){
@@ -434,6 +457,7 @@ body.tabs-hidden .main{padding-top:calc(28px + var(--safe-t))}
       <button class="tb-tab" data-go="orders"><svg class="i" data-ic="receipt"></svg><span>Pesanan</span><b class="nbadge" id="ordBadge" hidden>0</b></button>
       <button class="tb-tab" data-go="members"><svg class="i" data-ic="users"></svg><span>Ahli</span></button>
       <button class="tb-tab" data-go="menu"><svg class="i" data-ic="bag"></svg><span>Menu</span></button>
+      <button class="tb-tab" data-go="promos"><svg class="i" data-ic="megaphone"></svg><span>Promosi</span></button>
       <button class="tb-tab" data-go="rewards"><svg class="i" data-ic="gift"></svg><span>Ganjaran</span></button>
       <button class="tb-tab" data-go="settings"><svg class="i" data-ic="settings"></svg><span>Tetapan</span></button>
     </nav>
@@ -547,6 +571,23 @@ body.tabs-hidden .main{padding-top:calc(28px + var(--safe-t))}
       <div class="rw-grid" id="menuGrid"></div>
     </section>
 
+    <!-- ========== PROMOSI ========== -->
+    <section class="screen" data-screen="promos">
+      <div class="topbar">
+        <div><small>Banner karusel di Home · reka bentuk Promo Carousel</small><h1>Promosi</h1></div>
+        <div class="top-actions"><button class="btn red" data-action="newPromo"><svg class="i" data-ic="plus"></svg>Tambah promosi</button></div>
+      </div>
+      <div class="grid g4" id="pKpi" style="margin-bottom:14px"></div>
+      <div class="tile" style="margin-bottom:14px">
+        <div class="row" style="flex-wrap:wrap;justify-content:space-between">
+          <div><b style="font-size:14px">Auto-slide</b><div class="note">Tempoh setiap banner sebelum bertukar</div></div>
+          <div class="row"><div class="sstep"><button type="button" data-action="pint" data-d="-1" aria-label="Kurang">−</button><output class="mono" id="pInt">4s</output><button type="button" data-action="pint" data-d="1" aria-label="Tambah">+</button></div>
+          <span class="note" id="pThemeNote"></span></div>
+        </div>
+      </div>
+      <div class="p-list" id="pList"></div>
+    </section>
+
     <!-- ========== GANJARAN ========== -->
     <section class="screen" data-screen="rewards">
       <div class="topbar">
@@ -627,6 +668,7 @@ body.tabs-hidden .main{padding-top:calc(28px + var(--safe-t))}
 <div class="toast" id="toast"></div>
 
 <script src="menu.js"></script>
+<script src="promo.js"></script>
 <script>
 /* =========================================================
    KONFIGURASI
@@ -701,6 +743,9 @@ Object.assign(IC, {
   leaf:'<path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10zM2 21c0-3 1.9-5.4 5.2-6.1"/>',
   clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
   chevUp:'<path d="m18 15-6-6-6 6"/>',
+  megaphone:'<path d="m3 11 18-5v12L3 14v-3zM11.6 16.8a3 3 0 1 1-5.8-1.6"/>',
+  arrowUp:'<path d="M12 19V5M5 12l7-7 7 7"/>',
+  arrowDown:'<path d="M12 5v14M19 12l-7 7-7-7"/>',
   menuIc:'<path d="M4 6h16M4 12h16M4 18h10"/>',
   receipt:'<path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1zM16 8h-6M16 12H8M13 16H8"/>',
 });
@@ -862,7 +907,7 @@ function go(name){
   history.replaceState(null,"","#"+name);
 }
 function renderScreen(){
-  ({overview:renderOverview,counter:()=>{},members:renderMembers,rewards:renderRewards,settings:renderSettings,menu:renderMenuAdmin,orders:renderOrders})[current]?.();
+  ({overview:renderOverview,counter:()=>{},members:renderMembers,rewards:renderRewards,settings:renderSettings,menu:renderMenuAdmin,orders:renderOrders,promos:renderPromos})[current]?.();
   renderOrderBadge();
 }
 
@@ -1164,7 +1209,7 @@ function renderThemeGrid(){
 document.addEventListener("click",e=>{ const b=e.target.closest("[data-th]"); if(!b||!SETDRAFT) return; SETDRAFT.theme=b.dataset.th; renderThemeGrid(); applyAdminTheme(SETDRAFT.theme); });
 /* Warna aksen admin ikut tema app (latar admin kekal cerah supaya mudah dibaca) */
 const ADMIN_ACCENT={frost:["#0EA5E9","#38BDF8","#0F172A"],grid:["#FF6A1A","#FF8A3D","#111111"],noir:["#FF7A2F","#FF9A5C","#1B1924"],aurora:["#6D5BFF","#22D3EE","#0E1226"],
-  clay:["#C98A55","#D39A66","#7A4B2E"],sage:["#5A8158","#A2B08A","#3B5B3E"],indigo:["#2B4A7E","#3D63A3","#1E355E"],matcha:["#4B5A3A","#6B7B57","#343F28"],ruby:["#BF0311","#E3192B","#5A0710"]};
+  clay:["#C98A55","#D39A66","#7A4B2E"],promo:["#1D4ED8","#3B82F6","#0F1B4C"],sage:["#5A8158","#A2B08A","#3B5B3E"],indigo:["#2B4A7E","#3D63A3","#1E355E"],matcha:["#4B5A3A","#6B7B57","#343F28"],ruby:["#BF0311","#E3192B","#5A0710"]};
 function applyAdminTheme(id){
   const c=ADMIN_ACCENT[id]||ADMIN_ACCENT.ruby, r=document.documentElement.style;
   const rgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16)).join(",");
@@ -1195,7 +1240,7 @@ document.addEventListener("change",async e=>{ if(e.target.id!=="setQR") return; 
   try{ SETDRAFT.duitnowQR=await compressImage(f,700,.9); renderQRPrev(); toast("QR dimuat naik. Tekan Simpan."); }catch(_){ toast("Gambar tidak dapat dibaca"); } });
 function resetDemo(){
   if(!confirm("Set semula semua data demo (ahli, transaksi, ganjaran, tetapan & app pelanggan)?")) return;
-  Object.values(ADMIN.keys).forEach(k=>localStorage.removeItem(k)); load(); counterId=null; renderScreen(); toast("Data demo dipulihkan");
+  Object.values(ADMIN.keys).forEach(k=>localStorage.removeItem(k)); ["kafe-promos-v1","kafe-promo-stats-v1"].forEach(k=>localStorage.removeItem(k)); load(); counterId=null; renderScreen(); toast("Data demo dipulihkan");
 }
 
 /* =========================================================
@@ -1379,6 +1424,115 @@ function advanceOrder(no){
 document.addEventListener("click",e=>{ const c=e.target.closest("#ordChips [data-of]"); if(c){ ordFilter=c.dataset.of; renderOrders(); } });
 
 /* =========================================================
+   PROMOSI — banner karusel Home (reka bentuk Promo Carousel)
+   ========================================================= */
+const PROMO_KEY="kafe-promos-v1", PSTAT_KEY="kafe-promo-stats-v1";
+let PROMOS=[], pdraft=null, pdraftNew=false;
+function loadPromosA(){ PROMOS=read(PROMO_KEY,null); if(!Array.isArray(PROMOS)) PROMOS=structuredClone(window.SHOP_PROMOS||[]); }
+function savePromos(){ try{ localStorage.setItem(PROMO_KEY,JSON.stringify(PROMOS)); return true; }catch(e){ toast("Storan pelayar penuh. Guna gambar banner yang lebih kecil."); return false; } }
+const P_ST={live:"Aktif",scheduled:"Dijadual",ended:"Tamat",off:"Dimatikan"};
+const P_TIER={all:"Semua ahli",gold:"Gold & Platinum",platinum:"Platinum sahaja"};
+function pLinkLabel(l){ if(!l||l.type==="none") return "Tiada pautan"; if(l.type==="rewards") return "→ Ganjaran"; const m=MENU.find(x=>x.id===l.id); return "→ Menu"+(m?": "+m.name:""); }
+function pDates(p){ return p.start||p.end ? `${p.start||"…"} → ${p.end||"…"}` : "Sentiasa"; }
+function thumb(p,cls="pthumb"){ return `<div class="${cls}"><div class="inner">${PromoBanner.html(p,{brand:ADMIN.brand})}</div></div>`; }
+function renderPromos(){
+  if(!window.PromoBanner) return; PromoBanner.ensureCSS(); loadPromosA();
+  const st=read(PSTAT_KEY,{}), tv=Object.values(st).reduce((a,x)=>a+(x.v||0),0), tt=Object.values(st).reduce((a,x)=>a+(x.t||0),0);
+  const live=PROMOS.filter(p=>PromoBanner.status(p)==="live").length;
+  $("#pKpi").innerHTML=`<div class="tile dark"><div class="label">Promosi aktif</div><div class="kpi">${live}</div><div class="kpi-sub">daripada ${PROMOS.length} banner</div></div>
+    <div class="tile"><div class="label">Paparan banner</div><div class="kpi">${fmt(tv)}</div><div class="kpi-sub">dalam pelayar ini</div></div>
+    <div class="tile"><div class="label">Ketikan</div><div class="kpi">${fmt(tt)}</div><div class="kpi-sub">buka halaman promosi</div></div>
+    <div class="tile warm"><div class="label">CTR</div><div class="kpi">${tv?(tt/tv*100).toFixed(1):"0.0"}%</div><div class="kpi-sub">ketikan ÷ paparan</div></div>`;
+  $("#pInt").textContent=(SETTINGS.promoInterval||4)+"s";
+  $("#pThemeNote").textContent=(SETTINGS.theme==="promo")?"Reka bentuk Promo Carousel sedang digunakan":"Karusel hanya muncul dalam reka bentuk Promo Carousel (Tetapan → Reka bentuk)";
+  $("#pList").innerHTML=PROMOS.map((p,i)=>{ const ps=PromoBanner.status(p), s1=st[p.id]||{v:0,t:0};
+    return `<div class="tile p-card ${ps==="off"?"off":""}">${thumb(p)}
+      <div class="info"><b>${esc(p.title)}</b><span class="pst ${ps}">${P_ST[ps]}</span>
+        <div class="meta"><span class="mono">${esc(pDates(p))}</span><span>${P_TIER[p.tiers||"all"]}</span><span>${esc(pLinkLabel(p.link))}</span></div>
+        <div class="stats">${fmt(s1.v)} paparan · ${fmt(s1.t)} ketikan</div>
+        <div class="ctl"><button class="switch ${p.active!==false?"on":""}" data-action="togglePromo" data-p="${p.id}" aria-label="Aktif"></button>
+          <button class="ibtn" data-action="movePromo" data-p="${p.id}" data-d="-1" ${i===0?"disabled":""} aria-label="Naik">${icon("arrowUp","width:16px;height:16px")}</button>
+          <button class="ibtn" data-action="movePromo" data-p="${p.id}" data-d="1" ${i===PROMOS.length-1?"disabled":""} aria-label="Turun">${icon("arrowDown","width:16px;height:16px")}</button>
+          <button class="btn ghost sm" data-action="editPromo" data-p="${p.id}" style="margin-left:auto">${icon("edit","width:15px;height:15px")}Edit</button></div>
+      </div></div>`; }).join("") || `<div class="tile empty">Belum ada promosi. Tekan "Tambah promosi".</div>`;
+}
+function setPromoInt(dlt){
+  const v=Math.max(2,Math.min(15,(SETTINGS.promoInterval||4)+dlt)); SETTINGS.promoInterval=v;
+  const cur=read(ADMIN.keys.settings,{}); cur.promoInterval=v; write(ADMIN.keys.settings,cur); $("#pInt").textContent=v+"s";
+}
+function togglePromo(id){ const p=PROMOS.find(x=>x.id===id); p.active=p.active===false; savePromos(); renderPromos(); toast(p.active?"Promosi dihidupkan":"Promosi dimatikan"); }
+function movePromo(id,dlt){ const i=PROMOS.findIndex(x=>x.id===id), j=i+dlt; if(j<0||j>=PROMOS.length) return; [PROMOS[i],PROMOS[j]]=[PROMOS[j],PROMOS[i]]; savePromos(); renderPromos(); }
+function editPromo(id){
+  loadPromosA(); const p=PROMOS.find(x=>x.id===id); pdraftNew=!p;
+  pdraft=p?structuredClone(p):{id:"pr"+Date.now().toString(36),title:"",desc:"",start:"",end:"",active:true,tiers:"all",link:{type:"menu"},kind:"preset",style:"sunset",h1:"PROMO",h2:"BARU",tag:"",badge:"",cups:[["#E6BE8A","#5C3B22","#8A5428"]],cta:"Lihat lanjut",note:""};
+  openSheet(`<div id="ped"></div>`,true); renderPromoEditor();
+}
+function renderPromoEditor(){
+  const d=pdraft, box=$("#ped"); if(!box||!d) return;
+  const opt=(v,l,cur)=>`<option value="${esc(v)}" ${v===cur?"selected":""}>${esc(l)}</option>`;
+  const linkVal=d.link?.type==="menu"?"menu:"+(d.link.id||""):(d.link?.type||"none");
+  box.innerHTML=`<h2>${pdraftNew?"Promosi baharu":"Edit promosi"}</h2><p class="sub">Banner 4:5 di karusel Home. Pratonton dikemas kini semasa anda menaip.</p>
+  <div class="ped"><div>
+    <label class="field"><span>Tajuk promosi</span><input class="input" data-pf="title" value="${esc(d.title)}" maxlength="50" placeholder="cth. Beli 1 Percuma 1"></label>
+    <label class="field"><span>Penerangan</span><input class="input" data-pf="desc" value="${esc(d.desc)}" maxlength="160"></label>
+    <div class="grid g2" style="gap:0 12px">
+      <label class="field"><span>Mula (kosong = sekarang)</span><input class="input mono" type="date" data-pf="start" value="${esc(d.start)}"></label>
+      <label class="field"><span>Tamat (kosong = tiada)</span><input class="input mono" type="date" data-pf="end" value="${esc(d.end)}"></label>
+      <label class="field"><span>Tunjuk kepada</span><select class="input" data-pf="tiers">${opt("all","Semua ahli",d.tiers)}${opt("gold","Gold & Platinum",d.tiers)}${opt("platinum","Platinum sahaja",d.tiers)}</select></label>
+      <label class="field"><span>Bila ditekan, buka</span><select class="input" data-pf="link">${opt("none","Tiada pautan",linkVal)}${opt("rewards","Skrin Ganjaran",linkVal)}${opt("menu:","Skrin Menu",linkVal)}${MENU.map(m=>opt("menu:"+m.id,"Menu → "+m.name,linkVal)).join("")}</select></label>
+    </div>
+    <div class="field"><span>Jenis banner</span><div class="seg"><button type="button" class="${d.kind!=="image"?"on":""}" data-pe="kind" data-v="preset">Reka terbina</button><button type="button" class="${d.kind==="image"?"on":""}" data-pe="kind" data-v="image">Gambar sendiri</button></div></div>
+    ${d.kind==="image"?`
+      <div class="field"><span>Gambar banner (nisbah 4:5, cth. 1080×1350)</span>
+        <label class="btn ghost" style="cursor:pointer">${icon("download","width:16px;height:16px;transform:rotate(180deg)")}${d.img?"Tukar gambar":"Muat naik gambar"}<input type="file" accept="image/*" id="pImg" hidden></label>
+        <p class="note" style="margin:6px 0 0">Gambar dimampatkan dalam peranti. GIF/MP4 boleh disokong bila disambung ke Firebase Storage.</p></div>`:`
+      <div class="field"><span>Gaya</span><div class="stylepick">${PromoBanner.styles.map(st=>`<button type="button" class="${d.style===st?"on":""}" data-pe="style" data-v="${st}" aria-label="${st}"><div class="inner">${PromoBanner.html(Object.assign({},d,{style:st,kind:"preset"}),{brand:ADMIN.brand,cta:false})}</div></button>`).join("")}</div></div>
+      <div class="grid g2" style="gap:0 12px">
+        <label class="field"><span>Baris 1 (besar)</span><input class="input" data-pf="h1" value="${esc(d.h1)}" maxlength="14"></label>
+        <label class="field"><span>Baris 2</span><input class="input" data-pf="h2" value="${esc(d.h2)}" maxlength="16"></label>
+        <label class="field"><span>Label kecil</span><input class="input" data-pf="tag" value="${esc(d.tag)}" maxlength="22"></label>
+        <label class="field"><span>Lencana (gaya Garden)</span><input class="input" data-pf="badge" value="${esc(d.badge)}" maxlength="6" placeholder="-20%"></label>
+      </div>`}
+    <div class="grid g2" style="gap:0 12px">
+      <label class="field"><span>Teks butang</span><input class="input" data-pf="cta" value="${esc(d.cta)}" maxlength="20"></label>
+      <label class="field"><span>Nota kecil</span><input class="input" data-pf="note" value="${esc(d.note)}" maxlength="30" placeholder="*Tertakluk T&S"></label>
+    </div>
+  </div>
+  <div class="prev"><div class="prevbox" id="pPrev">${thumb(d,"").replace('class=""','')}</div></div></div>
+  <div class="ed-foot">${pdraftNew?"":`<button class="btn ghost" data-action="deletePromo" aria-label="Padam">${icon("trash")}</button>`}<button class="btn red grow" data-action="savePromo">Simpan promosi</button></div>`;
+}
+function refreshPromoPrev(){ const b=$("#pPrev"); if(b) b.innerHTML=`<div class="inner">${PromoBanner.html(pdraft,{brand:ADMIN.brand})}</div>`; }
+$("#sheetBody").addEventListener("input",e=>{ const f=e.target.dataset.pf; if(!pdraft||!f||f==="link"||f==="tiers") return; pdraft[f]=e.target.value; refreshPromoPrev(); });
+$("#sheetBody").addEventListener("change",async e=>{
+  if(!pdraft) return; const f=e.target.dataset.pf;
+  if(f==="tiers"){ pdraft.tiers=e.target.value; }
+  if(f==="link"){ const v=e.target.value; pdraft.link=v.startsWith("menu:")?{type:"menu",id:v.slice(5)||undefined}:{type:v}; }
+  if(e.target.id==="pImg"){ const fl=e.target.files&&e.target.files[0]; if(!fl) return;
+    try{ pdraft.img=await compressImage(fl,900,.82); pdraft.kind="image"; renderPromoEditor(); toast("Gambar dimuat naik. Tekan Simpan."); }catch(_){ toast("Gambar tidak dapat dibaca"); } }
+});
+$("#sheetBody").addEventListener("click",e=>{
+  const b=e.target.closest("[data-pe]"); if(!b||!pdraft) return;
+  if(b.dataset.pe==="kind") pdraft.kind=b.dataset.v;
+  if(b.dataset.pe==="style") pdraft.style=b.dataset.v;
+  const y=$("#sheet").scrollTop; renderPromoEditor(); $("#sheet").scrollTop=y;
+});
+function savePromo(){
+  const d=pdraft; if(!d) return;
+  if(!d.title.trim()) return toast("Isi tajuk promosi");
+  if(d.start&&d.end&&d.end<d.start) return toast("Tarikh tamat mesti selepas tarikh mula");
+  if(d.kind==="image"&&!d.img) return toast("Muat naik gambar banner, atau pilih Reka terbina");
+  d.title=d.title.trim();
+  const i=PROMOS.findIndex(x=>x.id===d.id); if(i>=0) PROMOS[i]=d; else PROMOS.unshift(d);
+  if(!savePromos()) return;
+  pdraft=null; closeSheet(); renderPromos(); toast("Promosi disimpan");
+}
+function deletePromo(){
+  const btn=$('[data-action="deletePromo"]');
+  if(btn.dataset.sure!=="1"){ btn.dataset.sure="1"; btn.innerHTML="Padam?"; btn.classList.replace("ghost","red"); return; }
+  PROMOS=PROMOS.filter(x=>x.id!==pdraft.id); savePromos(); pdraft=null; closeSheet(); renderPromos(); toast("Promosi dipadam");
+}
+
+/* =========================================================
    TAB BAR — penanda meluncur, sembunyi/tunjuk, auto-sembunyi bila skrol (telefon)
    ========================================================= */
 const TABS_KEY="kafe-admin-tabs-hidden";
@@ -1430,7 +1584,7 @@ addEventListener("keydown", e=>{
    SHEET & TOAST
    ========================================================= */
 function openSheet(html,wide){ $("#sheetBody").innerHTML=html; $("#sheet").classList.toggle("wide",!!wide); $("#scrim").classList.add("show"); $("#sheet").classList.add("show"); $("#sheet").scrollTop=0; }
-function closeSheet(){ $("#scrim").classList.remove("show"); $("#sheet").classList.remove("show"); draft=null; }
+function closeSheet(){ $("#scrim").classList.remove("show"); $("#sheet").classList.remove("show"); draft=null; pdraft=null; }
 let tt; function toast(msg){ const t=$("#toast"); t.innerHTML=icon("check","width:18px;height:18px")+`<span>${esc(msg)}</span>`; t.classList.add("show"); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove("show"),2600); }
 
 /* =========================================================
@@ -1452,6 +1606,8 @@ document.addEventListener("click",e=>{
     newProduct:()=>editProduct(""), editProduct:()=>editProduct(d.p), toggleProduct:()=>toggleProduct(d.p),
     saveProduct, deleteProduct, advanceOrder:()=>advanceOrder(d.no),
     verifyPay:()=>setPay(d.no,"verified"), rejectPay:()=>setPay(d.no,"rejected"), viewProof:()=>viewProof(d.no),
+    newPromo:()=>editPromo(""), editPromo:()=>editPromo(d.p), togglePromo:()=>togglePromo(d.p), movePromo:()=>movePromo(d.p,+d.d),
+    savePromo, deletePromo, pint:()=>setPromoInt(+d.d),
     hideTabs:()=>isMobile()?closeDrawer():setTabsHidden(true), showTabs:()=>isMobile()?openDrawer():setTabsHidden(false),
     clearQR:()=>{ if(SETDRAFT){ SETDRAFT.duitnowQR=""; renderQRPrev(); toast("QR dibuang. Tekan Simpan."); } },
     saveSettings, resetDemo,
@@ -1487,7 +1643,7 @@ $("#loginForm").addEventListener("submit",e=>{
 function enter(){
   $("#login").remove(); $("#layout").hidden=false;
   setTabsHidden(readTabsHidden(), false);
-  const h=(location.hash||"").slice(1); go(["overview","counter","members","rewards","settings","menu","orders"].includes(h)?h:"overview");
+  const h=(location.hash||"").slice(1); go(["overview","counter","members","rewards","settings","menu","orders","promos"].includes(h)?h:"overview");
 }
 
 /* INIT */

@@ -13,6 +13,7 @@ Terima kasih kerana membeli! Panduan ini menerangkan cara memasang, menukar jena
 | `index.html` | App pelanggan (PWA): splash, Home, Menu, Cap & Point, Ganjaran, Profil |
 | `admin.html` | Dashboard admin dan kaunter staf |
 | `menu.js` | **Data kedai**: menu, add-on, tetapan dan senarai reka bentuk |
+| `promo.js` | Banner promosi asal untuk karusel (reka bentuk Promo Carousel) |
 | `manifest.webmanifest` | Nama dan ikon app bila dipasang di telefon |
 | `sw.js` | Service worker (boleh dibuka luar talian) |
 | `vercel.json` | Laluan `/admin` untuk Vercel |
@@ -70,9 +71,9 @@ Buka `http://localhost:8080` (app pelanggan) dan `http://localhost:8080/admin.ht
 
 ## 5. Pilih reka bentuk
 
-Template ada **9 reka bentuk**: ★ **Sage Curve** (template spesial, dengan tab kategori menegak dan lukisan minuman), Bento Glass Frost, Bento Grid, Bento Glass Noir, Aurora Night, Caramel Latte, Indigo Ramen, Matcha Zen dan Ruby Glass.
+Template ada **10 reka bentuk**: ★ **Promo Carousel** (Home dengan karusel promosi bergerak), ★ **Sage Curve** (template spesial, dengan tab kategori menegak dan lukisan minuman), Bento Glass Frost, Bento Grid, Bento Glass Noir, Aurora Night, Caramel Latte, Indigo Ramen, Matcha Zen dan Ruby Glass.
 
-- **Untuk demo kepada client:** buka app dan tekan butang **palet** di Home, atau **Profil → Reka bentuk app**. Boleh juga hantar pautan terus, contohnya `https://app-anda.vercel.app/?tema=clay`. Nilai `tema` yang sah: `sage`, `frost`, `grid`, `noir`, `aurora`, `clay`, `indigo`, `matcha`, `ruby`.
+- **Untuk demo kepada client:** buka app dan tekan butang **palet** di Home, atau **Profil → Reka bentuk app**. Boleh juga hantar pautan terus, contohnya `https://app-anda.vercel.app/?tema=clay`. Nilai `tema` yang sah: `promo`, `sage`, `frost`, `grid`, `noir`, `aurora`, `clay`, `indigo`, `matcha`, `ruby`.
 - **Tetapkan reka bentuk rasmi kedai:** **Admin → Tetapan → Reka bentuk app pelanggan**, atau `menu.js` → `SHOP_SETTINGS.theme`.
 - **Sembunyikan butang palet** selepas client membuat pilihan: matikan suis di Admin → Tetapan, atau set `themePicker: false` dalam `menu.js`.
 - **Ubah warna tema:** dalam `index.html`, cari bahagian `TEMA` dan ubah token seperti `--brand`, `--brand-2`, `--brand-deep` dan `--brand-rgb` (nilai r,g,b bagi `--brand`) pada blok `:root[data-theme="..."]`.
@@ -97,6 +98,14 @@ Semua dalam **`menu.js`**:
 Admin juga boleh ubah menu, ganjaran dan tetapan dari dashboard tanpa sentuh kod. Perubahan itu disimpan dalam pelayar admin.
 
 **Ganjaran** (Minuman Percuma, Diskaun RM5, …) dan **tahap ahli** (Silver/Gold/Platinum) ada dalam `CONFIG` di `index.html`, dan `ADMIN.defaultRewards` di `admin.html`.
+
+## 6b. Promosi (reka bentuk Promo Carousel)
+
+- Urus di **Admin → Promosi**: tambah, ubah, susun naik/turun, hidup/matikan, dan tetapkan tempoh auto-slide.
+- Setiap promosi boleh guna **reka banner terbina** (4 gaya: Sunset, Ocean, Garden, Candy, dengan teks anda sendiri) atau **gambar sendiri** (nisbah 4:5, cth. 1080×1350).
+- Tetapkan **tarikh mula/tamat** (banner muncul dan hilang sendiri), **sasaran** (semua ahli / Gold & Platinum / Platinum), dan **pautan** (item menu, skrin Ganjaran atau tiada).
+- Promosi asal untuk kedai baharu ada dalam `promo.js` (`SHOP_PROMOS`).
+- Dalam versi demo, gambar banner disimpan dalam pelayar (ruang terhad beberapa MB). Untuk video MP4 atau banyak gambar, guna Firebase Storage.
 
 ## 7. Admin & keselamatan
 

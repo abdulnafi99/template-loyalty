@@ -1,5 +1,18 @@
 # Nota Versi
 
+## v1.2.0 — Template spesial: Promo Carousel
+- Reka bentuk ke-10 bertanda **★ SPESIAL**. Home gaya app kedai kopi:
+  - cip status (Point, Kad cap, Tahap)
+  - **karusel promosi bergerak** (auto-slide dengan bar kemajuan, leret & snap, banner sebelah kelihatan, zoom & parallax halus, berhenti bila disentuh)
+  - jubin besar Pickup / Pre-order
+  - nav penuh lebar dengan label
+- Halaman promosi: banner penuh, tarikh, penerangan, terma, dan butang terus ke item menu atau ganjaran.
+- Admin → **Promosi**:
+  - statistik paparan/ketikan/CTR
+  - susun naik/turun, hidup/matikan, tempoh auto-slide
+  - editor dengan pratonton langsung: 4 gaya banner terbina atau gambar sendiri, tarikh mula/tamat, sasaran tahap ahli, pautan ke menu atau ganjaran
+- Fail baharu `promo.js`: promosi asal dan pelukis banner (dikongsi app & admin).
+
 ## v1.1.2 — Admin: navigasi tab bar
 - Desktop: sidebar admin diganti dengan **tab bar** di atas, dengan penanda yang meluncur. Tab bar **boleh disembunyikan** (butang ⌃ atau kekunci **H**), butang "Menu" muncul untuk tunjuk semula, dan pilihan diingati.
 - Telefon: **sidebar laci** dari kiri. Buka dengan butang ☰ (memaparkan nama halaman dan bilangan pesanan) atau leret dari tepi kiri. Tutup dengan memilih tab, mengetik di luar, ✕, Escape, atau leret ke kiri. Butang ☰ sembunyi bila skrol ke bawah.

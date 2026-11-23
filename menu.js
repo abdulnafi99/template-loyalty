@@ -61,6 +61,7 @@ window.SHOP_SETTINGS = {
   duitnowQR: "",          // gambar QR DuitNow kedai (admin muat naik); kosong = QR contoh
   theme: "frost",         // reka bentuk app pelanggan (lihat SHOP_THEMES di bawah)
   themePicker: true,      // tunjuk butang "Reka bentuk" dalam app (mod demo untuk client pilih)
+  promoInterval: 4,       // saat setiap banner dalam karusel promosi (reka bentuk Promo Carousel)
 };
 
 /* =========================================================
@@ -68,6 +69,7 @@ window.SHOP_SETTINGS = {
    CSS setiap tema ada dalam index.html: :root[data-theme="..."]
    ========================================================= */
 window.SHOP_THEMES = [
+  { id:"promo",  name:"Promo Carousel",    desc:"Karusel promosi bergerak · biru diraja", sw:["#FFFFFF","#0F1B4C","#1D4ED8","#F2F4FA"], meta:"#FFFFFF", stamp:"check", special:true },
   { id:"sage",   name:"Sage Curve",        desc:"Panel melengkung · hijau sage",   sw:["#FFFFFF","#5A8158","#3B5B3E","#A2B08A"], meta:"#FFFFFF", stamp:"cup", art:"drink", special:true },
   { id:"frost",  name:"Bento Glass Frost", desc:"Kaca cerah · biru langit",        sw:["#EEF2F6","#0F172A","#38BDF8","#FDBA74"], meta:"#EEF2F6", stamp:"check" },
   { id:"grid",   name:"Bento Grid",        desc:"Kelabu hangat · hitam · oren",    sw:["#F1F1EE","#111111","#FF6A1A","#FFFFFF"], meta:"#F1F1EE", stamp:"check" },
