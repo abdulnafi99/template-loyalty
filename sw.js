@@ -1,6 +1,6 @@
 /* Service worker — cache app shell supaya boleh dibuka luar talian.
    Naikkan VERSION setiap kali anda kemas kini index.html. */
-const VERSION = "kafe-v1.5.1";
+const VERSION = "kafe-v1.5.2";
 const SHELL = ["./", "./index.html", "./admin.html", "./menu.js", "./manifest.webmanifest",
   "./icons/icon-192.png", "./icons/icon-512.png", "./icons/apple-touch-icon.png"];
 
