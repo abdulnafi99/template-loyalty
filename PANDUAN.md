@@ -105,6 +105,7 @@ Admin juga boleh ubah menu, ganjaran dan tetapan dari dashboard tanpa sentuh kod
 - Setiap promosi boleh guna **reka banner terbina** (4 gaya: Sunset, Ocean, Garden, Candy, dengan teks anda sendiri) atau **gambar sendiri** (nisbah 4:5, cth. 1080×1350).
 - Tetapkan **tarikh mula/tamat** (banner muncul dan hilang sendiri), **sasaran** (semua ahli / Gold & Platinum / Platinum), dan **pautan** (item menu, skrin Ganjaran atau tiada).
 - Promosi asal untuk kedai baharu ada dalam `promo.js` (`SHOP_PROMOS`).
+- Skrin **Menu** dalam reka bentuk ini guna rel kategori di kiri. Tambah `tag:"LABEL KECIL"` dan `popular:true` pada item dalam `menu.js` untuk label kecil dan kategori Popular.
 - Dalam versi demo, gambar banner disimpan dalam pelayar (ruang terhad beberapa MB). Untuk video MP4 atau banyak gambar, guna Firebase Storage.
 
 ## 7. Admin & keselamatan

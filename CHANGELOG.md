@@ -1,5 +1,17 @@
 # Nota Versi
 
+## v1.2.1 — Menu gaya Promo Carousel
+- Skrin Menu dalam reka bentuk Promo Carousel direka semula:
+  - togol **Pickup | Pre-order** dan butang carian di atas
+  - baris kedai dengan status buka/tutup dan lencana troli
+  - **rel kategori menegak di kiri** (ikon + label, penanda aktif)
+  - banner promosi melintang
+  - seksyen dengan tajuk bergaris, dan grid 2 lajur (gambar dalam bulatan, label kecil, nama, harga)
+- Kategori aktif bertukar sendiri bila skrol, dan ketik kategori meluncur ke seksyennya.
+- Carian menapis semua item.
+- Kategori **Popular** (item bertanda `popular:true`) dan label `tag` setiap item dalam `menu.js`.
+- Menu contoh kini 4 kategori (Kopi, Teh & Matcha, Coklat, Snek) dan 9 item.
+
 ## v1.2.0 — Template spesial: Promo Carousel
 - Reka bentuk ke-10 bertanda **★ SPESIAL**. Home gaya app kedai kopi:
   - cip status (Point, Kad cap, Tahap)
