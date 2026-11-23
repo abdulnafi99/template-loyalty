@@ -1,5 +1,13 @@
 # Nota Versi
 
+## v1.1.1 — Sage Curve diperkemas
+- Rel kategori menegak kini melekat (sticky) semasa skrol dan memanjang ke bawah skrin.
+- Kad produk lebih padat (tinggi tetap, teks dipendekkan 2 baris), maklum balas sentuhan pada kad dan butang +.
+- Halaman item: panel hijau melengkung dengan lukisan minuman besar.
+- Navigasi: penanda yang meluncur antara ikon, dan peralihan skrin berarah (kiri/kanan ikut tab).
+- Kawasan selamat: jarak tepi kiri/kanan (landskap & notch), skrol tidak "melantun" keluar.
+- Prestasi: tema pejal (Sage, Grid, Caramel, Indigo, Matcha) tidak lagi guna kesan kaca (backdrop-filter).
+
 ## v1.1.0 — Template spesial: Sage Curve
 - Reka bentuk ke-9 bertanda **★ SPESIAL**: panel hijau sage melengkung dengan bulatan bertindih, tab kategori menegak di tepi kiri (skrin Menu), kad produk dengan lukisan minuman yang tersembul keluar, cap berbentuk cawan, dan nav terapung dengan garis penanda.
 - Lukisan minuman SVG (warna boleh ditetapkan dengan `art` dalam `menu.js`).
