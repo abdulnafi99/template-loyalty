@@ -1,5 +1,11 @@
 # Nota Versi
 
+## v1.1.2 — Admin: navigasi tab bar
+- Sidebar admin diganti dengan **tab bar**: di atas (desktop) dengan penanda yang meluncur, dan dok terapung di bawah (telefon).
+- Tab bar **boleh disembunyikan**: butang ⌃ atau kekunci **H**. Butang "Menu" muncul untuk tunjuk semula, dan pilihan diingati.
+- Telefon: tab bar auto-sembunyi bila skrol ke bawah, dan muncul semula bila skrol ke atas.
+- Kawasan selamat (notch/home bar) diambil kira pada tab bar dan kandungan admin.
+
 ## v1.1.1 — Sage Curve diperkemas
 - Rel kategori menegak kini melekat (sticky) semasa skrol dan memanjang ke bawah skrin.
 - Kad produk lebih padat (tinggi tetap, teks dipendekkan 2 baris), maklum balas sentuhan pada kad dan butang +.

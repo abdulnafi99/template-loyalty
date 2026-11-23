@@ -100,6 +100,7 @@ Admin juga boleh ubah menu, ganjaran dan tetapan dari dashboard tanpa sentuh kod
 
 ## 7. Admin & keselamatan
 
+- Navigasi admin guna **tab bar** (atas di komputer, bawah di telefon). Tekan butang ⌃ atau kekunci **H** untuk sembunyikan, dan butang **Menu** untuk tunjuk semula.
 - PIN demo ialah **1234**. Tukar di `admin.html` → `ADMIN.pin`.
 - **PIN ini bukan keselamatan sebenar.** Ia hanya menyembunyikan dashboard dalam demo, dan sesiapa yang faham kod boleh melihatnya. Untuk operasi sebenar, guna log masuk backend (contohnya Firebase Authentication) dengan peraturan keselamatan pangkalan data.
 - Sebelum dilancarkan kepada pelanggan, buang bahagian **mod demo** di skrin Profil (Simulasi pembelian, Set semula data) dalam `index.html`.
