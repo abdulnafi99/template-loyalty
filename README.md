@@ -1,11 +1,11 @@
 # Kafe Demo — Template Loyalty PWA
 
-Template kad loyalti digital + pesanan (cap, point, menu, pickup, ganjaran) untuk kafe. Logo contoh **"kafé"** (Kafe Demo) dan **9 reka bentuk** yang boleh ditukar.
+Template kad loyalti digital + pesanan (cap, point, menu, pickup, ganjaran) untuk kafe. Logo contoh **"kafé"** (Kafe Demo) dan **10 reka bentuk** yang boleh ditukar.
 Ditulis sepenuhnya dalam **HTML, CSS dan JavaScript vanilla**, dalam satu fail `index.html`. Tiada framework dan tiada langkah build.
 
 ## Ciri-ciri
 - **Splash screen beranimasi**: huruf pertama logo muncul, zoom, kemudian logo penuh terbuka.
-- **9 reka bentuk (tema)**: ★ **Sage Curve (template spesial)**, Bento Glass Frost, Bento Grid, Bento Glass Noir, Aurora Night, Caramel Latte (clay), Indigo Ramen, Matcha Zen dan Ruby Glass. Setiap tema ada warna, fon, gaya cap, gaya kad menu dan navigasi sendiri.
+- **10 reka bentuk (tema)**: ★ **Promo Carousel** dan ★ **Sage Curve** (template spesial), Bento Glass Frost, Bento Grid, Bento Glass Noir, Aurora Night, Caramel Latte (clay), Indigo Ramen, Matcha Zen dan Ruby Glass. Setiap tema ada warna, fon, gaya cap, gaya kad menu dan navigasi sendiri.
 - **4 skrin**: Home · Cap & Point · Ganjaran · Profil, dengan bottom nav berbentuk pil.
 - **Kod QR ahli yang boleh diimbas betul-betul**, dijana dalam JS tanpa library (format: `<NAMA KEDAI>:<memberId>`).
 - **Kad cap 10 petak**: bila penuh, petak hadiah boleh ditekan untuk tebus minuman percuma.
@@ -17,7 +17,7 @@ Ditulis sepenuhnya dalam **HTML, CSS dan JavaScript vanilla**, dalam satu fail `
 ## Reka bentuk (tema)
 - Pelanggan/client boleh cuba semua reka bentuk melalui butang **palet** di Home, atau **Profil → Reka bentuk app**. Pilihan itu disimpan dalam peranti sahaja.
 - Admin pilih reka bentuk rasmi kedai di **Tetapan → Reka bentuk app pelanggan**, dan boleh matikan butang palet bila app sudah dilancarkan.
-- Pautan pratonton terus: `index.html?tema=aurora` (sage, frost, grid, noir, aurora, clay, indigo, matcha, ruby). Sesuai untuk hantar kepada client.
+- Pautan pratonton terus: `index.html?tema=aurora` (promo, sage, frost, grid, noir, aurora, clay, indigo, matcha, ruby). Sesuai untuk hantar kepada client.
 - Senarai tema ada dalam `menu.js` (`SHOP_THEMES`). CSS setiap tema ada dalam `index.html` di bahagian **TEMA** (`:root[data-theme="..."]`).
 
 ## Menu, add-on & troli
@@ -47,6 +47,7 @@ Buka `/admin` atau `admin.html` dan masukkan PIN demo **1234**.
 index.html             ← app pelanggan: SEMUA UI, CSS & JS (logo dibenam base64)
 admin.html             ← dashboard admin & kaunter staf (satu fail, demo)
 menu.js                ← menu & tetapan asal kedai (produk, add-on, point, waktu, bayaran)
+promo.js               ← banner promosi asal & pelukis banner (reka bentuk Promo Carousel)
 vercel.json            ← laluan /admin
 manifest.webmanifest   ← maklumat PWA (nama, warna, ikon)
 sw.js                  ← service worker (cache luar talian)

@@ -15,7 +15,7 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Inter:wght@400;500;600;700;800&family=Nunito:wght@500;700;800;900&family=Marcellus&family=Zen+Maru+Gothic:wght@500;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Inter:wght@400;500;600;700;800&family=Nunito:wght@500;700;800;900&family=Marcellus&family=Zen+Maru+Gothic:wght@500;700&family=Montserrat:wght@500;600;700;800&family=Archivo+Black&display=swap" rel="stylesheet">
 
 <style>
 /* =========================================================
@@ -628,6 +628,69 @@ a.row{color:inherit;text-decoration:none}
 :root[data-theme="sage"] .sheet{border-radius:32px 32px 0 0}
 :root[data-theme="sage"] .cartbar{border-radius:20px;background:#3B5B3E}
 /* kartu pilihan tema: lencana spesial */
+/* ---- 10. ★ SPESIAL · Promo Carousel: Home dengan karusel promosi bergerak ---- */
+:root[data-theme="promo"]{
+  --brand:#1D4ED8; --brand-2:#3B82F6; --brand-deep:#0F1B4C; --brand-rgb:29,78,216;
+  --ink:#121833; --ink-2:#5B6382; --ink-3:#9AA1BC; --bg:#FFFFFF; --shadow-rgb:15,27,76; --ink2-rgb:91,99,130;
+  --glass:#FFFFFF; --glass-line:rgba(15,27,76,.07); --blur:0px; --surface:#F2F4FA; --sheet:#FFFFFF; --radius:22px;
+  --shadow:0 10px 24px -18px rgba(15,27,76,.45);
+  --tile-dark:radial-gradient(120% 140% at 100% 0%,rgba(59,130,246,.55),transparent 55%),#0F1B4C; --tile-accent:linear-gradient(160deg,#3B82F6,#1D4ED8);
+  --tile-warm:#F2F4FA; --tile-rose:#F2F4FA;
+  --stamp-on:#0F1B4C; --stamp-ink:#fff; --stamp-off:rgba(255,255,255,.2); --stamp-line:transparent;
+  --nav-bg:#FFFFFF; --nav-active:transparent; --nav-active-ink:#1D4ED8; --cat-on:#0F1B4C;
+  --delta:#93C5FD; --dark-bar:linear-gradient(90deg,#3B82F6,#BFDBFE); --soft-icon:#F2F4FA;
+  --font-head:"Plus Jakarta Sans",system-ui,sans-serif; --head-w:800; --head-ls:-.02em;
+  --splash-bg:radial-gradient(80% 60% at 50% 45%,#3B82F6 0%,#1D4ED8 55%,#0F1B4C 100%);
+}
+:root[data-theme="promo"] .sky{display:none}
+:root[data-theme="promo"] body{background:#FFFFFF}
+:root[data-theme="promo"] .tile{backdrop-filter:none;-webkit-backdrop-filter:none}
+/* nav penuh lebar di bawah dengan label (gaya app kedai kopi) */
+:root[data-theme="promo"] .nav{left:0;right:0;bottom:0;transform:none;max-width:none;border-radius:0;justify-content:space-around;padding:8px 8px calc(8px + var(--safe-b));border:0;border-top:1px solid rgba(15,27,76,.08);box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none}
+:root[data-theme="promo"] .nav button{flex:1;flex-direction:column;gap:4px;height:50px;padding:0;color:#9AA1BC;box-shadow:none!important;background:none!important}
+:root[data-theme="promo"] .nav button span{max-width:none;font-size:10.5px}
+:root[data-theme="promo"] .nav button.active{color:#1D4ED8;padding:0}
+:root[data-theme="promo"] .cartbar{bottom:calc(80px + var(--safe-b))}
+/* Home: sembunyi bento, tunjuk karusel */
+.ph-home{display:none}
+:root[data-theme="promo"] .ph-home{display:block}
+:root[data-theme="promo"] #s-home .bento > :not(#installTile){display:none!important}
+:root[data-theme="promo"] #s-home .bento{margin-top:16px}
+:root[data-theme="promo"] #s-home .head{margin-bottom:14px}
+.ph-chips{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.ph-chip{position:relative;text-align:left;background:var(--surface);border-radius:14px;padding:10px 12px;min-height:58px}
+.ph-chip span{display:block;font-size:10.5px;color:var(--ink-2);font-weight:600}
+.ph-chip b{font-size:15px}
+.ph-chip i{position:absolute;right:8px;bottom:8px;width:22px;height:22px;border-radius:7px;background:var(--brand);display:grid;place-items:center;color:#fff}
+.ph-chip i svg{width:13px;height:13px;stroke-width:2.4}
+.ph-car{margin:0 calc(-1 * max(18px,env(safe-area-inset-left,0px)))}
+.ph-bars{display:flex;gap:5px;padding:0 max(18px,env(safe-area-inset-left,0px));margin-bottom:10px}
+.ph-bars i{flex:1;height:3px;border-radius:3px;background:rgba(15,27,76,.1);overflow:hidden}
+.ph-bars i b{display:block;height:100%;width:0;background:var(--ink);border-radius:3px}
+.ph-track{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 39px 18px;scrollbar-width:none;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.ph-track::-webkit-scrollbar{display:none}
+.ph-slide{flex:0 0 100%;max-width:340px;scroll-snap-align:center;border-radius:22px;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .45s;cursor:pointer;box-shadow:0 18px 30px -18px rgba(15,27,76,.55)}
+.ph-slide:not(.on){transform:scale(.93);opacity:.72}
+.ph-slide .pb{border-radius:22px}
+.ph-slide.on .pb-zoom{animation:phKb 6s ease-in-out infinite alternate}
+@keyframes phKb{to{transform:scale(1.07) translateY(-6px)}}
+.ph-empty{margin:0 max(18px,env(safe-area-inset-left,0px));border-radius:22px;background:var(--surface);aspect-ratio:4/5;display:grid;place-items:center;text-align:center;color:var(--ink-2);font-size:13px;padding:30px}
+.ph-tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px}
+.ph-tile{position:relative;overflow:hidden;text-align:left;height:150px;border-radius:22px;background:var(--surface);padding:16px}
+.ph-tile b{font-family:"Archivo Black","Plus Jakarta Sans",sans-serif;font-size:19px;color:var(--brand-deep)}
+.ph-tile span{display:block;font-size:11.5px;color:var(--ink-2);margin-top:2px}
+.ph-tile .ill{position:absolute;right:-6px;bottom:-8px;width:104px;height:104px}
+.ph-tile:active,.ph-chip:active{transform:scale(.97)}
+/* halaman promosi */
+.pd-ban{margin:-12px -22px 0;border-radius:0 0 26px 26px;overflow:hidden;position:relative}
+.pd-ban .pb{aspect-ratio:auto;height:min(64vh,500px);border-radius:0}
+.pd-ban .pb-text{top:84px}
+.pd-ban .pb-art > div:not(.pb-zoom),.pd-ban .pb-art > svg,.pd-ban .pb-art > i,.pd-ban .pb-badge{margin-top:80px}
+.pd-ban .sheet-top{position:absolute;left:22px;right:22px;top:0;margin:0;background:transparent;border:0;z-index:4}
+.pd-ban .sheet-top .back{background:rgba(255,255,255,.92)}
+.pd-ban .sheet-top b{display:none}
+.pd-when{display:inline-flex;gap:6px;align-items:center;font-size:12px;font-weight:700;color:var(--brand);background:var(--surface);padding:6px 10px;border-radius:99px;margin:6px 0 12px}
+.pd-tc{margin:0 0 18px;padding-left:18px;color:var(--ink-2);font-size:12.5px;line-height:1.7}
 /* ---- prestasi: tema pejal tidak perlukan kesan kaca ---- */
 :root[data-theme="sage"] .tile,:root[data-theme="grid"] .tile,:root[data-theme="clay"] .tile,:root[data-theme="indigo"] .tile,:root[data-theme="matcha"] .tile,
 :root[data-theme="sage"] .nav,:root[data-theme="grid"] .nav,:root[data-theme="indigo"] .nav,:root[data-theme="matcha"] .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
@@ -746,6 +809,24 @@ a.row{color:inherit;text-decoration:none}
         <div><small id="today">Rabu · Kafe Demo</small><h1 id="hello">Hai!</h1></div>
         <div class="head-r"><button class="theme-btn" data-action="themes" id="themeBtn" aria-label="Tukar reka bentuk"><svg class="i" data-ic="palette"></svg></button><div class="brand-dot"><img class="wm" alt="kafé"></div></div>
       </header>
+      <!-- Home gaya Promo Carousel (hanya dipapar dalam reka bentuk "promo") -->
+      <div class="ph-home" id="phHome">
+        <div class="ph-chips">
+          <button class="ph-chip" data-go="cap"><span>Point</span><b class="mono" id="phPts">0</b><i data-ic="sparkle"></i></button>
+          <button class="ph-chip" data-go="cap"><span>Kad cap</span><b class="mono" id="phSt">0/10</b><i data-ic="cup"></i></button>
+          <button class="ph-chip" data-go="profile"><span>Tahap</span><b id="phTier">Gold</b><i data-ic="crown"></i></button>
+        </div>
+        <div class="ph-car" id="phCar" aria-roledescription="karusel" aria-label="Promosi">
+          <div class="ph-bars" id="phBars"></div>
+          <div class="ph-track" id="phTrack"></div>
+        </div>
+        <div class="ph-tiles">
+          <button class="ph-tile" data-go="menu"><b>PICKUP</b><span>Ambil di kaunter</span>
+            <svg class="ill" viewBox="0 0 100 100" aria-hidden="true"><circle cx="58" cy="58" r="40" fill="var(--brand)" opacity=".14"/><path d="M34 40h40l-5 46a5 5 0 0 1-5 4H44a5 5 0 0 1-5-4z" fill="var(--brand)"/><rect x="30" y="34" width="48" height="8" rx="4" fill="var(--brand-deep)"/><path d="M56 34 60 14" stroke="var(--brand-deep)" stroke-width="4" stroke-linecap="round"/><circle cx="54" cy="64" r="9" fill="#fff"/></svg></button>
+          <button class="ph-tile" data-action="preorder"><b>PRE-ORDER</b><span>Pilih waktu ambil</span>
+            <svg class="ill" viewBox="0 0 100 100" aria-hidden="true"><circle cx="58" cy="58" r="40" fill="var(--brand)" opacity=".14"/><circle cx="58" cy="60" r="28" fill="var(--brand)"/><circle cx="58" cy="60" r="21" fill="#fff"/><path d="M58 47v13l9 6" stroke="var(--brand-deep)" stroke-width="4.5" stroke-linecap="round" fill="none"/><rect x="50" y="24" width="16" height="7" rx="3" fill="var(--brand-deep)"/></svg></button>
+        </div>
+      </div>
       <div class="bento">
         <div class="tile dark span2 press" data-go="cap">
           <div class="points-row"><span class="label">Point</span><span class="chip" id="h-tier">Gold</span></div>
@@ -886,6 +967,7 @@ a.row{color:inherit;text-decoration:none}
 <div class="toast" id="toast"></div>
 
 <script src="menu.js"></script>
+<script src="promo.js"></script>
 <script>
 /* =========================================================
    KONFIGURASI TEMPLATE — ubah ikut kedai anda
@@ -955,6 +1037,7 @@ const IC = {
   back:'<path d="m15 18-6-6 6-6"/>',
   clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
   upload:'<path d="M12 15V3M7 8l5-5 5 5M5 21h14"/>',
+  crown:'<path d="m2 7 5 5 5-8 5 8 5-5-2 12H4z"/>',
   palette:'<circle cx="13.5" cy="6.5" r="1.2"/><circle cx="17.5" cy="10.5" r="1.2"/><circle cx="8.5" cy="7.5" r="1.2"/><circle cx="6.5" cy="12.5" r="1.2"/><path d="M12 2a10 10 0 0 0 0 20c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1.1.9-2 2-2h2.4A5.6 5.6 0 0 0 22 9.8C22 5.5 17.5 2 12 2z"/>',
   bag:'<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/>',
   bowl:'<path d="M3 11h18a9 9 0 0 1-18 0zM7 7l1-4M12 7V2M17 7l-1-4"/>',
@@ -1140,6 +1223,7 @@ function render(){
   $("#p-redeemed").textContent = S.redeemed;
   $$("[data-toggle]").forEach(b=>b.classList.toggle("on", !!S[b.dataset.toggle]));
   if(typeof renderOrderTile==="function") renderOrderTile();
+  if(typeof renderPromoHome==="function") renderPromoHome();
 }
 const esc = s => String(s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
@@ -1630,11 +1714,92 @@ function openThemes(){
 function pickTheme(id){
   try{ localStorage.setItem(THEME_KEY,id); }catch(e){}
   if(themeFromUrl()){ const u=new URL(location.href); u.searchParams.delete("tema"); history.replaceState(null,"",u.pathname+u.hash); }
-  applyTheme(id); render(); if($("#s-menu").classList.contains("active")) renderMenu(); openThemes();
+  applyTheme(id); pBuilt=""; render(); if($("#s-menu").classList.contains("active")) renderMenu(); openThemes();
+}
+
+/* =========================================================
+   KARUSEL PROMOSI (reka bentuk "Promo Carousel")
+   - Banner dari admin (localStorage "kafe-promos-v1") atau promo.js
+   - Auto-slide ikut SHOP.promoInterval, bar kemajuan, leret & snap,
+     berhenti bila disentuh, parallax & zoom halus, statistik paparan/ketikan
+   ========================================================= */
+const PROMO_KEY="kafe-promos-v1", PSTAT_KEY="kafe-promo-stats-v1";
+let PROMOS=[], pIdx=0, pT0=0, pProg=0, pPaused=false, pViewed=new Set(), pBuilt="";
+function loadPromos(){ try{ const a=JSON.parse(localStorage.getItem(PROMO_KEY)); PROMOS=Array.isArray(a)?a:(window.SHOP_PROMOS||[]); }catch(e){ PROMOS=window.SHOP_PROMOS||[]; } }
+function tierRank(){ const t=CONFIG.tiers; let i=0; t.forEach((x,k)=>{ if(S.lifetime>=x.min) i=k; }); return i; }
+function visiblePromos(){
+  const r=tierRank();
+  return PROMOS.filter(p=>window.PromoBanner&&PromoBanner.status(p)==="live" && (p.tiers==="all"||!p.tiers||(p.tiers==="gold"&&r>=1)||(p.tiers==="platinum"&&r>=2)));
+}
+function pStat(id,k){ try{ const st=JSON.parse(localStorage.getItem(PSTAT_KEY)||"{}"); st[id]=st[id]||{v:0,t:0}; st[id][k]++; localStorage.setItem(PSTAT_KEY,JSON.stringify(st)); }catch(e){} }
+const promoOn=()=>THEME.id==="promo";
+function renderPromoHome(){
+  if(!promoOn()||!window.PromoBanner) return;
+  PromoBanner.ensureCSS();
+  const tr=$("#phTrack"); if(!tr) return;
+  $("#phPts").textContent=fmt(S.points); $("#phSt").textContent=`${S.stamps}/${CONFIG.stampTarget}`; $("#phTier").textContent=tierInfo().name;
+  const list=visiblePromos(), key=JSON.stringify(list.map(p=>[p.id,p.h1,p.h2,p.style,p.kind,(p.img||"").length,p.tag,p.badge,p.cta]));
+  if(key===pBuilt) return; pBuilt=key;
+  $("#phBars").innerHTML=list.length>1?list.map(()=>"<i><b></b></i>").join(""):"";
+  tr.innerHTML=list.length?list.map((p,i)=>`<div class="ph-slide" data-pi="${i}" role="group" aria-roledescription="slaid" aria-label="${i+1} daripada ${list.length}: ${esc(p.title)}">${PromoBanner.html(p,{brand:CONFIG.brand})}</div>`).join("")
+    :`<div class="ph-empty">Tiada promosi aktif buat masa ini.</div>`;
+  pIdx=Math.min(pIdx,Math.max(0,list.length-1)); pT0=performance.now(); pProg=0;
+  requestAnimationFrame(()=>{ promoGo(pIdx,false); promoScroll(); });
+}
+function promoSlides(){ return [...$$("#phTrack .ph-slide")]; }
+function promoGo(i,smooth=true){
+  const sl=promoSlides(), tr=$("#phTrack"); if(!sl.length) return;
+  pIdx=(i+sl.length)%sl.length; const s=sl[pIdx];
+  tr.scrollTo({left:s.offsetLeft-(tr.clientWidth-s.offsetWidth)/2,behavior:smooth&&!reduceMotion?"smooth":"auto"});
+  pT0=performance.now(); pProg=0; promoPaint();
+}
+function promoPaint(){
+  const sl=promoSlides(); sl.forEach((s,i)=>s.classList.toggle("on",i===pIdx));
+  [...$$("#phBars i b")].forEach((b,i)=>b.style.width=(i<pIdx?100:i>pIdx?0:Math.min(100,pProg*100))+"%");
+  const p=visiblePromos()[pIdx];
+  if(p && $("#s-home").classList.contains("active") && !pViewed.has(p.id)){ pViewed.add(p.id); pStat(p.id,"v"); }
+}
+function promoScroll(){
+  const tr=$("#phTrack"), sl=promoSlides(); if(!tr||!sl.length) return;
+  const c=tr.scrollLeft+tr.clientWidth/2; let near=0, best=1e9;
+  sl.forEach((s,i)=>{ const d=(s.offsetLeft+s.offsetWidth/2)-c; s.querySelector(".pb")?.style.setProperty("--p",Math.max(-1,Math.min(1,d/s.offsetWidth)).toFixed(3)); if(Math.abs(d)<best){best=Math.abs(d);near=i;} });
+  if(near!==pIdx){ pIdx=near; pT0=performance.now(); pProg=0; promoPaint(); }
+}
+(function(){
+  const tr=$("#phTrack"); if(!tr) return;
+  tr.addEventListener("scroll",()=>requestAnimationFrame(promoScroll),{passive:true});
+  tr.addEventListener("pointerdown",()=>{ pPaused=true; });
+  addEventListener("pointerup",()=>{ if(pPaused){ pPaused=false; pT0=performance.now()-pProg*SHOP_INTERVAL(); } });
+  tr.addEventListener("click",e=>{ const s=e.target.closest(".ph-slide"); if(!s) return; if(+s.dataset.pi!==pIdx){ promoGo(+s.dataset.pi); return; } openPromo(+s.dataset.pi); });
+  const loop=now=>{
+    if(promoOn() && !pPaused && !reduceMotion && !document.hidden && $("#s-home").classList.contains("active") && !$("#sheet").classList.contains("show") && promoSlides().length>1){
+      pProg=(now-pT0)/SHOP_INTERVAL(); if(pProg>=1) promoGo(pIdx+1); else promoPaint();
+    } else pT0=now-pProg*SHOP_INTERVAL();
+    requestAnimationFrame(loop);
+  };
+  requestAnimationFrame(loop);
+})();
+function SHOP_INTERVAL(){ return Math.max(2,+SHOP.promoInterval||4)*1000; }
+function openPromo(i){
+  const p=visiblePromos()[i]; if(!p) return; pStat(p.id,"t");
+  const when = p.start||p.end ? `${p.start?dShort(new Date(p.start).getTime()):"Sekarang"} – ${p.end?dShort(new Date(p.end).getTime()):"habis stok"}` : "Sedang berlangsung";
+  const lt=(p.link&&p.link.type)||"none";
+  openSheet(`<div class="pd-ban">${sheetTop(p.title)}${PromoBanner.html(p,{brand:CONFIG.brand,cta:false})}</div>
+    <h2 style="margin-top:18px">${esc(p.title)}</h2>
+    <div class="pd-when">${icon("clock","width:14px;height:14px")} ${esc(when)}</div>
+    <p>${esc(p.desc||"")}</p>
+    <ul class="pd-tc"><li>Sah untuk ahli ${esc(CONFIG.brand)} sahaja.</li><li>Tunjuk kod ahli di kaunter atau pesan dalam app.</li><li>Tidak boleh digabung dengan promosi lain. Selagi stok ada.</li></ul>
+    ${lt==="none"?`<button class="btn block" data-action="close">Tutup</button>`:`<button class="btn red block" data-promo-go="${i}">${lt==="rewards"?"Lihat ganjaran":"Pesan sekarang"}</button>`}`);
+}
+function promoGoLink(i){
+  const p=visiblePromos()[i]; if(!p||!p.link) return; closeSheet();
+  if(p.link.type==="rewards") return go("rewards");
+  go("menu"); if(p.link.id && CONFIG.menu.some(m=>m.id===p.link.id&&m.active!==false)) setTimeout(()=>openProduct(p.link.id),350);
 }
 
 /* Delegasi klik */
 document.addEventListener("click", e=>{
+  const pg=e.target.closest("[data-promo-go]"); if(pg){ promoGoLink(+pg.dataset.promoGo); return; }
   const tp=e.target.closest("[data-theme-pick]"); if(tp){ pickTheme(tp.dataset.themePick); return; }
   const ot=e.target.closest("#orderTile"); if(ot&&ot.dataset.order){ showOrder(ot.dataset.order); return; }
   const g=e.target.closest("[data-go]"); if(g){ if(g.dataset.action==="close") closeSheet(); go(g.dataset.go); return; }
@@ -1647,7 +1812,8 @@ document.addEventListener("click", e=>{
   const a=e.target.closest("[data-action]"); if(!a) return;
   ({
     qr:showQR, close:closeSheet, claimStamp, demoBuy, editName, saveName, addLine, openCart, placeOrder,
-    themes:openThemes, themeReset:()=>{ try{ localStorage.removeItem(THEME_KEY); }catch(e){} applyTheme(currentThemeId()); render(); openThemes(); },
+    themes:openThemes,
+    preorder:()=>{ if(!CO.mode) resetCO(); CO.mode="slot"; const d=pickupDays(); CO.day=SHOP.preorder&&d.includes(1)?1:(d[0]??0); CO.ts=null; go("menu"); toast(SHOP.preorder?"Pilih item, kemudian waktu pre-order semasa checkout":"Pilih item, kemudian waktu ambil semasa checkout"); }, themeReset:()=>{ try{ localStorage.removeItem(THEME_KEY); }catch(e){} applyTheme(currentThemeId()); render(); openThemes(); },
     logout:()=>confirmBox("Log keluar?","Data kad pada peranti ini akan dipadam.","doLogout","Log keluar"),
     doLogout:()=>{ localStorage.removeItem(CONFIG.storageKey); load(); save(); closeSheet(); render(); go("home"); toast("Anda telah log keluar (data demo dimuat semula)"); },
     reset:()=>confirmBox("Set semula data?","Semua point, cap dan sejarah akan kembali ke data demo.","doReset","Set semula"),
@@ -1668,6 +1834,7 @@ addEventListener("storage", e=>{
     applyShared(); load(); render();
     if(e.key===CONFIG.storageKey && before!==S.stamps+"/"+S.points) toast("Kad anda dikemas kini di kaunter");
   }
+  if(e.key==="kafe-promos-v1"){ loadPromos(); pBuilt=""; renderPromoHome(); }
   if(e.key===SHARED.menu){ applyShared(); if($("#s-menu").classList.contains("active")) renderMenu(); }
   if(e.key===SHARED.settings){ applyTheme(currentThemeId()); render(); renderCartBar(); renderOrderTile(); }
   if(e.key===SHARED.orders){
@@ -1728,7 +1895,7 @@ function endSplash(){
 /* INIT */
 $$("img.wm").forEach(i=>{ if(!i.src) i.src=WORDMARK; });
 hydrateIcons();
-applyShared(); applyTheme(currentThemeId()); load(); save(); render(); net(); renderCartBar();
+applyShared(); applyTheme(currentThemeId()); load(); save(); loadPromos(); render(); net(); renderCartBar();
 go((location.hash||"#home").slice(1).replace(/[^a-z]/g,"") || "home");
 if(!$(".screen.active")) go("home");
 const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
