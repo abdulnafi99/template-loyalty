@@ -110,7 +110,7 @@ Dalam versi demo, dalam pelayar peranti. Tiada data dihantar ke mana-mana pelaya
 1. Gumroad → **Products → New product** → pilih **Digital product**. Masukkan nama dan harga.
 2. **Cover**: muat naik `01-cover.jpg`, kemudian tambah 03–06 sebagai gambar tambahan. **Thumbnail**: `02-thumbnail.jpg`.
 3. **Description**: tampal bahagian *Penerangan* dan *FAQ* di atas.
-4. **Content**: muat naik fail `template-loyalti-kafe-v1.1.0.zip`.
+4. **Content**: muat naik fail `template-loyalti-kafe-v1.1.1.zip`.
 5. Isi bahagian *Summary* dan tag, kemudian **Publish**.
 
 ## Nota tentang demo langsung

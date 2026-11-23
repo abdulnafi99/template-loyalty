@@ -87,13 +87,19 @@ svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stro
 .screens{flex:1;position:relative;overflow:hidden}
 .screen{
   position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;
-  padding:calc(22px + var(--safe-t)) 18px calc(120px + var(--safe-b));
+  padding:calc(22px + var(--safe-t)) max(18px,env(safe-area-inset-right,0px)) calc(120px + var(--safe-b)) max(18px,env(safe-area-inset-left,0px));
+  overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scroll-padding-top:calc(12px + var(--safe-t));
   opacity:0;visibility:hidden;transform:translateY(14px) scale(.985);
   transition:opacity .35s ease,transform .45s cubic-bezier(.2,.8,.2,1),visibility 0s .35s;
   scrollbar-width:none;
 }
 .screen::-webkit-scrollbar{display:none}
 .screen.active{opacity:1;visibility:visible;transform:none;transition:opacity .35s ease,transform .45s cubic-bezier(.2,.8,.2,1)}
+/* peralihan berarah: skrin baru masuk dari arah tab yang ditekan */
+.screen.from-r{transform:translateX(32px)!important;opacity:0!important;transition:none!important}
+.screen.from-l{transform:translateX(-32px)!important;opacity:0!important;transition:none!important}
+.screen.to-l{transform:translateX(-32px)}
+.screen.to-r{transform:translateX(32px)}
 .screen.active .tile{animation:rise .55s cubic-bezier(.2,.8,.2,1) both}
 .screen.active .tile:nth-child(2){animation-delay:.04s}
 .screen.active .tile:nth-child(3){animation-delay:.08s}
@@ -231,6 +237,8 @@ a.row{color:inherit;text-decoration:none}
 .nav button span{font-size:13px;font-weight:700;max-width:0;overflow:hidden;white-space:nowrap;transition:max-width .35s ease}
 .nav button.active{background:var(--nav-active);color:var(--nav-active-ink);padding:0 18px;box-shadow:0 8px 18px -8px rgba(var(--brand-rgb),.8)}
 .nav button.active span{max-width:110px}
+.nav button:active{transform:scale(.92)}
+.nav-ind{display:none;position:absolute;left:0;bottom:6px;width:24px;height:3px;border-radius:3px;background:#fff;pointer-events:none;transform:translateX(var(--ind-x,0px));transition:transform .42s cubic-bezier(.3,1.25,.5,1),opacity .2s}
 
 /* ---------- Sheet / Modal ---------- */
 .scrim{position:fixed;inset:0;z-index:40;background:rgba(var(--shadow-rgb),.38);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
@@ -571,38 +579,59 @@ a.row{color:inherit;text-decoration:none}
 :root[data-theme="sage"] .tile.red{border-radius:30px}
 :root[data-theme="sage"] .tile.warm,:root[data-theme="sage"] .tile.rose{border:0;box-shadow:none}
 :root[data-theme="sage"] .icon-sq{background:#3B5B3E}
-/* nav terapung dengan garis penanda */
-:root[data-theme="sage"] .nav{border-radius:16px;padding:6px 10px;gap:6px;border:0;box-shadow:0 14px 26px -14px rgba(40,60,38,.6)}
-:root[data-theme="sage"] .nav button{color:rgba(255,255,255,.72);padding:0 12px;box-shadow:none!important;position:relative}
+/* nav terapung: satu penanda yang meluncur antara ikon */
+:root[data-theme="sage"] .nav{border-radius:18px;padding:6px 8px;gap:2px;border:0;box-shadow:0 16px 30px -16px rgba(40,60,38,.65)}
+:root[data-theme="sage"] .nav button{min-width:54px;height:52px;padding:0 12px;color:rgba(255,255,255,.66);box-shadow:none!important;background:none!important;transition:color .25s,transform .2s}
 :root[data-theme="sage"] .nav button span{display:none}
 :root[data-theme="sage"] .nav button.active{color:#fff;padding:0 12px}
-:root[data-theme="sage"] .nav button.active::after{content:"";position:absolute;left:50%;bottom:5px;width:24px;height:3px;margin-left:-12px;border-radius:3px;background:#fff}
-/* Menu: tab kategori menegak di tepi kiri */
-:root[data-theme="sage"] #s-menu{padding-left:64px}
-:root[data-theme="sage"] #s-menu .head{margin-left:2px}
-:root[data-theme="sage"] .cats{position:absolute;left:0;top:118px;margin:0;padding:0;flex-direction:column;gap:0;overflow:visible;width:50px}
-:root[data-theme="sage"] .cat{width:50px;min-height:150px;padding:22px 0;border-radius:0 0 0 40px;border:0;background:#5A8158;color:rgba(255,255,255,.75);writing-mode:vertical-rl;transform:rotate(180deg);font-size:12.5px;position:relative;box-shadow:-4px 6px 14px -6px rgba(0,0,0,.3)}
+:root[data-theme="sage"] .nav button.active svg{transform:translateY(-2px);transition:transform .3s cubic-bezier(.3,1.5,.6,1)}
+:root[data-theme="sage"] .nav-ind{display:block}
+/* Menu: rel kategori menegak yang melekat (sticky) dan memanjang ke bawah */
+:root[data-theme="sage"] #s-menu{display:grid;grid-template-columns:50px minmax(0,1fr);column-gap:14px;align-content:start;padding-left:0;padding-right:max(14px,env(safe-area-inset-right,0px))}
+:root[data-theme="sage"] #s-menu .head{grid-column:1/-1;margin-left:max(18px,env(safe-area-inset-left,0px))}
+:root[data-theme="sage"] .cats{grid-column:1;grid-row:2;position:sticky;top:-12px;align-self:start;margin:0;padding:0;flex-direction:column;gap:0;overflow:visible;width:50px;
+  height:auto}
+:root[data-theme="sage"] .cat{flex:0 0 auto;width:50px;min-height:150px;padding:22px 0;border-radius:0 0 0 40px;border:0;background:#5A8158;color:rgba(255,255,255,.7);writing-mode:vertical-rl;transform:rotate(180deg);font-size:12.5px;letter-spacing:.02em;position:relative;box-shadow:-4px 6px 14px -6px rgba(0,0,0,.3);transition:color .25s,background .25s}
+:root[data-theme="sage"] .cat:last-child{min-height:230px}
 :root[data-theme="sage"] .cat+.cat{margin-top:-28px}
-:root[data-theme="sage"] .cat:nth-child(1){z-index:6}:root[data-theme="sage"] .cat:nth-child(2){z-index:5}:root[data-theme="sage"] .cat:nth-child(3){z-index:4}:root[data-theme="sage"] .cat:nth-child(4){z-index:3}:root[data-theme="sage"] .cat:nth-child(5){z-index:2}
-:root[data-theme="sage"] .cat.on{color:#fff}
-:root[data-theme="sage"] .cat.on::after{content:"";position:absolute;left:5px;top:50%;width:3px;height:30px;margin-top:-15px;border-radius:3px;background:#fff}
+:root[data-theme="sage"] .cat:nth-child(1){z-index:6}:root[data-theme="sage"] .cat:nth-child(2){z-index:5}:root[data-theme="sage"] .cat:nth-child(3){z-index:4}:root[data-theme="sage"] .cat:nth-child(4){z-index:3}:root[data-theme="sage"] .cat:nth-child(5){z-index:2}:root[data-theme="sage"] .cat:nth-child(6){z-index:1}
+:root[data-theme="sage"] .cat.on{color:#fff;background:#527A50}
+:root[data-theme="sage"] .cat::after{content:"";position:absolute;left:5px;top:50%;width:3px;height:0;margin-top:0;border-radius:3px;background:#fff;transition:height .3s cubic-bezier(.3,1.4,.6,1),margin .3s}
+:root[data-theme="sage"] .cat.on::after{height:30px;margin-top:-15px}
+:root[data-theme="sage"] .cat:last-child{justify-content:flex-start;align-items:center;display:flex}
+:root[data-theme="sage"] .prod-grid{grid-column:2;grid-row:2;grid-template-columns:1fr;gap:42px;padding-top:34px;padding-bottom:110px;align-content:start}
 /* kad produk: kotak sage + panel hijau + minuman tersembul */
-:root[data-theme="sage"] .prod-grid{grid-template-columns:1fr;gap:42px;padding-top:30px}
-:root[data-theme="sage"] .prod{display:grid;grid-template-columns:112px 1fr;grid-template-rows:auto auto 1fr;padding:0;min-height:140px;background:none;border:0;box-shadow:none;overflow:visible;color:#fff}
+:root[data-theme="sage"] .prod{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:26px 16px 16px 134px;height:140px;min-height:0;position:relative;text-align:left;background:none;border:0;box-shadow:none;overflow:visible;color:#fff;backdrop-filter:none;-webkit-backdrop-filter:none;transition:transform .18s ease}
+:root[data-theme="sage"] .prod:active{transform:scale(.975)}
 :root[data-theme="sage"] .prod::before{content:"";position:absolute;left:98px;right:8px;top:16px;bottom:8px;background:#5A8158;border-radius:0 32px 32px 0;z-index:0}
-:root[data-theme="sage"] .prod .pic,:root[data-theme="sage"] .prod.alt .pic{grid-row:1/4;grid-column:1;position:relative;z-index:1;width:112px;height:140px;aspect-ratio:auto;margin:0;border-radius:28px;background:#A2B08A;overflow:visible;color:#fff}
-:root[data-theme="sage"] .prod .pic svg.art{position:absolute;left:12px;top:-38px;width:88px;height:163px;filter:drop-shadow(0 10px 10px rgba(0,0,0,.18))}
-:root[data-theme="sage"] .prod b{position:relative;z-index:1;grid-column:2;padding:28px 16px 0 22px;font-size:14px;font-weight:800}
-:root[data-theme="sage"] .prod .sub{position:relative;z-index:1;grid-column:2;padding:4px 16px 0 22px;color:rgba(255,255,255,.8);font-size:11px}
-:root[data-theme="sage"] .prod .row2{position:relative;z-index:1;grid-column:2;padding:8px 0 18px 22px;align-self:end}
+:root[data-theme="sage"] .prod .pic,:root[data-theme="sage"] .prod.alt .pic{position:absolute;left:0;top:0;z-index:1;width:112px;height:140px;aspect-ratio:auto;margin:0;border-radius:28px;background:#A2B08A;overflow:visible;color:#fff}
+:root[data-theme="sage"] .prod .pic svg.art{position:absolute;left:12px;top:-38px;width:88px;height:163px;filter:drop-shadow(0 10px 10px rgba(0,0,0,.18));transition:transform .35s cubic-bezier(.3,1.4,.6,1)}
+:root[data-theme="sage"] .prod:hover .pic svg.art{transform:translateY(-4px) rotate(-2deg)}
+:root[data-theme="sage"] .prod b{position:relative;z-index:1;padding:0;font-size:14px;font-weight:800;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+:root[data-theme="sage"] .prod .sub{position:relative;z-index:1;padding:0;margin-top:4px;color:rgba(255,255,255,.8);font-size:11px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+:root[data-theme="sage"] .prod .row2{position:relative;z-index:1;margin-top:auto;padding:0;padding-right:40px}
 :root[data-theme="sage"] .prod .pr{color:#fff;font-size:14px}
-:root[data-theme="sage"] .prod .plus{position:absolute;right:0;bottom:-2px;width:44px;height:40px;border-radius:12px;background:#A2B08A;box-shadow:0 6px 12px -6px rgba(0,0,0,.3)}
+:root[data-theme="sage"] .prod .plus{position:absolute;right:0;bottom:-2px;width:46px;height:42px;border-radius:13px;background:#A2B08A;box-shadow:0 6px 12px -6px rgba(0,0,0,.3);transition:transform .2s}
+:root[data-theme="sage"] .prod:active .plus{transform:scale(.9)}
 :root[data-theme="sage"] .prod .plus svg{stroke-width:3}
-/* halaman item */
-:root[data-theme="sage"] .ps-hero .pic{background:#5A8158;width:88px;height:96px;border-radius:24px;overflow:visible;position:relative}
-:root[data-theme="sage"] .ps-hero .pic svg.art{position:absolute;left:8px;top:-26px;width:72px;height:133px}
-:root[data-theme="sage"] .ps-hero{margin-top:22px}
+/* halaman item: panel hijau melengkung dengan minuman besar */
+:root[data-theme="sage"] .ps-hero{position:relative;flex-direction:column;align-items:flex-start;gap:6px;margin:30px 0 4px;padding:18px 18px 18px 150px;min-height:150px;border-radius:30px 30px 30px 0;color:#fff;
+  background:radial-gradient(circle at 100% 0%,#3B5B3E 0 70px,transparent 71px),radial-gradient(circle at 86% 96%,rgba(162,176,138,.55) 0 40px,transparent 41px),#5A8158}
+:root[data-theme="sage"] .ps-hero .pic{position:absolute;left:16px;top:-26px;width:118px;height:150px;border-radius:26px;background:#A2B08A;overflow:visible}
+:root[data-theme="sage"] .ps-hero .pic svg.art{position:absolute;left:14px;top:-30px;width:90px;height:166px;filter:drop-shadow(0 10px 10px rgba(0,0,0,.2))}
+:root[data-theme="sage"] .ps-hero h2{color:#fff;font-size:19px;line-height:1.2}
+:root[data-theme="sage"] .ps-hero p{color:rgba(255,255,255,.85)!important}
+:root[data-theme="sage"] .ps-hero .mono{color:#fff}
+:root[data-theme="sage"] .opts{background:#F4F7F0;border-color:transparent}
+:root[data-theme="sage"] .ps-foot{border-top-color:rgba(90,129,88,.12)}
+:root[data-theme="sage"] .ps-foot .btn.red{border-radius:18px}
+:root[data-theme="sage"] .sheet{border-radius:32px 32px 0 0}
+:root[data-theme="sage"] .cartbar{border-radius:20px;background:#3B5B3E}
 /* kartu pilihan tema: lencana spesial */
+/* ---- prestasi: tema pejal tidak perlukan kesan kaca ---- */
+:root[data-theme="sage"] .tile,:root[data-theme="grid"] .tile,:root[data-theme="clay"] .tile,:root[data-theme="indigo"] .tile,:root[data-theme="matcha"] .tile,
+:root[data-theme="sage"] .nav,:root[data-theme="grid"] .nav,:root[data-theme="indigo"] .nav,:root[data-theme="matcha"] .nav{backdrop-filter:none;-webkit-backdrop-filter:none}
+:root[data-theme="sage"] .screen.active .tile{animation-duration:.45s}
 /* ---- pembetulan kecil merentas tema ---- */
 :root[data-theme="grid"] .nav button.active{color:#111}
 :root[data-theme="indigo"] .nav button.active{color:#2B4A7E}
@@ -842,7 +871,7 @@ a.row{color:inherit;text-decoration:none}
     </section>
   </main>
 
-  <nav class="nav" id="nav">
+  <nav class="nav" id="nav"><i class="nav-ind" id="navInd" aria-hidden="true"></i>
     <button data-go="home" class="active" aria-label="Home"><svg class="i" data-ic="home"></svg><span>Home</span></button>
     <button data-go="menu" aria-label="Menu"><svg class="i" data-ic="bag"></svg><span>Menu</span></button>
     <button data-go="cap" aria-label="Cap &amp; Point"><svg class="i" data-ic="qr"></svg><span>Cap &amp; Point</span></button>
@@ -1117,14 +1146,34 @@ const esc = s => String(s).replace(/[&<>"']/g, c=>({"&":"&amp;","<":"&lt;",">":"
 /* =========================================================
    NAVIGASI
    ========================================================= */
+const SCREEN_ORDER=["home","menu","cap","rewards","profile"];
+let curScreen=null, navT=null;
+const reduceMotion=matchMedia("(prefers-reduced-motion: reduce)").matches;
 function go(name){
+  const next=$(`#s-${name}`), prev=curScreen&&curScreen!==name?$(`#s-${curScreen}`):null;
+  if(prev && next && !reduceMotion){
+    const fwd=SCREEN_ORDER.indexOf(name)>SCREEN_ORDER.indexOf(curScreen);
+    $$(".screen").forEach(s=>s.classList.remove("from-r","from-l","to-l","to-r"));
+    next.classList.add(fwd?"from-r":"from-l"); void next.offsetWidth;   // titik mula di luar skrin
+    prev.classList.add(fwd?"to-l":"to-r");
+    requestAnimationFrame(()=>next.classList.remove("from-r","from-l"));
+    clearTimeout(navT); navT=setTimeout(()=>$$(".screen").forEach(s=>s.classList.remove("to-l","to-r")),500);
+  }
   $$(".screen").forEach(s=>s.classList.toggle("active", s.dataset.screen===name));
   $$("#nav button").forEach(b=>b.classList.toggle("active", b.dataset.go===name));
-  const s=$(`#s-${name}`); if(s) s.scrollTop=0;
+  curScreen=name; moveNavInd();
+  const s=next; if(s) s.scrollTop=0;
   if(name==="menu") renderMenu();
   renderCartBar();
   if(location.hash!=="#"+name) history.replaceState(null,"","#"+name);
 }
+
+/* Penanda nav yang meluncur (tema Sage Curve) */
+function moveNavInd(){
+  const ind=$("#navInd"), b=$("#nav button.active"); if(!ind||!b) return;
+  ind.style.setProperty("--ind-x", (b.offsetLeft + b.offsetWidth/2 - 12) + "px");
+}
+addEventListener("resize", ()=>requestAnimationFrame(moveNavInd));
 
 /* =========================================================
    SHEET, TOAST, CONFETTI
@@ -1561,6 +1610,7 @@ function applyTheme(id){
   document.documentElement.dataset.theme = THEME.id;
   const m=$("#metaTheme"); if(m) m.setAttribute("content", THEME.meta);
   const tn=$("#themeName"); if(tn) tn.textContent=THEME.name;
+  requestAnimationFrame(moveNavInd);
   const show = SHOP.themePicker!==false;
   $("#themeBtn").hidden=!show; $("#themeRow").hidden=!show;
 }
